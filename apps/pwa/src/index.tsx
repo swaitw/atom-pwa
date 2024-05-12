@@ -15,9 +15,11 @@ import { initSentry } from "@/services/sentry";
 import { loadFlags } from "@/services/flags";
 import App from "./components/App";
 import invariant from "invariant";
+import { loadHybridSafeInsets } from "@/services/safe-inset";
 
 loadFlags();
 initSentry();
+loadHybridSafeInsets();
 
 const rootElement = document.getElementById("root");
 

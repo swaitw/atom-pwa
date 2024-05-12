@@ -1,3 +1,4 @@
+import { loadHybridSafeInsets } from "@/services/safe-inset";
 import { createContext, useContext, useEffect, useState } from "react";
 
 export interface SafeAreaInset {
@@ -6,23 +7,6 @@ export interface SafeAreaInset {
   bottom: number;
   left: number;
 }
-
-document.documentElement.style.setProperty(
-  "--safe-area-inset-top",
-  "env(safe-area-inset-top, 0px)"
-);
-document.documentElement.style.setProperty(
-  "--safe-area-inset-right",
-  "env(safe-area-inset-right, 0px)"
-);
-document.documentElement.style.setProperty(
-  "--safe-area-inset-bottom",
-  "env(safe-area-inset-bottom, 0px)"
-);
-document.documentElement.style.setProperty(
-  "--safe-area-inset-left",
-  "env(safe-area-inset-left, 0px)"
-);
 
 export const SafeAreaInsetContext = createContext<SafeAreaInset>(
   getSafeAreaInset()
@@ -42,6 +26,7 @@ export function SafeAreaInsetProvider({
 
   useEffect(() => {
     const listener = () => {
+      loadHybridSafeInsets();
       setState(getSafeAreaInset());
     };
 
