@@ -13,7 +13,6 @@ const platformMethods: PlatformMethods = {
       window.open("market://details?id=tk.horusgoul.valenciasquimicas");
     }
   },
-  getSafeInset: () => null,
 };
 
 const AtomNative = window.AtomNative || platformMethods;
@@ -43,10 +42,6 @@ class NativeBridge {
 
   public supportsNativeMethod(_methodName: keyof typeof AtomNative) {
     return !!window.AtomNative?.["rateApp"];
-  }
-
-  public getSafeInset() {
-    return this.exec("getSafeInset", [], []);
   }
 
   private exec<T extends keyof typeof AtomNative>(

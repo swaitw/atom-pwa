@@ -4,7 +4,6 @@ interface Window {
     getDebugMode?: () => boolean;
     getSystemLanguage?: () => string | undefined;
     rateApp?: (openMarket?: boolean) => void;
-    getSafeInset?: () => string | null;
   };
   __DEBUG__?: boolean;
 }
