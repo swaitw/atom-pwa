@@ -25,7 +25,7 @@ switch (ATOM_ENV) {
 }
 
 const baseUrlByEnv = {
-  production: "https://atom.horuslugo.com",
+  production: "https://periodictable.pro",
   next: "https://next--atom-pt.netlify.app",
   local: "http://localhost:8888",
 };

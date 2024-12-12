@@ -26,7 +26,7 @@
 
 [[redirects]]
   from = "/api/flags"
-  to = "https://atom-flags.horusdev.workers.dev"
+  to = "https://periodictable.pro/api/flags"
   status = 200
   force = true
 
