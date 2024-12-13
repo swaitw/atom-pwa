@@ -24,6 +24,10 @@ const isProduction = env.NODE_ENV === "production";
 const isTest = env.NODE_ENV === "test";
 const isDevelopment = !isProduction && !isTest;
 
+const ReactCompilerConfig = {
+  target: "18",
+};
+
 export default defineConfig({
   build: {
     sourcemap: true,
@@ -33,7 +37,11 @@ export default defineConfig({
     exclude: ["hammerjs"],
   },
   plugins: [
-    react(),
+    react({
+      babel: {
+        plugins: [["babel-plugin-react-compiler", ReactCompilerConfig]],
+      },
+    }),
     svgr(),
     legacy({
       targets: ["defaults", "not IE 11", "chrome > 60"],

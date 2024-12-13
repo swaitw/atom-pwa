@@ -65,6 +65,7 @@ export function LocationGetter({
       <Route
         path="*"
         Component={function LocationGrab() {
+          // eslint-disable-next-line react-compiler/react-compiler -- This is fine!
           const location = useLocation();
 
           onLocation(location);
