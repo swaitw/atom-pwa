@@ -2,7 +2,7 @@ import * as React from "react";
 import PtElementSetting from "./PtElementSetting";
 import { screen } from "@testing-library/react";
 import { render } from "@/test-utils";
-import userEvent from "@testing-library/user-event";
+import { userEvent } from "@testing-library/user-event";
 import IRON_ELEMENT from "@/data/elements/26.json";
 
 import { Element } from "@/Element";
@@ -42,11 +42,11 @@ describe("PtElementSetting", () => {
     ).toHaveClass(element.group);
   });
 
-  it("calls onClick when the element is clicked", () => {
+  it("calls onClick when the element is clicked", async () => {
     const onClick = vi.fn();
     render(<PtElementSetting element={element} onClick={onClick} />);
 
-    userEvent.click(screen.getByText(element.name));
+    await userEvent.click(screen.getByText(element.name));
 
     expect(onClick).toHaveBeenCalledWith(element);
   });

@@ -1,7 +1,6 @@
-import * as React from "react";
 import { screen } from "@testing-library/react";
 import { render } from "@/test-utils";
-import userEvent from "@testing-library/user-event";
+import { userEvent } from "@testing-library/user-event";
 
 import Modal from "./Modal";
 import { useState } from "react";
@@ -30,25 +29,25 @@ const CustomModalWrapper = ({ onClose }: CustomModalWrapperProps) => {
   );
 };
 
-test("should be able to toggle modal by clicking the overlay", () => {
+test("should be able to toggle modal by clicking the overlay", async () => {
   const onClose = vi.fn();
 
   render(<CustomModalWrapper onClose={onClose} />);
 
   expect(screen.queryByText(/modal-content/i)).toBeNull();
 
-  userEvent.click(screen.getByRole("button", { name: /toggle modal/i }));
+  await userEvent.click(screen.getByRole("button", { name: /toggle modal/i }));
 
   expect(screen.getByText(/modal-content/i, undefined)).toBeDefined();
 
   // clicking the overlay resembles more closely what a user will do
-  userEvent.click(screen.getByTestId("overlay"));
+  await userEvent.click(screen.getByTestId("overlay"));
 
   expect(screen.queryByText(/modal-content/i)).toBeNull();
   expect(onClose).toHaveBeenCalledTimes(1);
 });
 
-test("should close after clicking the close button", () => {
+test("should close after clicking the close button", async () => {
   const onClose = vi.fn();
   render(
     <Modal open closeButton onClose={onClose}>
@@ -58,7 +57,7 @@ test("should close after clicking the close button", () => {
 
   expect(screen.getByText(/modal-content/i)).toBeDefined();
 
-  userEvent.click(screen.getByRole("button"));
+  await userEvent.click(screen.getByRole("button"));
 
   expect(onClose).toHaveBeenCalledTimes(1);
 });

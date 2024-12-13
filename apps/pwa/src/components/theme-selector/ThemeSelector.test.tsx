@@ -1,7 +1,7 @@
 import * as React from "react";
 import { screen } from "@testing-library/react";
-import { render, waitMs } from "@/test-utils";
-import userEvent from "@testing-library/user-event";
+import { render } from "@/test-utils";
+import { userEvent } from "@testing-library/user-event";
 import { STORAGE_KEY } from "@/hooks/useSettings";
 import ThemeSelector from "./ThemeSelector";
 
@@ -17,19 +17,19 @@ test("should display a button for opening modal", () => {
   ).toBeInTheDocument();
 });
 
-test("should open selector modal", () => {
+test("should open selector modal", async () => {
   render(<ThemeSelector />);
 
-  userEvent.click(screen.getByRole("button", { name: /change theme/i }));
+  await userEvent.click(screen.getByRole("button", { name: /change theme/i }));
   expect(
     screen.getByRole("dialog", { name: /change theme/i })
   ).toBeInTheDocument();
 });
 
-test("should display themes in modal", () => {
+test("should display themes in modal", async () => {
   render(<ThemeSelector />);
 
-  userEvent.click(screen.getByRole("button", { name: /change theme/i }));
+  await userEvent.click(screen.getByRole("button", { name: /change theme/i }));
 
   expect(screen.getByRole("button", { name: /dark/i })).toBeInTheDocument();
   expect(screen.getByRole("button", { name: /light/i })).toBeInTheDocument();
@@ -38,10 +38,8 @@ test("should display themes in modal", () => {
 test("should change theme", async () => {
   render(<ThemeSelector />);
 
-  userEvent.click(screen.getByRole("button", { name: /change theme/i }));
-  userEvent.click(screen.getByRole("button", { name: /light/i }));
-
-  await waitMs();
+  await userEvent.click(screen.getByRole("button", { name: /change theme/i }));
+  await userEvent.click(screen.getByRole("button", { name: /light/i }));
 
   const settings = JSON.parse(
     window.localStorage.getItem(STORAGE_KEY) as string

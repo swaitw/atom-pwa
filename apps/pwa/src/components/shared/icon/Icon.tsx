@@ -7,10 +7,11 @@ const iconMap = import.meta.glob<
   true,
   string,
   {
-    ReactComponent: React.FC<React.SVGProps<SVGSVGElement>>;
+    default: React.FC<React.SVGProps<SVGSVGElement>>;
   }
 >("../../../images/icons/*.svg", {
   eager: true,
+  query: "?react",
 });
 
 export interface IconProps {
@@ -20,7 +21,7 @@ export interface IconProps {
 
 function Icon({ name, className }: IconProps) {
   const path = `../../../images/icons/${name}.svg`;
-  const IconComponent = iconMap[path]?.ReactComponent;
+  const IconComponent = iconMap[path].default;
 
   invariant(IconComponent, `The specified icon doesn't exist!`);
 

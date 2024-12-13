@@ -1,7 +1,7 @@
 import * as React from "react";
 import { screen } from "@testing-library/react";
 import NotFound from "./NotFound";
-import userEvent from "@testing-library/user-event";
+import { userEvent } from "@testing-library/user-event";
 import { LocationGetter, render } from "@/test-utils";
 import { Location } from "react-router-dom";
 
@@ -21,7 +21,7 @@ test("should render NotFound page", () => {
   expect(screen.getByRole("button", { name: /home/i })).toBeInTheDocument();
 });
 
-test("should be able to navigate back to home", () => {
+test("should be able to navigate back to home", async () => {
   let testLocation: Location;
 
   render(
@@ -34,7 +34,7 @@ test("should be able to navigate back to home", () => {
     }
   );
 
-  userEvent.click(
+  await userEvent.click(
     screen.getByRole("button", {
       name: /home/i,
     })

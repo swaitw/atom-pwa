@@ -7,9 +7,3 @@ interface Window {
   };
   __DEBUG__?: boolean;
 }
-
-declare module "*.svg" {
-  export const ReactComponent: React.ComponentType<
-    React.SVGAttributes<SVGElement>
-  >;
-}

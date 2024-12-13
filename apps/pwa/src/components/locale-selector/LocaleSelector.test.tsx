@@ -1,7 +1,7 @@
 import * as React from "react";
 import { screen } from "@testing-library/react";
 import { render, waitMs } from "@/test-utils";
-import userEvent from "@testing-library/user-event";
+import { userEvent } from "@testing-library/user-event";
 import LocaleSelector from "./LocaleSelector";
 
 beforeEach(() => {
@@ -14,9 +14,9 @@ test("should be able to change locale", async () => {
 
   expect(screen.getByText(/change language/i)).toBeInTheDocument();
 
-  userEvent.click(screen.getByRole("button"));
+  await userEvent.click(screen.getByRole("button"));
 
-  userEvent.click(
+  await userEvent.click(
     screen.getByRole("button", {
       name: /español/i,
     })

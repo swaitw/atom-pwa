@@ -6,9 +6,9 @@ export interface HubCategoryData {
   title: string;
 }
 
-const categoriesMap = import.meta.globEager(
-  "../data/hub/categories/*.json"
-) as Record<string, HubCategoryData>;
+const categoriesMap = import.meta.glob("../data/hub/categories/*.json", {
+  eager: true,
+}) as Record<string, HubCategoryData>;
 
 const categories = Object.values(categoriesMap);
 

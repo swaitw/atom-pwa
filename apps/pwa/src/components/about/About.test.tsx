@@ -1,6 +1,6 @@
 import * as React from "react";
 import { screen } from "@testing-library/react";
-import userEvent from "@testing-library/user-event";
+import { userEvent } from "@testing-library/user-event";
 import About from "./About";
 import { render } from "@/test-utils";
 
@@ -74,7 +74,7 @@ test("should validate Report bug link", () => {
   );
 });
 
-test("should invoke onNavbarBackButtonClick", () => {
+test("should invoke onNavbarBackButtonClick", async () => {
   const { container, route } = render(
     <>
       <About />
@@ -88,6 +88,6 @@ test("should invoke onNavbarBackButtonClick", () => {
     ".navbar__back-button"
   ) as HTMLAnchorElement;
 
-  userEvent.click(navButton);
+  await userEvent.click(navButton);
   expect(route.location.pathname).toBe("/");
 });

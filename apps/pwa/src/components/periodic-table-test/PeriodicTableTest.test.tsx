@@ -5,13 +5,12 @@ import {
   waitForElementToBeRemoved,
   within,
 } from "@testing-library/react";
-import userEvent from "@testing-library/user-event";
+import { userEvent } from "@testing-library/user-event";
 import "hammerjs";
 import { STORAGE_KEY, defaultSettings } from "@/hooks/useSettings";
 import { TEST_SELECTION } from "@/routes";
 import PeriodicTableTest from "./PeriodicTableTest";
 import { render } from "@/test-utils";
-import { act } from "react-dom/test-utils";
 
 // Mocking shuffle so the order of the elements is always the same
 vi.mock("../../utils/shuffle", () => ({
@@ -79,7 +78,7 @@ test("should show results correct answers", async () => {
   );
 
   // Close the dialog by clicking overlay
-  userEvent.click(screen.getByTestId("overlay"));
+  await userEvent.click(screen.getByTestId("overlay"));
 
   // To improve test performance limit selection to the first row of the periodic table
   let firstRow = container.querySelector<HTMLDivElement>(
@@ -91,10 +90,10 @@ test("should show results correct answers", async () => {
   }
 
   // Place Hydrogen to correct position
-  userEvent.click(within(firstRow).getByRole("button", { name: "1. ?" }));
+  await userEvent.click(within(firstRow).getByRole("button", { name: "1. ?" }));
 
   // Place Helium to correct position
-  userEvent.click(within(firstRow).getByRole("button", { name: "2. ?" }));
+  await userEvent.click(within(firstRow).getByRole("button", { name: "2. ?" }));
 
   expect(screen.getByText(/test results/i)).toBeInTheDocument();
   // Test results will have a 2/2 text but it's divided into span-elements and can't be queried with a single query
@@ -105,7 +104,9 @@ test("should show results correct answers", async () => {
   ).not.toBeInTheDocument();
 
   // Reseting tests
-  userEvent.click(screen.getByRole("button", { name: /retake full test/i }));
+  await userEvent.click(
+    screen.getByRole("button", { name: /retake full test/i })
+  );
 
   // Wait for periodic table to be displayed again
   await waitFor(() => {
@@ -136,7 +137,7 @@ test("should show correct results with incorrect answers", async () => {
   );
 
   // Close the dialog by clicking overlay
-  userEvent.click(screen.getByTestId("overlay"));
+  await userEvent.click(screen.getByTestId("overlay"));
 
   // To improve test performance limit selection to the first row of the periodic table
   let firstRow = container.querySelector<HTMLDivElement>(
@@ -148,13 +149,13 @@ test("should show correct results with incorrect answers", async () => {
   }
 
   // Place Hydrogen to incorrect position
-  userEvent.click(within(firstRow).getByRole("button", { name: "2. ?" }));
+  await userEvent.click(within(firstRow).getByRole("button", { name: "2. ?" }));
 
   // Place Hydrogen to correct position
-  userEvent.click(within(firstRow).getByRole("button", { name: "1. ?" }));
+  await userEvent.click(within(firstRow).getByRole("button", { name: "1. ?" }));
 
   // Place Helium to correct position
-  userEvent.click(within(firstRow).getByRole("button", { name: "2. ?" }));
+  await userEvent.click(within(firstRow).getByRole("button", { name: "2. ?" }));
 
   expect(screen.getByText(/test results/i)).toBeInTheDocument();
   // Test results will have a 1/2 text but it's divided into span-elements and can't be queried with a single query
@@ -166,7 +167,7 @@ test("should show correct results with incorrect answers", async () => {
   ).toBeInTheDocument();
 
   // Reseting wrong tests
-  userEvent.click(
+  await userEvent.click(
     screen.getByRole("button", { name: /retake incorrect answers/i })
   );
 
@@ -199,10 +200,10 @@ test("should show question modal", async () => {
   );
 
   // Close the dialog by clicking overlay
-  userEvent.click(screen.getByTestId("overlay"));
+  await userEvent.click(screen.getByTestId("overlay"));
 
   // Open dialog by clicking on the question button
-  userEvent.click(
+  await userEvent.click(
     container.querySelector(
       ".periodic-table-test__current-question__button"
     ) as HTMLElement
@@ -215,17 +216,15 @@ test("should go back to tests", async () => {
     initialHistoryEntries: ["/tests/periodic-table"],
   });
 
-  await act(async () => {
-    const backLink = container.querySelector(
-      ".navbar__back-button"
-    ) as HTMLElement;
+  const backLink = container.querySelector(
+    ".navbar__back-button"
+  ) as HTMLElement;
 
-    userEvent.click(backLink);
+  await userEvent.click(backLink);
 
-    const continueButton = await screen.findByText("Continue");
+  const continueButton = await screen.findByText("Continue");
 
-    userEvent.click(continueButton);
-  });
+  await userEvent.click(continueButton);
 
   expect(route.location.pathname).toBe(TEST_SELECTION);
 });

@@ -4,7 +4,7 @@ import {
   waitFor,
   waitForElementToBeRemoved,
 } from "@testing-library/react";
-import userEvent from "@testing-library/user-event";
+import { userEvent } from "@testing-library/user-event";
 import PeriodicTableTestSettings from "./PeriodicTableTestSettings";
 import { render } from "@/test-utils";
 

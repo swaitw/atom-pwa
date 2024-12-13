@@ -11,10 +11,9 @@ export interface HubItemData {
   flag?: string;
 }
 
-const itemsMap = import.meta.globEager("../data/hub/items/*.json") as Record<
-  string,
-  HubItemData
->;
+const itemsMap = import.meta.glob("../data/hub/items/*.json", {
+  eager: true,
+}) as Record<string, HubItemData>;
 
 const items = Object.values(itemsMap);
 

@@ -1,6 +1,6 @@
 import * as React from "react";
-import { act, screen, within } from "@testing-library/react";
-import userEvent from "@testing-library/user-event";
+import { screen, within } from "@testing-library/react";
+import { userEvent } from "@testing-library/user-event";
 import { TEST_SELECTION } from "@/routes";
 import { STORAGE_KEY, defaultSettings } from "@/hooks/useSettings";
 import ValencesTest from "./ValencesTest";
@@ -45,12 +45,12 @@ test("should render a question and four answers", () => {
   expect(buttons).toHaveLength(4);
 });
 
-test("should display a new question when clicking on the correct answer", () => {
+test("should display a new question when clicking on the correct answer", async () => {
   const { container } = render(<ValencesTest />);
 
   const rightAnswer = screen.getByRole("button", { name: /\+1 \/ \-1/i });
 
-  userEvent.click(rightAnswer);
+  await userEvent.click(rightAnswer);
 
   expect(container.querySelector(".element")).not.toBeInTheDocument();
 });
@@ -64,17 +64,17 @@ test("should keep the same question when clicking on a wrong answer", async () =
     name: /^(?!\+1 \/ \-1).*$/i,
   })[0];
 
-  userEvent.click(wrongAnswer);
+  await userEvent.click(wrongAnswer);
   expect(container.querySelector(".element")).toBeInTheDocument();
 
   // Getting results
-  userEvent.click(screen.getByRole("button", { name: /\+1 \/ \-1/i }));
+  await userEvent.click(screen.getByRole("button", { name: /\+1 \/ \-1/i }));
   expect(
     container.querySelector(".test-results__data__right")
   ).toHaveTextContent("0");
 
   // Resetting test
-  userEvent.click(
+  await userEvent.click(
     screen.getByRole("button", { name: /retake incorrect answers/i })
   );
   expect(await screen.findByText(/\+1 \/ \-1/i)).toBeInTheDocument();
@@ -83,32 +83,30 @@ test("should keep the same question when clicking on a wrong answer", async () =
 test("should go back to tests", async () => {
   const { container, route } = render(<ValencesTest />);
 
-  await act(async () => {
-    const backLink = container.querySelector(
-      ".navbar__back-button"
-    ) as HTMLElement;
+  const backLink = container.querySelector(
+    ".navbar__back-button"
+  ) as HTMLElement;
 
-    userEvent.click(backLink);
+  await userEvent.click(backLink);
 
-    const continueButton = await screen.findByText("Continue");
+  const continueButton = await screen.findByText("Continue");
 
-    userEvent.click(continueButton);
-  });
+  await userEvent.click(continueButton);
 
   expect(route.location.pathname).toBe(TEST_SELECTION);
 });
 
-test("should display results", () => {
+test("should display results", async () => {
   const { container } = render(<ValencesTest />);
 
   const rightAnswer = screen.getByRole("button", { name: /\+1 \/ \-1/i });
-  userEvent.click(rightAnswer);
+  await userEvent.click(rightAnswer);
 
   // Getting answers results
   expect(
     container.querySelector(".test-results__data__right")
   ).toHaveTextContent("1");
 
-  userEvent.click(screen.getByText(/retake full test/i));
+  await userEvent.click(screen.getByText(/retake full test/i));
   expect(container.querySelector(".element")).toBeInTheDocument();
 });

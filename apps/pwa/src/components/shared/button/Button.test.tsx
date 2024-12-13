@@ -2,7 +2,7 @@ import * as React from "react";
 import { screen } from "@testing-library/react";
 import { render } from "@/test-utils";
 import Button from "./Button";
-import userEvent from "@testing-library/user-event";
+import { userEvent } from "@testing-library/user-event";
 
 const onClickMock = vi.fn();
 
@@ -30,7 +30,7 @@ test("should render button component with link", () => {
   );
 });
 
-test("should invoke onClick", () => {
+test("should invoke onClick", async () => {
   render(
     <Button link="https://twitter.com/HorusGoul" onClick={onClickMock}>
       <div>mock text</div>
@@ -41,12 +41,12 @@ test("should invoke onClick", () => {
     .getByText(/mock text/i)
     .closest("a") as HTMLAnchorElement;
 
-  userEvent.click(linkButton);
+  await userEvent.click(linkButton);
 
   expect(onClickMock).toHaveBeenCalledTimes(1);
 });
 
-test("should invoke onClick", () => {
+test("should invoke onClick", async () => {
   render(
     <Button link="https://twitter.com/HorusGoul">
       <div>mock text</div>
@@ -57,7 +57,7 @@ test("should invoke onClick", () => {
     .getByText(/mock text/i)
     .closest("a") as HTMLAnchorElement;
 
-  userEvent.click(linkButton);
+  await userEvent.click(linkButton);
 
   expect(onClickMock).toHaveBeenCalledTimes(0);
 });

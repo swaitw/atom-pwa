@@ -5,7 +5,9 @@ import PtElementInfo from "@/components/pt-element/PtElementInfo";
 import { Element } from "@/Element";
 import { render } from "@/test-utils";
 
-const elementsMap = import.meta.globEager("../../data/elements/*.json");
+const elementsMap = import.meta.glob("../../data/elements/*.json", {
+  eager: true,
+});
 const elements = Object.values(elementsMap) as Element[];
 
 function elementRenderer(atomic: number) {

@@ -1,7 +1,7 @@
 import * as React from "react";
 import { screen } from "@testing-library/react";
 import { render } from "@/test-utils";
-import userEvent from "@testing-library/user-event";
+import { userEvent } from "@testing-library/user-event";
 import TestSelection from "./TestSelection";
 
 test("should display the test entries", () => {
@@ -38,7 +38,7 @@ test.each([
     itemIdx: 4,
     expectedPath: "/tests/periodic-table",
   },
-])("should navigate to pages", ({ itemIdx, expectedPath }) => {
+])("should navigate to pages", async ({ itemIdx, expectedPath }) => {
   const { route } = render(
     <>
       <TestSelection />
@@ -53,7 +53,7 @@ test.each([
     }
   );
 
-  userEvent.click(screen.getAllByRole("button")[itemIdx]);
+  await userEvent.click(screen.getAllByRole("button")[itemIdx]);
 
   expect(route.location.pathname).toBe(expectedPath);
 });

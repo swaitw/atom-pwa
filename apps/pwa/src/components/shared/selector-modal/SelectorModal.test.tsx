@@ -2,7 +2,7 @@ import * as React from "react";
 import { screen } from "@testing-library/react";
 import { render } from "@/test-utils";
 import SelectorModal, { SelectorModalOption } from "./SelectorModal";
-import userEvent from "@testing-library/user-event";
+import { userEvent } from "@testing-library/user-event";
 
 const onOptionSelectedMock = vi.fn();
 
@@ -42,7 +42,7 @@ test("should render Modal", () => {
   ).toBeInTheDocument();
 });
 
-test("should invoke onOptionSelected", () => {
+test("should invoke onOptionSelected", async () => {
   render(
     <SelectorModal
       options={options}
@@ -51,7 +51,7 @@ test("should invoke onOptionSelected", () => {
     />
   );
 
-  userEvent.click(
+  await userEvent.click(
     screen.getByRole("button", {
       name: /hydrogen/i,
     })

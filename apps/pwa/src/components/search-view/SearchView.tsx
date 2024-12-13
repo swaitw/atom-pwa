@@ -13,7 +13,7 @@ import classNames from "classnames";
 import { Element } from "@/Element";
 import Atom from "@/components/atom";
 import { PERIODIC_TABLE } from "@/routes";
-import { ReactComponent as NoResults } from "./no-results.svg";
+import NoResults from "./no-results.svg?react";
 import { useQuery } from "@/hooks/useQuery";
 import { useNavigate } from "react-router-dom";
 

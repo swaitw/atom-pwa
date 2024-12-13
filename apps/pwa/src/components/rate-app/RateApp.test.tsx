@@ -2,7 +2,7 @@ import * as React from "react";
 import { render, screen, waitFor } from "@testing-library/react";
 import RateApp from "./RateApp";
 import NativeBridge from "@/NativeBridge";
-import userEvent from "@testing-library/user-event";
+import { userEvent } from "@testing-library/user-event";
 import "hammerjs";
 import { clear, mockUserAgent } from "jest-useragent-mock";
 import { useLocalStorageCacheStore } from "@/hooks/useLocalStorage";
@@ -34,7 +34,7 @@ test("should open modal to provide rating", async () => {
   vi.spyOn(NativeBridge, "isHybrid").mockReturnValue(true);
   render(<RateApp />);
 
-  userEvent.click(screen.getByRole("button"));
+  await userEvent.click(screen.getByRole("button"));
 
   expect(screen.getByTestId("overlay")).toBeInTheDocument();
 
@@ -44,7 +44,7 @@ test("should open modal to provide rating", async () => {
     )
   ).toBeInTheDocument();
 
-  userEvent.click(screen.getByText(/OK/i));
+  await userEvent.click(screen.getByText(/OK/i));
 
   expect(screen.queryByTestId("overlay")).not.toBeInTheDocument();
 
@@ -60,29 +60,29 @@ test("should open modal to provide rating", async () => {
   expect(global.open).toHaveBeenCalledTimes(1);
 });
 
-test("should close modal", () => {
+test("should close modal", async () => {
   vi.spyOn(NativeBridge, "isHybrid").mockReturnValue(true);
   render(<RateApp />);
 
-  userEvent.click(screen.getByRole("button"));
+  await userEvent.click(screen.getByRole("button"));
 
   expect(screen.getByTestId("overlay")).toBeInTheDocument();
 
-  userEvent.click(screen.getAllByRole("button")[2]);
+  await userEvent.click(screen.getAllByRole("button")[2]);
 
   expect(screen.queryByTestId("overlay")).not.toBeInTheDocument();
 });
 
-test("should close modal", () => {
+test("should close modal", async () => {
   mockUserAgent("mock");
   vi.spyOn(NativeBridge, "isHybrid").mockReturnValue(true);
   render(<RateApp />);
 
-  userEvent.click(screen.getByRole("button"));
+  await userEvent.click(screen.getByRole("button"));
 
   expect(screen.getByTestId("overlay")).toBeInTheDocument();
 
-  userEvent.click(screen.getAllByRole("button")[3]);
+  await userEvent.click(screen.getAllByRole("button")[3]);
 
   expect(screen.queryByTestId("overlay")).not.toBeInTheDocument();
   const storageObject = window.localStorage.getItem(RATE_APP_STORAGE_KEY);

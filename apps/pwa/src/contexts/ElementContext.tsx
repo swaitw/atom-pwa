@@ -3,10 +3,9 @@ import { Element } from "@/Element";
 import { useLocale } from "@/hooks/useLocale";
 import * as React from "react";
 
-const elementsMap = import.meta.globEager("../data/elements/*.json") as Record<
-  string,
-  Element
->;
+const elementsMap = import.meta.glob("../data/elements/*.json", {
+  eager: true,
+}) as Record<string, Element>;
 
 const elements = Object.values(elementsMap).sort(
   (elementA, elementB) => elementA.atomic - elementB.atomic

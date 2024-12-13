@@ -1,7 +1,7 @@
 import * as React from "react";
 import { screen } from "@testing-library/react";
 import { render } from "@/test-utils";
-import userEvent from "@testing-library/user-event";
+import { userEvent } from "@testing-library/user-event";
 import Navbar from "./Navbar";
 
 test("should not render a title by default", () => {
@@ -22,12 +22,12 @@ test("should not render a back button by default", () => {
   expect(screen.queryByRole("button")).toBeNull();
 });
 
-test("should handle clicking the back button", () => {
+test("should handle clicking the back button", async () => {
   const onBackButtonClickMock = vi.fn();
 
   render(<Navbar onBackButtonClick={onBackButtonClickMock} />);
 
-  userEvent.click(screen.getByRole("button"));
+  await userEvent.click(screen.getByRole("button"));
 
   expect(onBackButtonClickMock).toHaveBeenCalledTimes(1);
 });
