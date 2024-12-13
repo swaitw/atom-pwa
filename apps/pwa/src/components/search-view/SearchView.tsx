@@ -14,22 +14,15 @@ import { Element } from "@/Element";
 import Atom from "@/components/atom";
 import { PERIODIC_TABLE } from "@/routes";
 import NoResults from "./no-results.svg?react";
-import { useQuery } from "@/hooks/useQuery";
 import { useNavigate } from "react-router-dom";
 
 function SearchView() {
   const { i18n } = useLocale();
   const navigate = useNavigate();
-  const params = useQuery();
-  const { value, inputProps } = useSearchInput("replace");
+  const { value, inputProps, isSearching } = useSearchInput("replace");
   const query = value.trim();
-  const openSearch = params.get("openSearch");
   const deferredQuery = React.useDeferredValue(query);
   const results = useContentSearch(deferredQuery);
-
-  const open = React.useMemo(() => {
-    return !!openSearch || !!query;
-  }, [openSearch, query]);
 
   function close() {
     navigate(-1);
@@ -37,12 +30,12 @@ function SearchView() {
 
   const searchViewRef = React.useRef<HTMLDivElement>(null);
 
-  useLockBodyScroll(searchViewRef, open);
+  useLockBodyScroll(searchViewRef, isSearching);
 
   const isLoading = query !== deferredQuery;
   const noResults = !isLoading && results.elements.length === 0;
 
-  if (!open) {
+  if (!isSearching) {
     return null;
   }
 

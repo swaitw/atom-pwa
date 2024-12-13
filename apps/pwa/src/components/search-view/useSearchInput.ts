@@ -1,32 +1,40 @@
 import * as React from "react";
-import { useNavigate } from "react-router-dom";
+import { useSearchParams } from "react-router-dom";
 import { useLocale } from "@/hooks/useLocale";
-import { useQuery } from "@/hooks/useQuery";
 
 export function useSearchInput(type: "push" | "replace") {
   const { i18n } = useLocale();
-  const navigate = useNavigate();
-  const query = useQuery();
-  const value = query.get("search") ?? "";
+  const [query, setQuery] = useSearchParams();
+  const routerSearchQueryValue = query.get("search") ?? "";
+  const [value, setValue] = React.useState(routerSearchQueryValue);
 
   const onChange = React.useCallback(
     (event: React.ChangeEvent<HTMLInputElement>) => {
       const query = encodeURIComponent(event.target.value);
+      setValue(query);
 
-      navigate(
-        { search: query ? `search=${query}` : "openSearch=true" },
-        {
-          replace: type === "replace",
-        }
-      );
+      const newParams = new URLSearchParams();
+
+      if (query) {
+        newParams.set("search", query);
+      } else {
+        newParams.set("openSearch", "true");
+      }
+
+      setQuery(newParams, {
+        replace: type === "replace",
+      });
     },
-    [type, navigate]
+    [type, setQuery]
   );
+
+  const isSearching = !!routerSearchQueryValue || !!query.get("openSearch");
 
   return {
     value,
+    isSearching,
     inputProps: {
-      defaultValue: value,
+      defaultValue: routerSearchQueryValue,
       onChange,
       placeholder: i18n("Search_dots"),
       "aria-label": i18n("Search"),
