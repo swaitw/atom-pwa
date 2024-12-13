@@ -11,7 +11,6 @@ import { useContentSearch, SearchResult } from "@/hooks/useContentSearch";
 import { useElements } from "@/hooks/useElements";
 import classNames from "classnames";
 import { Element } from "@/Element";
-import { useDebounce } from "use-debounce";
 import Atom from "@/components/atom";
 import { PERIODIC_TABLE } from "@/routes";
 import { ReactComponent as NoResults } from "./no-results.svg";
@@ -25,7 +24,7 @@ function SearchView() {
   const searchInput = useSearchInput("replace");
   const query = searchInput.value.trim();
   const openSearch = params.get("openSearch");
-  const [debouncedQuery] = useDebounce(query, 1000);
+  const [debouncedQuery] = React.useDeferredValue(query);
   const results = useContentSearch(debouncedQuery);
 
   const open = React.useMemo(() => {

@@ -28,16 +28,6 @@ const isDevelopment = !isProduction && !isTest;
 export default defineConfig({
   build: {
     sourcemap: true,
-
-    rollupOptions: {
-      input: {
-        main: path.resolve(__dirname, "index.html"),
-        admin: path.resolve(__dirname, "admin/index.html"),
-      },
-      output: {
-        manualChunks: undefined,
-      },
-    },
   },
   optimizeDeps: {
     include: [],
