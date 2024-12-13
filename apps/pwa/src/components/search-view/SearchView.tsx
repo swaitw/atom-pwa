@@ -21,8 +21,8 @@ function SearchView() {
   const { i18n } = useLocale();
   const navigate = useNavigate();
   const params = useQuery();
-  const searchInput = useSearchInput("replace");
-  const query = searchInput.value.trim();
+  const { value, inputProps } = useSearchInput("replace");
+  const query = value.trim();
   const openSearch = params.get("openSearch");
   const deferredQuery = React.useDeferredValue(query);
   const results = useContentSearch(deferredQuery);
@@ -66,7 +66,7 @@ function SearchView() {
                 <Icon name="arrow_back" />
               </Button>
 
-              <input type="text" autoFocus {...searchInput} />
+              <input type="text" autoFocus {...inputProps} />
 
               {isLoading && (
                 <div className={styles.spinner}>

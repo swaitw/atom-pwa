@@ -25,8 +25,11 @@ export function useSearchInput(type: "push" | "replace") {
 
   return {
     value,
-    onChange,
-    placeholder: i18n("Search_dots"),
-    "aria-label": i18n("Search"),
+    inputProps: {
+      defaultValue: value,
+      onChange,
+      placeholder: i18n("Search_dots"),
+      "aria-label": i18n("Search"),
+    },
   };
 }
