@@ -24,8 +24,8 @@ function SearchView() {
   const searchInput = useSearchInput("replace");
   const query = searchInput.value.trim();
   const openSearch = params.get("openSearch");
-  const [debouncedQuery] = React.useDeferredValue(query);
-  const results = useContentSearch(debouncedQuery);
+  const deferredQuery = React.useDeferredValue(query);
+  const results = useContentSearch(deferredQuery);
 
   const open = React.useMemo(() => {
     return !!openSearch || !!query;
@@ -39,7 +39,7 @@ function SearchView() {
 
   useLockBodyScroll(searchViewRef, open);
 
-  const isLoading = query !== debouncedQuery;
+  const isLoading = query !== deferredQuery;
   const noResults = !isLoading && results.elements.length === 0;
 
   if (!open) {

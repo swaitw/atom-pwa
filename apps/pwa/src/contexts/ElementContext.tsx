@@ -12,8 +12,6 @@ const elements = Object.values(elementsMap).sort(
   (elementA, elementB) => elementA.atomic - elementB.atomic
 );
 
-console.log(elements);
-
 const elementLookup = elements.reduce((prev, next) => {
   prev[next.atomic] = next;
 
