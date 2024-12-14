@@ -20,7 +20,7 @@ function Button({
   ...props
 }: ButtonProps) {
   const buttonClassName = cn(
-    "m-0 border-0 p-4 bg-transparent flex items-center justify-center relative pointer select-none font-medium",
+    "m-0 border-0 p-4 bg-transparent flex items-center justify-center relative cursor-pointer select-none font-medium",
     circle && "rounded-full",
     link && "text-center text-inherit no-underline",
     className

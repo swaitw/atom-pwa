@@ -7,7 +7,6 @@ import { useTheme } from "@/hooks/useTheme";
 import { ABOUT } from "@/routes";
 import { useFlagStore } from "@/services/flags";
 import { logEvent } from "@/services/spycat";
-import classNames from "classnames";
 import * as React from "react";
 import { useNavigate } from "react-router-dom";
 import Atom from "@/components/atom";
@@ -19,7 +18,6 @@ import IconButton from "@/components/shared/icon-button/IconButton";
 import Icon from "@/components/shared/icon/Icon";
 import HubItem from "./hub-item";
 import HubSection from "./hub-section";
-import styles from "./Hub.module.scss";
 import { HubSectionData, useHub } from "./useHub";
 
 function Hub() {
@@ -30,18 +28,18 @@ function Hub() {
   const navigate = useNavigate();
 
   return (
-    <div className={styles.hub}>
-      <div className={styles.header}>
-        <div className={styles.content}>
-          <div className={styles.topbar}>
-            <div className={styles.logo}>
+    <div className="flex items-center flex-col bg-slate-50 text-slate-950 dark:bg-slate-950 dark:text-slate-50 pb-safe-bottom pt-safe-top">
+      <div className="flex flex-col items-center w-full">
+        <div className="flex items-center flex-col w-full px-6 [@media_(min-width:420px)]:max-w-[420px]">
+          <div className="w-full mt-6 flex items-center">
+            <div className="z-[1] rounded-full p-2 mr-auto bg-white shadow-sm">
               <Atom aria-label="Atom" weight={24} size={32} color="primary" />
             </div>
 
             <UpdateButton />
 
             <IconButton
-              className={styles.topbarButton}
+              className="rounded-full h-12 w-12 p-3"
               aria-label={
                 theme === "light"
                   ? "Switch to dark mode"
@@ -56,7 +54,7 @@ function Hub() {
             />
 
             <IconButton
-              className={styles.topbarButton}
+              className="rounded-full h-12 w-12 p-3"
               aria-label="Settings"
               iconName="settings"
               onClick={() => navigate(ABOUT)}
@@ -64,30 +62,40 @@ function Hub() {
           </div>
 
           <Button
-            className={styles.search}
+            className="shadow-sm mt-6 mb-4 w-full h-12 bg-white text-slate-950 dark:bg-slate-900 dark:text-slate-50 rounded-lg overflow-hidden text-lg pr-3 pl-4 font-normal text-left justify-start"
             onClick={() => navigate({ search: "openSearch=true" })}
           >
-            <Icon name="search" aria-hidden={true} />
+            <Icon
+              name="search"
+              aria-hidden={true}
+              className="mr-6 opacity-60"
+            />
 
-            <span>{i18n("Search_dots")}</span>
+            <span className="opacity-60">{i18n("Search_dots")}</span>
           </Button>
         </div>
       </div>
-      <div className={styles.content}>
+      <div className="flex items-center flex-col w-full px-6 [@media_(min-width:420px)]:max-w-[420px]">
         <RateApp />
         <DownloadApp />
 
-        <div className={styles.sections}>
+        <div className="w-full pt-8 pb-4">
           {recent.length > 0 && (
-            <HubSection title={i18n("Recent")}>
-              {recent.slice(0, 2).map((id) => (
-                <HubItemWithData key={id} item={id} showCategory={true} />
-              ))}
-            </HubSection>
+            <>
+              <HubSection title={i18n("Recent")}>
+                {recent.slice(0, 2).map((id) => (
+                  <HubItemWithData key={id} item={id} showCategory={true} />
+                ))}
+              </HubSection>
+              <div className="h-6" />
+            </>
           )}
 
           {sections.map((section) => (
-            <HubSectionWithData key={section.title} {...section} />
+            <React.Fragment key={section.title}>
+              <HubSectionWithData key={section.title} {...section} />
+              <div className="h-6" />
+            </React.Fragment>
           ))}
         </div>
       </div>
@@ -201,15 +209,13 @@ function UpdateButton() {
 
   return (
     <Button
-      className={classNames(styles.topbarButton, {
-        [styles.updateButtonInstalled]: waitingState === "installed",
-      })}
+      className={"rounded-full h-12 w-12 p-3"}
       onClick={launchUpdatePrompt}
       circle={true}
       aria-label={i18n("update_button_label")}
     >
       {waitingState === "installed" ? (
-        <Icon name="system_update" className={styles.icon} />
+        <Icon name="system_update" className="animate-pulse" />
       ) : (
         <Atom spinning={true} color="inherit" size={24} weight={32} />
       )}

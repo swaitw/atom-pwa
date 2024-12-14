@@ -1,6 +1,4 @@
-import * as React from "react";
-import cn from "classnames";
-import styles from "./Atom.module.scss";
+import { cn } from "@/utils/styles";
 
 export type AtomColorVariant = "primary" | "white" | "black" | "inherit";
 
@@ -26,28 +24,28 @@ const defaultWeight = 16;
 
 export const colors: ColorMap = {
   primary: {
-    main: "#00897b",
-    dark: "#00796d",
-    light: "#00a393",
-    contrastText: "#ffffff",
+    main: "text-accent-400",
+    dark: "text-accent-600",
+    light: "text-accent-300",
+    contrastText: "text-white",
   },
   white: {
-    main: "#fafafa",
-    contrastText: "#000",
-    dark: "#f5f5f5",
-    light: "#ffffff",
+    main: "text-slate-50",
+    contrastText: "text-slate-950",
+    dark: "text-slate-100",
+    light: "text-white",
   },
   black: {
-    main: "#333",
-    contrastText: "#fff",
-    light: "#555",
-    dark: "#111",
+    main: "text-slate-900",
+    contrastText: "text-white",
+    light: "text-slate-800",
+    dark: "text-slate-950",
   },
   inherit: {
-    main: "currentColor",
-    contrastText: "currentColor",
-    light: "currentColor",
-    dark: "currentColor",
+    main: "text-inherit",
+    contrastText: "text-inherit",
+    light: "text-inherit",
+    dark: "text-inherit",
   },
 };
 
@@ -81,9 +79,7 @@ function Atom({
 
   return (
     <svg
-      className={cn(styles.root, className, {
-        [styles.spin]: spinning,
-      })}
+      className={cn("block", spinning && "animate-spin", className)}
       viewBox="0 0 614 614"
       width={size}
       height={size}
@@ -95,7 +91,8 @@ function Atom({
           cy={512}
           r={32}
           strokeWidth={0}
-          fill={variantColor.main}
+          className={variantColor.main}
+          fill="currentColor"
         />
         <ellipse
           cx={512}
@@ -106,7 +103,8 @@ function Atom({
           strokeLinecap="round"
           strokeWidth={strokeWidth}
           fill="none"
-          stroke={variantColor.dark}
+          stroke="currentColor"
+          className={variantColor.dark}
         />
         <ellipse
           cx={679.8}
@@ -118,7 +116,8 @@ function Atom({
           strokeLinecap="round"
           strokeWidth={strokeWidth}
           fill="none"
-          stroke={variantColor.main}
+          stroke="currentColor"
+          className={variantColor.main}
         />
         <ellipse
           cx={-512}
@@ -130,7 +129,8 @@ function Atom({
           strokeLinecap="round"
           strokeWidth={strokeWidth}
           fill="none"
-          stroke={variantColor.light}
+          stroke="currentColor"
+          className={variantColor.light}
         />
       </g>
     </svg>

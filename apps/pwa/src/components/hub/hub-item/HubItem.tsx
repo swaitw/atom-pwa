@@ -1,5 +1,5 @@
 import * as React from "react";
-import styles from "./HubItem.module.scss";
+import { cn } from "@/utils/styles";
 
 export interface HubItemProps {
   colSpan?: 1 | 2;
@@ -22,7 +22,10 @@ function HubItem({
 }: HubItemProps) {
   return (
     <button
-      className={styles.root}
+      className={cn(
+        "relative min-h-[136px] rounded-lg p-4 flex flex-col justify-end bg-no-repeat bg-cover bg-transparent bg-center text-white overflow-hidden border-0 m-0 shadow-md",
+        disabled ? "grayscale" : "cursor-pointer"
+      )}
       data-hub-item={true}
       style={{
         gridColumn: `span ${colSpan}`,
@@ -32,11 +35,16 @@ function HubItem({
       onClick={onClick}
       aria-disabled={disabled}
     >
-      <div className={styles.overlay} />
+      <div
+        className={cn(
+          "absolute inset-0 z-0 shadow-[inset_0px_-32px_96px_rgba(0,0,0,0.4),inset_0px_-16px_48px_rgba(0,0,0,0.8)]",
+          disabled && "backdrop-blur-[2px] bg-slate-900 bg-opacity-85"
+        )}
+      />
 
       {category && (
         <span
-          className={styles.category}
+          className="font-extrabold uppercase text-accent-400 tracking-[0.8px] z-[1] text-left [text-shadow:_2px_2px_2px_rgba(0,0,0,0.4)]"
           style={{
             alignSelf: colSpan === 2 ? "flex-end" : "flex-start",
             fontSize: colSpan === 2 ? 13 : 12,
@@ -48,7 +56,7 @@ function HubItem({
       )}
 
       <span
-        className={styles.title}
+        className="font-semibold z-[1] text-left [text-shadow:_2px_2px_2px_rgba(0,0,0,0.4)]"
         style={{
           alignSelf: colSpan === 2 ? "flex-end" : "flex-start",
           fontSize: colSpan === 2 ? 16 : 13,
