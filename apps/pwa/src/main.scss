@@ -1,34 +1,6 @@
 @import "./scss/themes.scss";
 @import "./scss/theming.scss";
 
-:root {
-  --safe-area-inset-top: env(safe-area-inset-top, 0px);
-  --safe-area-inset-right: env(safe-area-inset-right, 0px);
-  --safe-area-inset-bottom: env(safe-area-inset-bottom, 0px);
-  --safe-area-inset-left: env(safe-area-inset-left, 0px);
-}
-
-* {
-  box-sizing: border-box;
-  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
-  outline: none;
-}
-
-html,
-body,
-#root {
-  height: 100%;
-}
-
-body,
-button,
-input,
-select,
-textarea {
-  font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto,
-    "Helvetica Neue", Arial, sans-serif;
-}
-
 .element {
   color: #fff;
   transition: background-color 250ms linear, color 250ms linear;
@@ -138,22 +110,4 @@ body:not(.theme-light) .element {
       --#{$key}: #{$submap};
     }
   }
-}
-
-body {
-  background-color: var(--backgroundColor);
-  color: var(--contentTextColor);
-}
-
-.visually-hidden {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  margin: -1px;
-  border: 0;
-  padding: 0;
-  white-space: nowrap;
-  clip-path: inset(100%);
-  clip: rect(0 0 0 0);
-  overflow: hidden;
 }

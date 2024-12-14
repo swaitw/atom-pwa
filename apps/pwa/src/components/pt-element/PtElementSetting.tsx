@@ -41,7 +41,7 @@ function PtElementSetting({ element, enabled, onClick }: PtElementSettingProp) {
       }}
       aria-label={label}
     >
-      <span className="visually-hidden">
+      <span className="sr-only">
         <dl>
           <dt>{i18n("element_data_symbol")}</dt>
           <dd>{element.symbol}</dd>
