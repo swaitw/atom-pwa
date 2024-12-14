@@ -7,6 +7,10 @@
   flex-direction: column;
   height: 100%;
 
+  @include themify($themes) {
+    background-color: themed("primary");
+  }
+
   &__navbar {
     z-index: 1;
 
