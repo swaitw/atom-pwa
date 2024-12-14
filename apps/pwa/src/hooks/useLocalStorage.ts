@@ -30,10 +30,14 @@ export const useLocalStorageCacheStore = create<LocalStorageCacheStore>(
         };
       });
 
-      if (value === undefined || value === null) {
-        window.localStorage.removeItem(key);
-      } else {
-        window.localStorage.setItem(key, JSON.stringify(value));
+      try {
+        if (value === undefined || value === null) {
+          window.localStorage.removeItem(key);
+        } else {
+          window.localStorage.setItem(key, JSON.stringify(value));
+        }
+      } catch {
+        // noop, user most likely has disabled site storage
       }
     },
     get: <T = unknown>(key: string, defaultValue: T) => {
@@ -45,8 +49,8 @@ export const useLocalStorageCacheStore = create<LocalStorageCacheStore>(
         try {
           const item = window.localStorage.getItem(key);
           value = item ? JSON.parse(item) : defaultValue;
-        } catch (error) {
-          console.error(error);
+        } catch {
+          // user most likely has disabled site storage, fallback to default value
           value = defaultValue;
         }
 
