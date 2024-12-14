@@ -1,11 +1,11 @@
 import anime from "animejs";
-import classNames from "classnames";
 import * as React from "react";
 import Portal from "@/components/shared/portal/Portal";
 import IconButton from "@/components/shared/icon-button/IconButton";
 import { ModalProps } from "@/components/shared/modal/Modal";
 import Overlay from "@/components/shared/overlay/Overlay";
 import { useLocale } from "@/hooks/useLocale";
+import { cn } from "@/utils/styles";
 
 type ModalContentProps = Omit<ModalProps, "open">;
 
@@ -152,23 +152,26 @@ function SwipeableModalContent({
         role="dialog"
         aria-modal="true"
         aria-labelledby="modal-title"
-        className={classNames("modal", className)}
+        className={cn(
+          "z-[100] fixed max-w-[50%] max-h-[50%] top-1/2 left-1/2 w-full h-full -translate-x-1/2 -translate-y-1/2 p-4 rounded-lg bg-white text-slate-950 dark:bg-slate-900 dark:text-slate-50 will-change-transform",
+          className
+        )}
         style={{
           opacity,
           transform: `translate(${translateX}, -50%)`,
         }}
       >
         {showHeader && (
-          <div className="modal__header">
+          <div className="flex items-center">
             {title && (
-              <span id="modal-title" className="modal__header__title">
+              <span id="modal-title" className="font-bold px-4 text-lg">
                 {title}
               </span>
             )}
 
             {closeButton && (
               <IconButton
-                className="modal__header__close-button"
+                className="ml-auto"
                 iconName="close"
                 onClick={onClose}
                 aria-label={i18n("Close")}

@@ -1,4 +1,3 @@
-import classNames from "classnames";
 import * as React from "react";
 import { useNavigate } from "react-router-dom";
 import { Element } from "@/Element";
@@ -14,10 +13,10 @@ import Navbar from "@/components/shared/navbar/Navbar";
 import SwipeableModal from "@/components/shared/swipeable-modal/SwipeableModal";
 import TestResults from "@/components/test-results/TestResults";
 import { usePeriodicTableTestSettings } from "./hooks/usePeriodicTableTestSettings";
-import "./PeriodicTableTest.scss";
 import { useAddRecent } from "@/hooks/useRecent";
 import { useConfirm } from "@/components/shared/confirm";
 import { usePreventDocumentOverscroll } from "@/hooks/usePreventDocumentOverscroll";
+import { cn } from "@/utils/styles";
 
 interface PeriodicTableTestQuestion {
   element: Element;
@@ -207,10 +206,10 @@ function PeriodicTableTest() {
   }
 
   return (
-    <div className="periodic-table-test">
+    <div className="flex flex-col h-full">
       <Navbar
         title="Periodic Table Test"
-        className="periodic-table-test__navbar"
+        className="shadow-sm z-[1]"
         onBackButtonClick={() =>
           confirmAction({
             title: i18n("are_you_sure"),
@@ -231,14 +230,14 @@ function PeriodicTableTest() {
       />
 
       {currentQuestion && (
-        <div className="periodic-table-test__table">
+        <div className="flex-1 z-[1] bg-white dark:bg-slate-900">
           <PeriodicTable elementRenderer={elementRenderer} />
         </div>
       )}
 
       {!currentQuestion && (
-        <div className="periodic-table-test__result">
-          <Card className="periodic-table-test__result-card">
+        <div className="flex-1 flex items-center justify-center">
+          <Card className="m-4 max-w-[360px] w-full" rounded>
             <TestResults
               gaTestName="Periodic Table Test"
               wrongAnswers={wrongAnswers.length}
@@ -251,7 +250,7 @@ function PeriodicTableTest() {
       )}
 
       <SwipeableModal
-        className="periodic-table-test__modal-question"
+        className="max-w-[288px] max-h-[80%] h-auto p-0 shadow-md"
         open={questionModalOpen}
         onClose={closeQuestionModal}
         title={i18n("complete_the_table")}
@@ -259,8 +258,8 @@ function PeriodicTableTest() {
       >
         {currentQuestion && (
           <div
-            className={classNames(
-              "periodic-table-test__modal-question__element",
+            className={cn(
+              "flex items-center justify-center p-4 text-5xl font-bold",
               "element",
               currentQuestion.element.group
             )}
@@ -269,16 +268,14 @@ function PeriodicTableTest() {
           </div>
         )}
 
-        <div className="periodic-table-test__modal-question__text">
-          {i18n("complete_the_table_desc")}
-        </div>
+        <div className="p-4 opacity-65">{i18n("complete_the_table_desc")}</div>
       </SwipeableModal>
 
       {currentQuestion && (
-        <div className={classNames("periodic-table-test__current-question")}>
+        <div className=" rounded-full flex items-center justify-center h-20 w-20 z-10 shadow-lg bg-white dark:bg-slate-900 fixed left-[calc(24px_+_var(--safe-area-inset-left,0px))] bottom-[calc(32px_+_var(--safe-area-inset-bottom,0px))]">
           <button
-            className={classNames(
-              "periodic-table-test__current-question__button",
+            className={cn(
+              "rounded-full font-semibold [text-transform:_none] w-full text-2xl h-full cursor-pointer border-0",
               "element",
               currentQuestion.element.group
             )}
@@ -288,7 +285,7 @@ function PeriodicTableTest() {
             {currentQuestion.element.symbol}
 
             <div
-              className="periodic-table-test__current-question__label"
+              className="shadow-lg absolute bottom-0 right-0 flex items-center justify-center rounded-full text-xs h-6 w-6 bg-white text-slate-950 dark:bg-slate-900 dark:text-slate-50"
               aria-label={i18n("help")}
             >
               ?

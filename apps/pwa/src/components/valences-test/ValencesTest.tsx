@@ -13,7 +13,6 @@ import Card from "@/components/shared/card/Card";
 import Navbar from "@/components/shared/navbar/Navbar";
 import TestResults from "@/components/test-results/TestResults";
 import { useValencesTestSettings } from "./hooks/useValencesTestSettings";
-import "./ValencesTest.scss";
 import { useAddRecent } from "@/hooks/useRecent";
 import { useConfirm } from "@/components/shared/confirm";
 import { usePreventDocumentOverscroll } from "@/hooks/usePreventDocumentOverscroll";
@@ -43,7 +42,7 @@ function createQuestion(element: Element): ValencesTestQuestion {
     answers: createQuestionAnswers(element),
     data: element,
     question: element.symbol,
-    questionClass: `valences-test__question element ${element.group}`,
+    questionClass: `font-semibold text-4xl element ${element.group}`,
   };
 }
 
@@ -168,7 +167,7 @@ function ValencesTest() {
   }
 
   return (
-    <div className="valences-test">
+    <div className="flex flex-col h-full">
       <Navbar
         title={i18n("valences_test")}
         onBackButtonClick={() =>
@@ -191,18 +190,20 @@ function ValencesTest() {
       />
 
       {hasQuestions && (
-        <div className="valences-test__test">
-          <QuestionsTest
-            title={i18n("select_valence")}
-            questions={questions}
-            onQuestionAnswer={onQuestionAnswer}
-          />
+        <div className="flex-1 flex items-center justify-center">
+          <div className="max-w-[360px] w-full">
+            <QuestionsTest
+              title={i18n("select_valence")}
+              questions={questions}
+              onQuestionAnswer={onQuestionAnswer}
+            />
+          </div>
         </div>
       )}
 
       {!hasQuestions && (
-        <div className="valences-test__result">
-          <Card className="valences-test__result-card">
+        <div className="flex-1 flex items-center justify-center">
+          <Card className="m-4 max-w-[360px] w-full" rounded>
             <TestResults
               gaTestName="Valences Test"
               wrongAnswers={wrongAnswers.length}

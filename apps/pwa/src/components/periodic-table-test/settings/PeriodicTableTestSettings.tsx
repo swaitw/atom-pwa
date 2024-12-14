@@ -5,7 +5,6 @@ import { TEST_SELECTION } from "@/routes";
 import IconButton from "@/components/shared/icon-button/IconButton";
 import Navbar from "@/components/shared/navbar/Navbar";
 import { usePeriodicTableTestSettings } from "@/components/periodic-table-test/hooks/usePeriodicTableTestSettings";
-import "./PeriodicTableTestSettings.scss";
 import { useElements } from "@/hooks/useElements";
 import PtElementSetting from "@/components/pt-element/PtElementSetting";
 import PeriodicTable from "@/components/periodic-table/PeriodicTable";
@@ -96,29 +95,29 @@ function PeriodicTableTestSettings() {
   };
 
   return (
-    <div className="periodic-table-test-settings">
+    <div className="flex flex-col h-full">
       <Navbar
         title={i18n("nav_settings")}
         onBackButtonClick={onNavbarButtonClick}
       />
 
-      <div className="periodic-table-test-settings__content">
-        <div className="periodic-table-test-settings__text">
-          {i18n("select_elements")}
-        </div>
-
-        <div className="periodic-table-test-settings__buttons">
+      <div className="pl-safe-left pr-safe-right">
+        <div className="p-4 opacity-65">{i18n("select_elements")}</div>
+        <div className="flex opacity-80">
           <IconButton
+            className="flex-1"
             onClick={onSelectAllButtonClick}
             iconName="check_box_true"
             text={i18n("select_all")}
           />
           <IconButton
+            className="flex-1"
             onClick={onDeselectAllButtonClick}
             iconName="check_box_false"
             text={i18n("deselect_all")}
           />
           <IconButton
+            className="flex-1"
             onClick={onRestoreDefaultsButtonClick}
             iconName="restore"
             text={i18n("restore_defaults")}
@@ -126,7 +125,7 @@ function PeriodicTableTestSettings() {
         </div>
       </div>
 
-      <div className="valences-test-settings__table">
+      <div className="flex-1 overflow-auto bg-white dark:bg-slate-900">
         <PeriodicTable elementRenderer={elementRenderer} />
       </div>
     </div>

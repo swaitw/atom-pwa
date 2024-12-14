@@ -1,6 +1,5 @@
 import * as React from "react";
 import Button from "@/components/shared/button/Button";
-import styles from "./ConfirmContext.module.scss";
 import { useUnmounted } from "@/hooks/useUnmounted";
 import SwipeableModal from "@/components/shared/swipeable-modal/SwipeableModal";
 import Icon from "@/components/shared/icon/Icon";
@@ -94,21 +93,26 @@ function ConfirmProvider({ children }: ConfirmProviderProps) {
           title={action.title}
           open={true}
           onClose={onCancelClick}
-          className={styles.modal}
+          className="p-0 max-w-[288px] max-h-[80%] h-auto overflow-hidden"
         >
-          <p>{action.message}</p>
+          <p className="pb-4 px-4 m-0">{action.message}</p>
 
-          <div className={styles.footer}>
+          <div className="flex">
             {!action.hideCancel && (
-              <Button onClick={onCancelClick}>
+              <Button onClick={onCancelClick} className="flex-1">
                 <span>{action.cancelButtonText || i18n("Cancel")}</span>
               </Button>
             )}
 
             {!action.hideConfirm && (
-              <Button className={styles.okButton} onClick={onConfirmClick}>
-                <span>{action.okButtonText || i18n("Continue_text")}</span>
-                <Icon name="arrow_forward" />
+              <Button
+                className="flex-1 text-accent-400"
+                onClick={onConfirmClick}
+              >
+                <span className="pl-2">
+                  {action.okButtonText || i18n("Continue_text")}
+                </span>
+                <Icon name="arrow_forward" className="ml-2" />
               </Button>
             )}
           </div>
