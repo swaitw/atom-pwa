@@ -1,6 +1,5 @@
-import classNames from "classnames";
 import * as React from "react";
-import "./Button.scss";
+import { cn } from "@/utils/styles";
 
 export interface ButtonProps {
   className?: string;
@@ -20,11 +19,10 @@ function Button({
   onClick,
   ...props
 }: ButtonProps) {
-  const buttonClass = classNames(
-    "button",
-    {
-      "button--circle": circle,
-    },
+  const buttonClassName = cn(
+    "m-0 border-0 p-4 bg-transparent flex items-center justify-center relative pointer select-none font-medium",
+    circle && "rounded-full",
+    link && "text-center text-inherit no-underline",
     className
   );
 
@@ -34,7 +32,7 @@ function Button({
         data-testid={id}
         data-atom-button
         href={link}
-        className={buttonClass}
+        className={buttonClassName}
         onClick={onClick}
         {...props}
       >
@@ -48,7 +46,7 @@ function Button({
       role="button"
       data-testid={id}
       data-atom-button
-      className={buttonClass}
+      className={buttonClassName}
       onClick={onClick}
       {...props}
     >

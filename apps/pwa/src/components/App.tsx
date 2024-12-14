@@ -15,7 +15,6 @@ import {
 import { useLocale } from "@/hooks/useLocale";
 import { useTheme } from "@/hooks/useTheme";
 import About from "./about/About";
-import "./App.scss";
 import MassCalculator from "./mass-calculator/MassCalculator";
 import NotFound from "./not-found/NotFound";
 import PeriodicTablePage, {
@@ -52,7 +51,7 @@ function App() {
 
   return (
     <ProviderPack>
-      <div className="app">
+      <div className="h-full">
         <Helmet>
           <html lang={lang} />
 
@@ -73,7 +72,7 @@ function App() {
           <title>{i18n("app_full_title")}</title>
         </Helmet>
 
-        <div className="app__content">
+        <div className="h-full">
           <Routes>
             <Route
               path={HUB}

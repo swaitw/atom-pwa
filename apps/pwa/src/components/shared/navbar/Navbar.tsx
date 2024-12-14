@@ -1,8 +1,6 @@
 import { useLocale } from "@/hooks/useLocale";
-import classNames from "classnames";
-import * as React from "react";
 import IconButton from "@/components/shared/icon-button/IconButton";
-import "./Navbar.scss";
+import { cn } from "@/utils/styles";
 
 interface NavbarProps {
   title?: string;
@@ -24,21 +22,26 @@ function Navbar({
   const { i18n } = useLocale();
 
   return (
-    <nav className={classNames("navbar", className)}>
+    <nav
+      className={cn(
+        "min-h-14 w-full flex-shrink-0 flex items-center pl-safe-left pr-safe-right pt-safe-top",
+        className
+      )}
+    >
       {onBackButtonClick && (
         <IconButton
-          className="navbar__back-button"
+          className="h-full"
           iconName="arrow_back"
           id="navbar-back-button"
           onClick={onBackButtonClick}
           aria-label={i18n("Go back")}
         />
       )}
-      {title && <div className="navbar__title">{title}</div>}
+      {title && <div className="pl-4 text-lg font-semibold">{title}</div>}
 
       {rightButton && (
         <IconButton
-          className="navbar__right-button"
+          className="h-full ml-auto"
           iconName={rightButton.iconName}
           aria-label={rightButton.label}
           onClick={rightButton.onClick}

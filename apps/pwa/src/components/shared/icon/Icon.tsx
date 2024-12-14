@@ -1,7 +1,6 @@
-import classNames from "classnames";
 import * as React from "react";
-import styles from "./Icon.module.scss";
 import invariant from "invariant";
+import { cn } from "@/utils/styles";
 
 const iconMap = import.meta.glob<
   true,
@@ -27,7 +26,7 @@ function Icon({ name, className }: IconProps) {
 
   return (
     <IconComponent
-      className={classNames(styles.icon, className)}
+      className={cn("fill-current", className)}
       width="24"
       height="24"
     />

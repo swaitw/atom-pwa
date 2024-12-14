@@ -1,14 +1,24 @@
-import classNames from "classnames";
 import * as React from "react";
-import "./Card.scss";
+import { cn } from "@/utils/styles";
 
 interface CardProps {
   className?: string;
   children: React.ReactNode;
+  rounded?: boolean;
 }
 
-function Card({ className, children }: CardProps) {
-  return <div className={classNames("card", className)}>{children}</div>;
+function Card({ className, children, rounded }: CardProps) {
+  return (
+    <div
+      className={cn(
+        "overflow-hidden bg-white text-slate-950 dark:bg-slate-900 dark:text-slate-50 shadow-sm",
+        rounded && "rounded-lg",
+        className
+      )}
+    >
+      {children}
+    </div>
+  );
 }
 
 export default Card;

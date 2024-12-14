@@ -18,46 +18,58 @@ function About() {
     navigate,
   ]);
   return (
-    <div className="about">
+    <div className="flex flex-col min-h-full bg-slate-50 text-slate-950 dark:bg-slate-950 dark:text-slate-50">
       <Navbar
-        className="about__navbar"
+        className="shadow-sm"
         title={i18n("nav_about")}
         onBackButtonClick={onNavbarBackButtonClick}
       />
 
-      <div className="about__content">
-        <Card className="about__app-preferences">
-          <div className="about__subtitle">{i18n("app_settings")}</div>
+      <div className="pl-safe-left pr-safe-right pb-safe-bottom container">
+        <Card rounded={true} className="m-4">
+          <div className="p-4 uppercase font-semibold text-sm">
+            {i18n("app_settings")}
+          </div>
 
-          <div className="about__app-preferences__buttons">
-            <LocaleSelector />
-            <ThemeSelector />
+          <div className="flex">
+            <div className="flex-1 text-center">
+              <LocaleSelector />
+            </div>
+            <div className="flex-1 text-center">
+              <ThemeSelector />
+            </div>
           </div>
         </Card>
 
-        <Card className="about__about">
-          <div className="about__about__buttons">
-            <IconButton
-              link={i18n("contact_me_url")}
-              iconName="at"
-              text={i18n("contact_me")}
-            />
+        <Card rounded={true} className="m-4">
+          <div className="flex">
+            <div className="flex-1 text-center">
+              <IconButton
+                link={i18n("contact_me_url")}
+                iconName="at"
+                text={i18n("contact_me")}
+              />
+            </div>
 
-            <IconButton
-              link="https://github.com/HorusGoul/atom-pwa"
-              iconName="source_branch"
-              text={i18n("source_code")}
-            />
+            <div className="flex-1 text-center">
+              <IconButton
+                link="https://github.com/HorusGoul/atom-pwa"
+                iconName="source_branch"
+                text={i18n("source_code")}
+              />
+            </div>
 
-            <IconButton
-              link={`mailto:${i18n("author_email")}`}
-              iconName="bug_report"
-              text={i18n("bug_report")}
-            />
+            <div className="flex-1 text-center">
+              <IconButton
+                link={`mailto:${i18n("author_email")}`}
+                iconName="bug_report"
+                text={i18n("bug_report")}
+              />
+            </div>
           </div>
         </Card>
 
-        <div className="about__appVersion">{FULL_VERSION}</div>
+        <div className="text-center text-xs opacity-80">{FULL_VERSION}</div>
       </div>
     </div>
   );

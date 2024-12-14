@@ -16,6 +16,12 @@ export default {
         success: colors.green,
         warning: colors.yellow,
       },
+      spacing: {
+        "safe-left": "var(--safe-area-inset-left)",
+        "safe-right": "var(--safe-area-inset-right)",
+        "safe-top": "var(--safe-area-inset-top)",
+        "safe-bottom": "var(--safe-area-inset-bottom)",
+      },
     },
   },
   plugins: [tailwindcssReactAriaComponents, tailwindcssAnimate],
