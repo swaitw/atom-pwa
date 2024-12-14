@@ -1,5 +1,4 @@
 import * as React from "react";
-import "./Overlay.scss";
 
 interface OverlayProps {
   onClick?: (event: React.MouseEvent<HTMLDivElement>) => void;
@@ -10,7 +9,7 @@ interface OverlayProps {
 function Overlay({ opacity = 1, onClick }: OverlayProps) {
   return (
     <div
-      className="overlay"
+      className="fixed z-[75] overflow-hidden inset-0 bg-black bg-opacity-45 cursor-pointer will-change-[opacity]"
       onClick={onClick}
       style={{ opacity }}
       data-testid="overlay"

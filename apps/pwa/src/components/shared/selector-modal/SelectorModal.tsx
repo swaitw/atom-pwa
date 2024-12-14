@@ -1,8 +1,5 @@
-import classNames from "classnames";
-import * as React from "react";
 import Button from "@/components/shared/button/Button";
 import Modal, { ModalProps } from "@/components/shared/modal/Modal";
-import "./SelectorModal.scss";
 
 export interface SelectorModalOption {
   key: string;
@@ -16,11 +13,11 @@ interface SelectorModalProps extends ModalProps {
 
 function SelectorModal(props: SelectorModalProps) {
   return (
-    <Modal className={classNames("selector-modal", props.className)} {...props}>
+    <Modal className={props.className} {...props}>
       {props.options.map((option) => (
         <Button
           key={option.key}
-          className="selector-modal__option"
+          className="w-full justify-start no-underline"
           onClick={() => props.onOptionSelected(option)}
         >
           {option.text}

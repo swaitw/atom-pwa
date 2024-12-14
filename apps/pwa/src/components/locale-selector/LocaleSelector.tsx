@@ -4,7 +4,6 @@ import IconButton from "@/components/shared/icon-button/IconButton";
 import SelectorModal, {
   SelectorModalOption,
 } from "@/components/shared/selector-modal/SelectorModal";
-import "./LocaleSelector.scss";
 
 function LocaleSelector() {
   const [selectorOpen, setSelectorOpen] = React.useState(false);
@@ -32,14 +31,13 @@ function LocaleSelector() {
   return (
     <>
       <IconButton
-        className="locale-selector__button"
         iconName="translate"
         text={i18n("change_language")}
         onClick={openSelector}
       />
 
       <SelectorModal
-        className="locale-selector__modal"
+        className="max-w-[288px] max-h-[80%] h-auto p-0 overflow-hidden bg-white text-slate-950 dark:bg-slate-900 dark:text-slate-50"
         title={i18n("change_language")}
         closeButton={true}
         onOptionSelected={onOptionSelected}
