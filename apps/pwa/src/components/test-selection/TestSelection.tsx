@@ -4,7 +4,6 @@ import { useLocale } from "@/hooks/useLocale";
 import { HUB } from "@/routes";
 import Navbar from "@/components/shared/navbar/Navbar";
 import TestEntry from "./test-entry/TestEntry";
-import "./TestSelection.scss";
 import { useAddRecent } from "@/hooks/useRecent";
 
 function TestSelection() {
@@ -30,15 +29,14 @@ function TestSelection() {
   const navigate = useNavigate();
 
   return (
-    <div className="test-selection">
+    <div className="flex flex-col h-full min-h-full">
       <Navbar
-        className="test-selection__navbar"
         title={i18n("nav_test")}
         // TODO: replace "push" with "replace" in the future
         onBackButtonClick={() => navigate(HUB)}
       />
 
-      <div className="test-selection__entries">
+      <div className="container pb-safe-bottom pl-safe-left pr-safe-right">
         {testEntries.map((testEntry, index) => (
           <TestEntry
             key={index}

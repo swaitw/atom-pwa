@@ -3,7 +3,6 @@ import { useLocale } from "@/hooks/useLocale";
 import Button from "@/components/shared/button/Button";
 import Card from "@/components/shared/card/Card";
 import IconButton from "@/components/shared/icon-button/IconButton";
-import "./TestEntry.scss";
 import Icon from "@/components/shared/icon/Icon";
 
 interface TestEntryProps {
@@ -24,27 +23,24 @@ function TestEntry({
   const { i18n } = useLocale();
 
   return (
-    <Card className="test-entry">
-      <div className="test-entry__header">
-        <div className="test-entry__title">{title}</div>
+    <Card className="m-4 p-4 overflow-hidden" rounded={true}>
+      <div className="flex items-center h-10">
+        <div className="text-xl font-medium">{title}</div>
 
         <IconButton
           circle={true}
-          className="test-entry__settings-button"
+          className="ml-auto p-2"
           iconName="settings"
           onClick={onSettingsClick}
         />
       </div>
 
-      <div className="test-entry__description">{description}</div>
+      <div className="text-base py-2 leading-[1.6]">{description}</div>
 
-      <div className="test-entry__footer">
-        <Button
-          onClick={onPracticeClick}
-          className="test-entry__practice-button"
-        >
+      <div className="flex justify-end -mx-4 -mb-4">
+        <Button onClick={onPracticeClick} className="text-base text-accent-400">
           {i18n("practice")}
-          <Icon name="arrow_forward" />
+          <Icon name="arrow_forward" className="ml-2" />
         </Button>
       </div>
     </Card>
