@@ -5,7 +5,6 @@ import IconButton from "@/components/shared/icon-button/IconButton";
 import SelectorModal, {
   SelectorModalOption,
 } from "@/components/shared/selector-modal/SelectorModal";
-import "./ThemeSelector.scss";
 
 function ThemeSelector() {
   const { i18n } = useLocale();

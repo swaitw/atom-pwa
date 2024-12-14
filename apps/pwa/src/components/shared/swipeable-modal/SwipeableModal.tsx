@@ -4,7 +4,6 @@ import * as React from "react";
 import Portal from "@/components/shared/portal/Portal";
 import IconButton from "@/components/shared/icon-button/IconButton";
 import { ModalProps } from "@/components/shared/modal/Modal";
-import "@/components/shared/modal/Modal.scss";
 import Overlay from "@/components/shared/overlay/Overlay";
 import { useLocale } from "@/hooks/useLocale";
 

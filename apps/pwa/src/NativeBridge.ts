@@ -41,7 +41,7 @@ class NativeBridge {
   }
 
   public supportsNativeMethod(_methodName: keyof typeof AtomNative) {
-    return !!window.AtomNative?.["rateApp"];
+    return !!window.AtomNative?.[_methodName];
   }
 
   private exec<T extends keyof typeof AtomNative>(

@@ -4,7 +4,7 @@ import * as React from "react";
 import { useLocale } from "@/hooks/useLocale";
 import IconButton from "@/components/shared/icon-button/IconButton";
 import "./TestResults.scss";
-import { useRateApp } from "@/components/rate-app/useRateApp";
+import { useRateApp } from "@/hooks/useRateApp";
 
 export interface TestResultsProps {
   gaTestName: string;
