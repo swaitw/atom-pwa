@@ -1,6 +1,6 @@
 import * as React from "react";
 import { Helmet, HelmetProvider } from "react-helmet-async";
-import { Route, Routes } from "react-router-dom";
+import { Navigate, Route, Routes } from "react-router-dom";
 import {
   ABOUT,
   HUB,
@@ -16,7 +16,6 @@ import { useLocale } from "@/hooks/useLocale";
 import { useTheme } from "@/hooks/useTheme";
 import About from "./about/About";
 import MassCalculator from "./mass-calculator/MassCalculator";
-import NotFound from "./not-found/NotFound";
 import PeriodicTablePage, {
   ElementInfoView,
 } from "./periodic-table-page/PeriodicTablePage";
@@ -108,7 +107,7 @@ function App() {
             </Route>
             <Route path={ABOUT} element={<About />} />
 
-            <Route path="*" element={<NotFound />} />
+            <Route path="*" element={<Navigate to="/" replace={true} />} />
           </Routes>
         </div>
       </div>

@@ -10,7 +10,6 @@ import { logEvent } from "@/services/spycat";
 import * as React from "react";
 import { useNavigate } from "react-router-dom";
 import Atom from "@/components/atom";
-import DownloadApp from "@/components/download-app/DownloadApp";
 import RateApp from "@/components/rate-app/RateApp";
 import Button from "@/components/shared/button/Button";
 import { useConfirm } from "@/components/shared/confirm";
@@ -77,7 +76,6 @@ function Hub() {
       </div>
       <div className="flex items-center flex-col w-full px-6 [@media_(min-width:420px)]:max-w-[420px]">
         <RateApp />
-        <DownloadApp />
 
         <div className="w-full pt-8 pb-4">
           {recent.length > 0 && (
