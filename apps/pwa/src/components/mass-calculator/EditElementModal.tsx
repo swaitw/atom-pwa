@@ -37,15 +37,19 @@ function EditElementModal({
     <Modal
       title={element.name}
       closeButton={true}
-      className="mass-calculator__modify-element-modal"
+      className="max-w-[288px] max-h-[80%] h-auto p-0 overflow-hidden bg-white text-slate-950 dark:bg-slate-900 dark:text-slate-50"
       open={isOpen}
       onClose={onClose}
     >
-      <div className="mass-calculator__modify-element-modal__controls">
-        <IconButton iconName="remove" onClick={decreaseQuantity} />
+      <div className="flex items-center pt-4">
+        <IconButton
+          className="flex-1"
+          iconName="remove"
+          onClick={decreaseQuantity}
+        />
 
         <input
-          className="mass-calculator__modify-element-modal__amount-input"
+          className="flex-1 border-0 p-0 m-0 text-center text-5xl bg-transparent w-full text-accent-400"
           type="tel"
           name="amount"
           value={selectedElement.quantity}
@@ -55,12 +59,14 @@ function EditElementModal({
           }}
         />
 
-        <IconButton iconName="add" onClick={increaseQuantity} />
+        <IconButton
+          className="flex-1"
+          iconName="add"
+          onClick={increaseQuantity}
+        />
       </div>
 
-      <div className="mass-calculator__modify-element-modal__text">
-        {i18n("change_amount")}
-      </div>
+      <div className="p-4 opacity-65">{i18n("change_amount")}</div>
     </Modal>
   );
 }

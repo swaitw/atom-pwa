@@ -9,7 +9,6 @@ import EditElementModal from "./EditElementModal";
 import CalculatorElement from "./CalculatorElement";
 import { useMassCalculator } from "./hooks/useMassCalculator";
 import { useModal } from "./hooks/useModal";
-import "./MassCalculator.scss";
 import { useAddRecent } from "@/hooks/useRecent";
 import { useNavigate } from "react-router-dom";
 
@@ -39,38 +38,40 @@ function MassCalculator() {
   }, [navigate]);
 
   return (
-    <div className="mass-calculator">
+    <div className="min-h-full">
       <Navbar
         title={i18n("mass_calculator")}
         onBackButtonClick={onNavbarBackButtonClick}
       />
-      <div className="mass-calculator__result-bar">
-        <span className="mass-calculator__result-bar__text">
+      <div className="flex items-center p-4 z-[2] shadow-sm">
+        <span className="text-sm font-medium pl-safe-left">
           {i18n("result")}
         </span>
 
-        <span className="mass-calculator__result-bar__value">
+        <span className="ml-auto pr-safe-right">
           {calculateTotalValue()} {i18n("g_mol")}
         </span>
       </div>
-      <div className="mass-calculator__controls">
+      <div className="flex pr-safe-right pl-safe-left">
         <IconButton
+          className="flex-1 opacity-80"
           onClick={addModal.open}
           iconName="add_circle"
           text={i18n("add_element")}
         />
 
         <IconButton
+          className="flex-1 opacity-80"
           onClick={clearElements}
           iconName="clear_all"
           text={i18n("clear_elements")}
         />
       </div>
-      <div className="mass-calculator__element-list">
+      <div className="pr-safe-right pl-safe-left pb-safe-bottom">
         {elements.map(({ atomic, quantity }) => (
           <ListItemSwipeAction
             key={atomic}
-            className="mass-calculator__swipe-item"
+            className="animate-in fade-in ease-linear fill-mode-forwards"
             frontContent={
               <CalculatorElement
                 atomic={atomic}

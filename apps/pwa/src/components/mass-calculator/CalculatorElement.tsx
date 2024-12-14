@@ -28,11 +28,11 @@ function CalculatorElement({
   return (
     <Button
       onClick={() => selectElement(atomic)}
-      className="mass-calculator__element"
+      className="flex justify-start w-full py-2 px-4 [text-transform:_none] font-normal shadow-sm bg-white dark:bg-slate-900"
     >
       <div
         className={classNames(
-          "mass-calculator__element__symbol",
+          "flex items-center justify-center w-12 h-12 rounded-full",
           "element",
           element.group
         )}
@@ -40,24 +40,18 @@ function CalculatorElement({
         {element.symbol}
       </div>
 
-      <div className="mass-calculator__element__desc">
-        <span className="mass-calculator__element__name">
-          {localizedElement.name}
-        </span>
+      <div className="flex flex-col pl-4 text-left">
+        <span className="text-lg">{localizedElement.name}</span>
 
-        <span className="mass-calculator__element__group">
+        <span className="text-sm pt-1">
           {element.atomicMass} {i18n("g_mol")}
         </span>
       </div>
 
-      <div className="mass-calculator__element__quantity">
-        <span className="mass-calculator__element__quantity__text">
-          {i18n("amount")}
-        </span>
+      <div className="flex flex-col ml-auto uppercase">
+        <span className="text-xs">{i18n("amount")}</span>
 
-        <span className="mass-calculator__element__quantity__number">
-          {quantity}
-        </span>
+        <span className="text-center pt-1">{quantity}</span>
       </div>
     </Button>
   );
