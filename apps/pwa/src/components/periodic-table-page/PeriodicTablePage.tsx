@@ -9,7 +9,6 @@ import PtElementInfo from "@/components/pt-element/PtElementInfo";
 import Navbar from "@/components/shared/navbar/Navbar";
 import SwipeableModal from "@/components/shared/swipeable-modal/SwipeableModal";
 import ElementInfo from "./element-info/ElementInfo";
-import "./PeriodicTablePage.scss";
 import { useAddRecent } from "@/hooks/useRecent";
 import { usePreventDocumentOverscroll } from "@/hooks/usePreventDocumentOverscroll";
 
@@ -39,10 +38,10 @@ function PeriodicTablePage() {
   };
 
   return (
-    <div className="periodic-table-page">
+    <div className="flex flex-col h-full">
       <Navbar
         title={i18n("periodic_table")}
-        className="periodic-table-page__navbar"
+        className="z-[1] shadow-sm"
         onBackButtonClick={onNavbarBackButtonClick}
         rightButton={{
           label: i18n("Search"),
@@ -54,7 +53,7 @@ function PeriodicTablePage() {
         }}
       />
 
-      <div className="periodic-table-page__table">
+      <div className="flex-1 z-[1] bg-white dark:bg-slate-950">
         <PeriodicTable elementRenderer={elementRenderer} />
       </div>
 
@@ -73,7 +72,7 @@ export function ElementInfoView() {
 
   return (
     <SwipeableModal
-      className="periodic-table-page__modal-element-info"
+      className="max-w-[288px] max-h-[80%] h-[480px] p-0 overflow-auto shadow-md"
       open={true}
       onClose={() => navigate(PERIODIC_TABLE, { replace: true })}
     >

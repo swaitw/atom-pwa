@@ -1,8 +1,6 @@
 import * as React from "react";
 import { Spinner } from "@/components/shared/spinner/Spinner";
 
-import "./PeriodicTable.scss";
-
 import periodicTableData from "@/data/pt.json";
 import { TransformComponent, TransformWrapper } from "react-zoom-pan-pinch";
 
@@ -12,45 +10,45 @@ interface PeriodicTableProps {
 }
 
 function EmptyCell() {
-  return (
-    <div
-      className="periodic-table__cell periodic-table__cell--empty"
-      aria-hidden={true}
-    />
-  );
+  return <div className="table-cell" aria-hidden={true} />;
 }
 
 function EmptyElement() {
   return (
-    <div
-      className="periodic-table__cell periodic-table__cell--empty-element"
-      aria-hidden={true}
-    />
+    <div className="table-cell min-h-[72px] min-w-[72px]" aria-hidden={true} />
+  );
+}
+
+function LabelCell({ children }: { children?: React.ReactNode }) {
+  return (
+    <div className="table-cell h-6 min-w-6 align-middle text-center font-semibold text-sm bg-slate-50 dark:bg-slate-950 text-slate-950 dark:text-slate-50 text-opacity-40 dark:text-opacity-80">
+      {children}
+    </div>
   );
 }
 
 function buildTable(elementRenderer: ElementRendered) {
   const rows: JSX.Element[] = [
-    <div key="row-head" className="periodic-table__row">
-      <div className="periodic-table__cell periodic-table__cell--label" />
-      <div className="periodic-table__cell periodic-table__cell--label">1</div>
-      <div className="periodic-table__cell periodic-table__cell--label">2</div>
-      <div className="periodic-table__cell periodic-table__cell--label">3</div>
-      <div className="periodic-table__cell periodic-table__cell--label">4</div>
-      <div className="periodic-table__cell periodic-table__cell--label">5</div>
-      <div className="periodic-table__cell periodic-table__cell--label">6</div>
-      <div className="periodic-table__cell periodic-table__cell--label">7</div>
-      <div className="periodic-table__cell periodic-table__cell--label">8</div>
-      <div className="periodic-table__cell periodic-table__cell--label">9</div>
-      <div className="periodic-table__cell periodic-table__cell--label">10</div>
-      <div className="periodic-table__cell periodic-table__cell--label">11</div>
-      <div className="periodic-table__cell periodic-table__cell--label">12</div>
-      <div className="periodic-table__cell periodic-table__cell--label">13</div>
-      <div className="periodic-table__cell periodic-table__cell--label">14</div>
-      <div className="periodic-table__cell periodic-table__cell--label">15</div>
-      <div className="periodic-table__cell periodic-table__cell--label">16</div>
-      <div className="periodic-table__cell periodic-table__cell--label">17</div>
-      <div className="periodic-table__cell periodic-table__cell--label">18</div>
+    <div key="row-head" className="table-row">
+      <LabelCell />
+      <LabelCell>1</LabelCell>
+      <LabelCell>2</LabelCell>
+      <LabelCell>3</LabelCell>
+      <LabelCell>4</LabelCell>
+      <LabelCell>5</LabelCell>
+      <LabelCell>6</LabelCell>
+      <LabelCell>7</LabelCell>
+      <LabelCell>8</LabelCell>
+      <LabelCell>9</LabelCell>
+      <LabelCell>10</LabelCell>
+      <LabelCell>11</LabelCell>
+      <LabelCell>12</LabelCell>
+      <LabelCell>13</LabelCell>
+      <LabelCell>14</LabelCell>
+      <LabelCell>15</LabelCell>
+      <LabelCell>16</LabelCell>
+      <LabelCell>17</LabelCell>
+      <LabelCell>18</LabelCell>
     </div>,
   ];
 
@@ -58,15 +56,13 @@ function buildTable(elementRenderer: ElementRendered) {
     const row = periodicTableData[i];
 
     rows.push(
-      <div className="periodic-table__row" key={`row-${i}`}>
+      <div className="table-row" key={`row-${i}`}>
         {i <= 6 ? (
           // TODO: localize "Period N"
-          <div className="periodic-table__cell periodic-table__cell--label">
-            {i + 1}
-          </div>
+          <LabelCell>{i + 1}</LabelCell>
         ) : (
           // TODO: localize and label "Lanthanides" and "Actinides"
-          <div className="periodic-table__cell periodic-table__cell--label" />
+          <LabelCell />
         )}
 
         {row.map((element, index) => {
@@ -83,10 +79,7 @@ function buildTable(elementRenderer: ElementRendered) {
           }
 
           return (
-            <div
-              className="periodic-table__cell"
-              key={`row-${i}-cell-${index}`}
-            >
+            <div className="table-cell" key={`row-${i}-cell-${index}`}>
               {elementRenderer(element)}
             </div>
           );
@@ -113,8 +106,11 @@ function PeriodicTable({ elementRenderer }: PeriodicTableProps) {
 
   if (!render) {
     return (
-      <div className="periodic-table--loading" aria-label="loading">
-        <Spinner className="periodic-table__spinner" />
+      <div
+        className="w-full h-full flex items-center justify-center"
+        aria-label="loading"
+      >
+        <Spinner className="w-12 h-12" />
       </div>
     );
   }
@@ -131,7 +127,9 @@ function PeriodicTable({ elementRenderer }: PeriodicTableProps) {
         contentStyle={{ width: "100%", height: "100%" }}
         wrapperStyle={{ width: "100%", height: "100%" }}
       >
-        <div className="periodic-table">{buildTable(elementRenderer)}</div>
+        <div className="table overflow-auto w-full h-full pl-safe-left bg-white dark:bg-slate-900">
+          {buildTable(elementRenderer)}
+        </div>
       </TransformComponent>
     </TransformWrapper>
   );

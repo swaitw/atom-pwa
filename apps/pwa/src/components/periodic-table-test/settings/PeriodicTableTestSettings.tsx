@@ -125,7 +125,7 @@ function PeriodicTableTestSettings() {
         </div>
       </div>
 
-      <div className="flex-1 overflow-auto bg-white dark:bg-slate-900">
+      <div className="flex-1 overflow-auto">
         <PeriodicTable elementRenderer={elementRenderer} />
       </div>
     </div>

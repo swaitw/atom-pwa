@@ -230,7 +230,7 @@ function PeriodicTableTest() {
       />
 
       {currentQuestion && (
-        <div className="flex-1 z-[1] bg-white dark:bg-slate-900">
+        <div className="flex-1 z-[1]">
           <PeriodicTable elementRenderer={elementRenderer} />
         </div>
       )}

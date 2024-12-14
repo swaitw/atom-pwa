@@ -1,9 +1,7 @@
-import classNames from "classnames";
-import * as React from "react";
 import { Element } from "@/Element";
 import { useElements } from "@/hooks/useElements";
 import { useLocale } from "@/hooks/useLocale";
-import "./ElementInfo.scss";
+import { cn } from "@/utils/styles";
 
 interface ElementInfoDataEntryProps {
   name: string;
@@ -21,10 +19,10 @@ const ElementInfoDataEntry = ({
   }
 
   return (
-    <div className="element-info__data-entry">
-      <div className="element-info__data-entry__name">{name}</div>
+    <div className="flex items-center p-4 even:bg-slate-50 dark:even:bg-slate-950">
+      <div className="text-sm font-semibold">{name}</div>
 
-      <div className="element-info__data-entry__value">
+      <div className="ml-auto">
         {value}
         {unit ? ` ${unit}` : ""}
       </div>
@@ -47,15 +45,13 @@ function ElementInfo({ element }: ElementInfoProps) {
   const elementLocales = getElementLocales(element);
 
   return (
-    <div className="element-info">
-      <div
-        className={classNames("element-info__header", "element", element.group)}
-      >
-        <div className="element-info__name">{elementLocales.name}</div>
-        <div className="element-info__group">{elementLocales.group}</div>
+    <div className="h-full bg-white dark:bg-slate-900">
+      <div className={cn("p-4 font-semibold", "element", element.group)}>
+        <div className="text-xl font-bold">{elementLocales.name}</div>
+        <div className="opacity-80 pt-1 text-base">{elementLocales.group}</div>
       </div>
 
-      <div className="element-info__data-list">
+      <div>
         <ElementInfoDataEntry
           name={i18n("element_data_atomic")}
           value={element.atomic}
