@@ -7,7 +7,6 @@ import Card from "@/components/shared/card/Card";
 import IconButton from "@/components/shared/icon-button/IconButton";
 import Navbar from "@/components/shared/navbar/Navbar";
 import ThemeSelector from "@/components/theme-selector/ThemeSelector";
-import "./About.scss";
 import { FULL_VERSION } from "@/constants";
 
 function About() {
