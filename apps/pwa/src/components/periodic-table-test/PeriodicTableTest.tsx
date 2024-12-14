@@ -11,7 +11,7 @@ import PtElementTest from "@/components/pt-element/PtElementTest";
 import Card from "@/components/shared/card/Card";
 import Navbar from "@/components/shared/navbar/Navbar";
 import SwipeableModal from "@/components/shared/swipeable-modal/SwipeableModal";
-import TestResults from "@/components/test-results/TestResults";
+import QuizResults from "@/components/quiz-results/QuizResults";
 import { usePeriodicTableTestSettings } from "./hooks/usePeriodicTableTestSettings";
 import { useAddRecent } from "@/hooks/useRecent";
 import { useConfirm } from "@/components/shared/confirm";
@@ -238,7 +238,7 @@ function PeriodicTableTest() {
       {!currentQuestion && (
         <div className="flex-1 flex items-center justify-center">
           <Card className="m-4 max-w-[360px] w-full" rounded>
-            <TestResults
+            <QuizResults
               gaTestName="Periodic Table Test"
               wrongAnswers={wrongAnswers.length}
               rightAnswers={rightAnswers.length}

@@ -1,5 +1,4 @@
 import classNames from "classnames";
-import * as React from "react";
 import { useState, useRef, useEffect, useCallback } from "react";
 import HyperScroller, { HyperScrollerCache } from "react-hyper-scroller";
 import { Element } from "@/Element";
@@ -7,7 +6,6 @@ import { useElements } from "@/hooks/useElements";
 import { useLocale } from "@/hooks/useLocale";
 import Button from "@/components/shared/button/Button";
 import Icon from "@/components/shared/icon/Icon";
-import "./ElementPicker.scss";
 
 interface ElementPickerProps {
   onElement: (element: Element) => void;
@@ -69,12 +67,13 @@ function ElementPicker({ onElement }: ElementPickerProps) {
   const elementListRef = useRef<HTMLDivElement>(null);
 
   return (
-    <div className="element-picker">
-      <div className="element-picker__search-bar">
+    <div className="flex flex-col h-full">
+      <div className="flex items-center h-12 px-4 z-[1] shadow-sm text-accent-400">
         <Icon name="search" />
 
         <input
-          className="element-picker__search-bar__input"
+          aria-label={i18n("search_elements")}
+          className="flex-1 bg-transparent border-0 ml-4 text-inherit h-full p-0 placeholder:text-inherit placeholder:opacity-65 outline-none"
           type="text"
           placeholder={i18n("search_elements")}
           onChange={(event) => {
@@ -86,7 +85,10 @@ function ElementPicker({ onElement }: ElementPickerProps) {
         />
       </div>
 
-      <div ref={elementListRef} className="element-picker__element-list">
+      <div
+        ref={elementListRef}
+        className="flex-1 overflow-y-auto overflow-x-hidden"
+      >
         <HyperScroller
           estimatedItemHeight={64}
           targetView={elementListRef}
@@ -102,11 +104,11 @@ function ElementPicker({ onElement }: ElementPickerProps) {
               <Button
                 key={element.atomic}
                 onClick={() => onElement(element)}
-                className="element-picker__element"
+                className="flex justify-start w-full py-2 px-4 [text-transform:_none] font-normal"
               >
                 <div
                   className={classNames(
-                    "element-picker__element__symbol",
+                    "flex items-center justify-center w-12 h-12 rounded-full",
                     "element",
                     element.group
                   )}
@@ -114,14 +116,9 @@ function ElementPicker({ onElement }: ElementPickerProps) {
                   {element.symbol}
                 </div>
 
-                <div className="element-picker__element__desc">
-                  <span className="element-picker__element__name">
-                    {elementLocales.name}
-                  </span>
-
-                  <span className="element-picker__element__group">
-                    {elementLocales.group}
-                  </span>
+                <div className="flex flex-col pl-4 text-start">
+                  <span className="text-base">{elementLocales.name}</span>
+                  <span className="text-sm pt-1">{elementLocales.group}</span>
                 </div>
               </Button>
             );

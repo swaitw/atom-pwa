@@ -1,11 +1,11 @@
 import * as React from "react";
 import { fireEvent, render, screen } from "@testing-library/react";
-import TestResults, { TestResultsProps } from "./TestResults";
+import QuizResults, { TestResultsProps } from "./QuizResults";
 
 const onRepeatMock = vi.fn();
 const onRepeatWrongAnswersMock = vi.fn();
 
-const wrapper = (props: TestResultsProps) => render(<TestResults {...props} />);
+const wrapper = (props: TestResultsProps) => render(<QuizResults {...props} />);
 
 beforeEach(() => {
   vi.clearAllMocks();

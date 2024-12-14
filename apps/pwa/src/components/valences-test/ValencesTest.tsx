@@ -11,7 +11,7 @@ import { Question } from "@/components/questions-test/question-card/QuestionCard
 import QuestionsTest from "@/components/questions-test/QuestionsTest";
 import Card from "@/components/shared/card/Card";
 import Navbar from "@/components/shared/navbar/Navbar";
-import TestResults from "@/components/test-results/TestResults";
+import QuizResults from "@/components/quiz-results/QuizResults";
 import { useValencesTestSettings } from "./hooks/useValencesTestSettings";
 import { useAddRecent } from "@/hooks/useRecent";
 import { useConfirm } from "@/components/shared/confirm";
@@ -204,7 +204,7 @@ function ValencesTest() {
       {!hasQuestions && (
         <div className="flex-1 flex items-center justify-center">
           <Card className="m-4 max-w-[360px] w-full" rounded>
-            <TestResults
+            <QuizResults
               gaTestName="Valences Test"
               wrongAnswers={wrongAnswers.length}
               rightAnswers={rightAnswers.length}
