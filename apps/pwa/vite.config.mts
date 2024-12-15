@@ -4,6 +4,7 @@ import svgr from "vite-plugin-svgr";
 import path from "path";
 import LCL from "last-commit-log";
 import istanbul from "vite-plugin-istanbul";
+import { lingui } from "@lingui/vite-plugin";
 
 const env = process.env;
 
@@ -36,9 +37,13 @@ export default defineConfig({
     exclude: ["hammerjs"],
   },
   plugins: [
+    lingui(),
     react({
       babel: {
-        plugins: [["babel-plugin-react-compiler", ReactCompilerConfig]],
+        plugins: [
+          "@lingui/babel-plugin-lingui-macro",
+          ["babel-plugin-react-compiler", ReactCompilerConfig],
+        ],
       },
     }),
     svgr(),

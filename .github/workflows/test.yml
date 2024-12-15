@@ -22,7 +22,7 @@ jobs:
       - uses: pnpm/action-setup@v4
       - uses: actions/setup-node@v4
         with:
-          node-version-file: '.nvmrc'
+          node-version-file: ".nvmrc"
           cache: "pnpm"
 
       - name: Set output
@@ -72,7 +72,7 @@ jobs:
       - uses: pnpm/action-setup@v4
       - uses: actions/setup-node@v4
         with:
-          node-version-file: '.nvmrc'
+          node-version-file: ".nvmrc"
           cache: "pnpm"
 
       - name: Set output
@@ -93,7 +93,7 @@ jobs:
       - uses: pnpm/action-setup@v4
       - uses: actions/setup-node@v4
         with:
-          node-version-file: '.nvmrc'
+          node-version-file: ".nvmrc"
           cache: "pnpm"
 
       - name: Set output
@@ -105,3 +105,25 @@ jobs:
 
       - name: Run typechecking
         run: pnpm lint
+  extract-messages:
+    name: Extract Locales
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: ".nvmrc"
+          cache: "pnpm"
+
+      - name: Extract Messages
+        run: pnpm lingui:extract
+        working-directory: apps/pwa
+
+      - uses: EndBug/add-and-commit@v9
+        with:
+          commit: --signoff
+          add: "--all"
+          message: "i18n: update locales"
+          committer_name: GitHub Actions
+          committer_email: actions@github.com
