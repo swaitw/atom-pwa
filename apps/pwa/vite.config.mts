@@ -3,7 +3,6 @@ import { defineConfig } from "vite";
 import svgr from "vite-plugin-svgr";
 import path from "path";
 import LCL from "last-commit-log";
-import legacy from "@vitejs/plugin-legacy";
 import istanbul from "vite-plugin-istanbul";
 
 const env = process.env;
@@ -43,9 +42,6 @@ export default defineConfig({
       },
     }),
     svgr(),
-    legacy({
-      targets: ["defaults", "not IE 11", "chrome > 60"],
-    }),
     isDevelopment &&
       istanbul({
         include: "src/*",

@@ -1,4 +1,3 @@
-import "./polyfills";
 import "./NativeBridge";
 
 import * as ReactDOM from "react-dom/client";
