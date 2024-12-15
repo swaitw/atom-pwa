@@ -272,7 +272,7 @@ function PeriodicTableTest() {
       </SwipeableModal>
 
       {currentQuestion && (
-        <div className=" rounded-full flex items-center justify-center h-20 w-20 z-10 shadow-lg bg-white dark:bg-slate-900 fixed left-[calc(24px_+_var(--safe-area-inset-left,0px))] bottom-[calc(32px_+_var(--safe-area-inset-bottom,0px))]">
+        <div className=" rounded-full flex items-center justify-center h-20 w-20 z-10 shadow-lg bg-white dark:bg-accent-900 fixed left-[calc(24px_+_var(--safe-area-inset-left,0px))] bottom-[calc(32px_+_var(--safe-area-inset-bottom,0px))]">
           <button
             className={cn(
               "rounded-full font-semibold [text-transform:_none] w-full text-2xl h-full cursor-pointer border-0",
@@ -285,7 +285,7 @@ function PeriodicTableTest() {
             {currentQuestion.element.symbol}
 
             <div
-              className="shadow-lg absolute bottom-0 right-0 flex items-center justify-center rounded-full text-xs h-6 w-6 bg-white text-slate-950 dark:bg-slate-900 dark:text-slate-50"
+              className="shadow-lg absolute bottom-0 right-0 flex items-center justify-center rounded-full text-xs h-6 w-6 bg-white text-accent-950 dark:bg-accent-900 dark:text-accent-50"
               aria-label={i18n("help")}
             >
               ?

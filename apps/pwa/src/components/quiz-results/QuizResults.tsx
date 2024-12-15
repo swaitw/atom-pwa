@@ -51,7 +51,7 @@ function QuizResults({
       className={cn(
         "bg-danger-800 text-white",
         goodResults
-          ? "bg-white dark:bg-slate-900 text-slate-950 dark:text-slate-50"
+          ? "bg-white dark:bg-accent-900 text-accent-950 dark:text-accent-50"
           : undefined
       )}
     >

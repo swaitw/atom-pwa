@@ -42,7 +42,7 @@ function ThemeSelector() {
       />
 
       <SelectorModal
-        className="max-w-[288px] max-h-[80%] h-auto p-0 overflow-hidden bg-white text-slate-950 dark:bg-slate-900 dark:text-slate-50"
+        className="max-w-[288px] max-h-[80%] h-auto p-0 overflow-hidden bg-white text-accent-950 dark:bg-accent-900 dark:text-accent-50"
         title={i18n("change_theme")}
         closeButton={true}
         onOptionSelected={onOptionSelected}

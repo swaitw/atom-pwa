@@ -30,16 +30,16 @@ export const colors: ColorMap = {
     contrastText: "text-white",
   },
   white: {
-    main: "text-slate-50",
-    contrastText: "text-slate-950",
-    dark: "text-slate-100",
+    main: "text-accent-50",
+    contrastText: "text-accent-950",
+    dark: "text-accent-100",
     light: "text-white",
   },
   black: {
-    main: "text-slate-900",
+    main: "text-accent-900",
     contrastText: "text-white",
-    light: "text-slate-800",
-    dark: "text-slate-950",
+    light: "text-accent-800",
+    dark: "text-accent-950",
   },
   inherit: {
     main: "text-inherit",

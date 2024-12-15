@@ -38,7 +38,7 @@ function HubItem({
       <div
         className={cn(
           "absolute inset-0 z-0 shadow-[inset_0px_-32px_96px_rgba(0,0,0,0.4),inset_0px_-16px_48px_rgba(0,0,0,0.8)]",
-          disabled && "backdrop-blur-[2px] bg-slate-900 bg-opacity-85"
+          disabled && "backdrop-blur-[2px] bg-accent-900 bg-opacity-85"
         )}
       />
 

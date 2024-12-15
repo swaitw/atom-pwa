@@ -26,7 +26,7 @@ function Hub() {
   const navigate = useNavigate();
 
   return (
-    <div className="flex items-center flex-col bg-slate-50 text-slate-950 dark:bg-slate-950 dark:text-slate-50 pb-safe-bottom pt-safe-top">
+    <div className="flex items-center flex-col bg-accent-50 text-accent-950 dark:bg-accent-950 dark:text-accent-50 pb-safe-bottom pt-safe-top">
       <div className="flex flex-col items-center w-full">
         <div className="flex items-center flex-col w-full px-6 [@media_(min-width:420px)]:max-w-[420px]">
           <div className="w-full mt-6 flex items-center">
@@ -60,7 +60,7 @@ function Hub() {
           </div>
 
           <Button
-            className="shadow-sm mt-6 mb-4 w-full h-12 bg-white text-slate-950 dark:bg-slate-900 dark:text-slate-50 rounded-lg overflow-hidden text-lg pr-3 pl-4 font-normal text-left justify-start"
+            className="shadow-sm mt-6 mb-4 w-full h-12 bg-white text-accent-950 dark:bg-accent-900 dark:text-accent-50 rounded-lg overflow-hidden text-lg pr-3 pl-4 font-normal text-left justify-start"
             onClick={() => navigate({ search: "openSearch=true" })}
           >
             <Icon

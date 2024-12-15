@@ -10,7 +10,7 @@ interface AddElementModalProps {
 function AddElementModal({ isOpen, onClose, onAdd }: AddElementModalProps) {
   return (
     <Modal
-      className="max-w-[288px] max-h-[80%] h-[480px] p-0 overflow-hidden bg-white text-slate-950 dark:bg-slate-900 dark:text-slate-50"
+      className="max-w-[288px] max-h-[80%] h-[480px] p-0 overflow-hidden bg-white text-accent-950 dark:bg-accent-900 dark:text-accent-50"
       open={isOpen}
       onClose={onClose}
     >

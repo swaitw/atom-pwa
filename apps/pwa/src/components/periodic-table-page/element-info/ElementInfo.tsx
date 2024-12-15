@@ -19,7 +19,7 @@ const ElementInfoDataEntry = ({
   }
 
   return (
-    <div className="flex items-center p-4 even:bg-slate-50 dark:even:bg-slate-950">
+    <div className="flex items-center p-4 even:bg-accent-50 dark:even:bg-accent-950">
       <div className="text-sm font-semibold">{name}</div>
 
       <div className="ml-auto">
@@ -45,7 +45,7 @@ function ElementInfo({ element }: ElementInfoProps) {
   const elementLocales = getElementLocales(element);
 
   return (
-    <div className="h-full bg-white dark:bg-slate-900">
+    <div className="h-full bg-white dark:bg-accent-900">
       <div className={cn("p-4 font-semibold", "element", element.group)}>
         <div className="text-xl font-bold">{elementLocales.name}</div>
         <div className="opacity-80 pt-1 text-base">{elementLocales.group}</div>

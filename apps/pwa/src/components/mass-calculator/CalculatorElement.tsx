@@ -28,7 +28,7 @@ function CalculatorElement({
   return (
     <Button
       onClick={() => selectElement(atomic)}
-      className="flex justify-start w-full py-2 px-4 [text-transform:_none] font-normal shadow-sm bg-white dark:bg-slate-900"
+      className="flex justify-start w-full py-2 px-4 [text-transform:_none] font-normal shadow-sm bg-white dark:bg-accent-900"
     >
       <div
         className={classNames(

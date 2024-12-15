@@ -80,7 +80,7 @@ function PtElementTest({
 
       {showError && (
         <div
-          className="absolute inset-0 flex flex-col justify-center items-center will-change-transform animate-in zoom-in duration-500 bg-white dark:bg-slate-900 text-danger-400"
+          className="absolute inset-0 flex flex-col justify-center items-center will-change-transform animate-in zoom-in duration-500 bg-white dark:bg-accent-900 text-danger-400"
           role="alert"
           aria-label="Oops!"
         >

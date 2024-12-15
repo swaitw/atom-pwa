@@ -42,13 +42,13 @@ function SearchView() {
     <Portal>
       <FocusTrap>
         <div
-          className="fixed z-[100] inset-0 bg-slate-50 dark:bg-slate-950 flex justify-center overflow-y-auto motion-reduce:animate-none animate-in slide-in-from-bottom-[20%] fade-in-50"
+          className="fixed z-[100] inset-0 bg-accent-50 dark:bg-accent-950 flex justify-center overflow-y-auto motion-reduce:animate-none animate-in slide-in-from-bottom-[20%] fade-in-50"
           aria-modal={true}
           aria-label={i18n("Search")}
           ref={searchViewRef}
         >
           <div className="flex items-center flex-col w-full py-0 px-6 [@media_(min-width:_420px)]:max-w-[420px]">
-            <div className="m-4 w-full rounded-lg min-h-[52px] max-h-[52px] bg-white dark:bg-slate-900 flex items-center overflow-hidden relative shadow-sm">
+            <div className="m-4 w-full rounded-lg min-h-[52px] max-h-[52px] bg-white dark:bg-accent-900 flex items-center overflow-hidden relative shadow-sm">
               <Button
                 onClick={close}
                 aria-label={i18n("Close")}
@@ -88,7 +88,7 @@ function SearchView() {
                     {i18n("elements")}
                   </h2>
 
-                  <div className="w-full bg-white dark:bg-slate-900 rounded-lg overflow-hidden shadow-sm">
+                  <div className="w-full bg-white dark:bg-accent-900 rounded-lg overflow-hidden shadow-sm">
                     {results.elements.slice(0, 10).map((result) => (
                       <ElementSearchResult key={result.id} {...result} />
                     ))}

@@ -11,7 +11,7 @@ export default {
   theme: {
     extend: {
       colors: {
-        accent: dynamicTwClasses("accent", 175),
+        accent: dynamicTwClasses("accent", 190),
         danger: colors.red,
         success: colors.green,
         warning: colors.yellow,

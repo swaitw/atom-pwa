@@ -11,7 +11,7 @@ function Card({ className, children, rounded }: CardProps) {
   return (
     <div
       className={cn(
-        "overflow-hidden bg-white text-slate-950 dark:bg-slate-900 dark:text-slate-50 shadow-sm",
+        "overflow-hidden bg-white text-accent-950 dark:bg-accent-900 dark:text-accent-50 shadow-sm",
         rounded && "rounded-lg",
         className
       )}

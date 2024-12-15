@@ -53,7 +53,7 @@ function PeriodicTablePage() {
         }}
       />
 
-      <div className="flex-1 z-[1] bg-white dark:bg-slate-950">
+      <div className="flex-1 z-[1] bg-white dark:bg-accent-950">
         <PeriodicTable elementRenderer={elementRenderer} />
       </div>
 

@@ -21,7 +21,7 @@ function EmptyElement() {
 
 function LabelCell({ children }: { children?: React.ReactNode }) {
   return (
-    <div className="table-cell h-6 min-w-6 align-middle text-center font-semibold text-sm bg-slate-50 dark:bg-slate-950 text-slate-950 dark:text-slate-50 text-opacity-40 dark:text-opacity-80">
+    <div className="table-cell h-6 min-w-6 align-middle text-center font-semibold text-sm bg-accent-50 dark:bg-accent-950 text-accent-950 dark:text-accent-50 text-opacity-40 dark:text-opacity-80">
       {children}
     </div>
   );
@@ -127,7 +127,7 @@ function PeriodicTable({ elementRenderer }: PeriodicTableProps) {
         contentStyle={{ width: "100%", height: "100%" }}
         wrapperStyle={{ width: "100%", height: "100%" }}
       >
-        <div className="table overflow-auto w-full h-full pl-safe-left bg-white dark:bg-slate-900">
+        <div className="table overflow-auto w-full h-full pl-safe-left bg-white dark:bg-accent-900">
           {buildTable(elementRenderer)}
         </div>
       </TransformComponent>

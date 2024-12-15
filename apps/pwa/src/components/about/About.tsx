@@ -17,7 +17,7 @@ function About() {
     navigate,
   ]);
   return (
-    <div className="flex flex-col min-h-full bg-slate-50 text-slate-950 dark:bg-slate-950 dark:text-slate-50">
+    <div className="flex flex-col min-h-full bg-accent-50 text-accent-950 dark:bg-accent-950 dark:text-accent-50">
       <Navbar
         className="shadow-sm"
         title={i18n("nav_about")}
