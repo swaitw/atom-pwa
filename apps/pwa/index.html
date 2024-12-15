@@ -68,6 +68,9 @@
       data-api="/api/event"
       src="/js/script.js"
     ></script>
+    <style>
+      @import url("./src/index.css");
+    </style>
     <script>
       window.plausible =
         window.plausible ||
@@ -76,7 +79,9 @@
         };
     </script>
   </head>
-  <body>
+  <body
+    class="theme-dark bg-accent-50 text-accent-950 dark:bg-accent-950 dark:text-accent-50"
+  >
     <div id="root"></div>
     <script type="module" src="/src/index.tsx"></script>
   </body>

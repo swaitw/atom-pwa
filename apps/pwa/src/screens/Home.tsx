@@ -7,6 +7,7 @@ import { useElements } from "@/hooks/useElements";
 import { useLocale } from "@/hooks/useLocale";
 import { usePreventDocumentOverscroll } from "@/hooks/usePreventDocumentOverscroll";
 import { useAddRecent } from "@/hooks/useRecent";
+import { useShouldAnimate } from "@/hooks/useShouldAnimate";
 import { cn } from "@/utils/styles";
 import {
   Button,
@@ -39,27 +40,45 @@ export default function Home() {
     );
   };
 
+  const shouldAnimate = useShouldAnimate("home");
+
   const { isSearching, openSearch } = useSearchInput("replace");
 
   return (
     <>
-      <div className="fixed left-0 right-0 top-0 h-1/2 -translate-y-1/2 bg-[radial-gradient(circle,_rgba(255,255,255,0.15)_0%,_transparent_40%)] blur-2xl" />
-      <div className="fixed bottom-0 left-0 right-0 h-1/2 translate-y-1/2 bg-[radial-gradient(circle,_rgba(255,255,255,0.15)_0%,_transparent_40%)] blur-2xl" />
+      <div
+        className={cn(
+          "fixed left-0 right-0 top-0 h-1/2 -translate-y-1/2 bg-[radial-gradient(circle,_rgba(255,255,255,0.15)_0%,_transparent_40%)] blur-2xl",
+          shouldAnimate &&
+            "duration-1000 animate-in fade-in [--tw-enter-translate-y:-50%]",
+        )}
+      />
+      <div
+        className={cn(
+          "fixed bottom-0 left-0 right-0 h-1/2 translate-y-1/2 bg-[radial-gradient(circle,_rgba(255,255,255,0.15)_0%,_transparent_40%)] blur-2xl",
+          shouldAnimate &&
+            "duration-1000 animate-in fade-in [--tw-enter-translate-y:50%]",
+        )}
+      />
 
       <div className="h-full">
         <PeriodicTable
           elementRenderer={elementRenderer}
-          className="ml-[calc(16px_+_var(--safe-area-inset-left))] mt-[calc(90px_+_var(--safe-area-inset-top))] overflow-hidden rounded-xl border shadow-xl dark:border-accent-400/20"
+          className={cn(
+            "ml-[calc(16px_+_var(--safe-area-inset-left))] mt-[calc(90px_+_var(--safe-area-inset-top))] overflow-hidden rounded-xl border shadow-xl dark:border-accent-400/20",
+            shouldAnimate &&
+              "animate-in fade-in slide-in-from-bottom-[64px] slide-in-from-right-[64px] [animation-duration:1s]",
+          )}
         />
       </div>
 
-      {!isSearching && (
-        <SearchHeader
-          onFocus={() => {
-            openSearch();
-          }}
-        />
-      )}
+      <SearchHeader
+        onFocus={() => {
+          openSearch();
+        }}
+        animate={shouldAnimate}
+        hidden={isSearching}
+      />
 
       <SearchView />
 
@@ -72,48 +91,59 @@ interface SearchHeaderProps {
   autoFocus?: boolean;
   onFocus?: () => void;
   showBackButton?: boolean;
+  hidden?: boolean;
+  animate?: boolean;
 }
 
 function SearchHeader({
   autoFocus = false,
   onFocus,
   showBackButton,
+  hidden,
+  animate,
 }: SearchHeaderProps) {
   const { i18n } = useLocale();
   const navigate = useNavigate();
 
   return (
-    <header className="fixed left-safe-left right-safe-right top-safe-top z-10 p-4">
-      <SearchField
-        autoFocus={autoFocus}
-        className="group flex h-12 items-center rounded-xl border px-1 shadow-xl backdrop-blur-sm dark:border-accent-400/20 dark:bg-accent-950/80"
-        onFocus={onFocus}
-      >
-        <Label className="sr-only">{i18n("Search")}</Label>
-        {showBackButton ? (
-          <Button
-            onPress={() => navigate(-1)}
-            className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full"
-          >
-            <Icon name="arrow_back" />
-          </Button>
-        ) : (
-          <div
-            aria-hidden="true"
-            className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full"
-          >
-            <Atom size={28} weight={40} />
-          </div>
-        )}
-        <Input
-          className="h-full w-full bg-transparent px-3 text-xl font-semibold leading-none outline-none dark:text-accent-50 dark:placeholder:text-accent-50 [&::-webkit-search-cancel-button]:hidden"
-          placeholder={i18n("Search_dots")}
-        />
+    <header
+      className={cn(
+        "fixed left-safe-left right-safe-right top-safe-top z-10 p-4",
+        animate && "duration-1000 animate-in fade-in slide-in-from-top",
+      )}
+    >
+      {!hidden && (
+        <SearchField
+          autoFocus={autoFocus}
+          className="group flex h-12 items-center rounded-xl border px-1 shadow-xl backdrop-blur-sm dark:border-accent-400/20 dark:bg-accent-950/80"
+          onFocus={onFocus}
+        >
+          <Label className="sr-only">{i18n("Search")}</Label>
+          {showBackButton ? (
+            <Button
+              onPress={() => navigate(-1)}
+              className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full"
+            >
+              <Icon name="arrow_back" />
+            </Button>
+          ) : (
+            <div
+              aria-hidden="true"
+              className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full"
+            >
+              <Atom size={28} weight={40} />
+            </div>
+          )}
+          <Input
+            className="h-full w-full bg-transparent px-3 text-xl font-semibold leading-none outline-none dark:text-accent-50 dark:placeholder:text-accent-50 [&::-webkit-search-cancel-button]:hidden"
+            placeholder={i18n("Search_dots")}
+          />
 
-        <Button className="h-full w-10 group-empty:invisible">
-          <Icon name="close" />
-        </Button>
-      </SearchField>
+          <Button className="h-full w-10 group-empty:invisible">
+            <Icon name="close" />
+          </Button>
+        </SearchField>
+      )}
     </header>
   );
 }
@@ -155,9 +185,16 @@ function SearchView() {
 
 function Navbar() {
   const { i18n } = useLocale();
+  const shouldAnimate = useShouldAnimate("home");
 
   return (
-    <nav className="fixed bottom-0 w-full border-t pb-safe-bottom pl-safe-left pr-safe-right shadow-xl backdrop-blur-sm dark:border-accent-400/20 dark:bg-accent-950/80">
+    <nav
+      className={cn(
+        "fixed bottom-0 w-full border-t pb-safe-bottom pl-safe-left pr-safe-right shadow-xl backdrop-blur-sm dark:border-accent-400/20 dark:bg-accent-950/80",
+        shouldAnimate &&
+          "duration-1000 animate-in fade-in slide-in-from-bottom",
+      )}
+    >
       <ul className="grid h-16 grid-cols-4">
         <li>
           <NavbarButton

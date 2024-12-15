@@ -4,14 +4,16 @@ import * as ReactDOM from "react-dom/client";
 
 import { BrowserRouter } from "react-router-dom";
 
-import "./index.css";
-
 import "hammerjs";
 
 import { initSentry } from "@/services/sentry";
 import { loadFlags } from "@/services/flags";
 import App from "./components/App";
 import invariant from "invariant";
+
+if (import.meta.env.DEV) {
+  import("./index.css");
+}
 
 loadFlags();
 initSentry();

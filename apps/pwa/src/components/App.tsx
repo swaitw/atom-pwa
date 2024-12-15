@@ -44,10 +44,6 @@ function App() {
   const { lang, i18n } = useLocale();
   const { theme, primaryColor } = useTheme();
 
-  React.useLayoutEffect(() => {
-    document.body.className = "theme-" + theme;
-  }, [theme]);
-
   return (
     <ProviderPack>
       <div className="h-full">
