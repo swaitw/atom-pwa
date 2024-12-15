@@ -15,7 +15,7 @@ test("should fire a custom clickHandler", async () => {
 });
 
 test("should render with a custom opacity", () => {
-  const { container } = render(<Overlay opacity={0.75} />);
+  render(<Overlay opacity={0.75} />);
 
-  expect(container.querySelector(".overlay")).toHaveStyle({ opacity: 0.75 });
+  expect(screen.getByTestId("overlay")).toHaveStyle({ opacity: 0.75 });
 });

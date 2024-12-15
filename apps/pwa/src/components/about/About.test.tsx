@@ -75,7 +75,7 @@ test("should validate Report bug link", () => {
 });
 
 test("should invoke onNavbarBackButtonClick", async () => {
-  const { container, route } = render(
+  const { route } = render(
     <>
       <About />
     </>,
@@ -84,9 +84,7 @@ test("should invoke onNavbarBackButtonClick", async () => {
     }
   );
 
-  const navButton = container.querySelector(
-    ".navbar__back-button"
-  ) as HTMLAnchorElement;
+  const navButton = screen.getByLabelText(/go back/i);
 
   await userEvent.click(navButton);
   expect(route.location.pathname).toBe("/");

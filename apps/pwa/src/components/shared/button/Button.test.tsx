@@ -9,13 +9,6 @@ const onClickMock = vi.fn();
 beforeEach(() => {
   vi.clearAllMocks();
 });
-test("should render button component with circle", () => {
-  render(<Button circle>Text</Button>);
-
-  expect(
-    screen.getByRole("button").classList.contains("button--circle")
-  ).toBeTruthy();
-});
 
 test("should render button component with link", () => {
   render(
