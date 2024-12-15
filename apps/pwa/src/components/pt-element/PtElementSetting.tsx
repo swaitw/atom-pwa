@@ -26,10 +26,10 @@ function PtElementSetting({ element, enabled, onClick }: PtElementSettingProp) {
     <div
       onClick={onElementButtonClick}
       className={cn(
-        "relative font-semibold p-2 min-w-[72px] min-h-[72px] w-full h-full transition-none block select-none",
+        "relative block h-full min-h-[72px] w-full min-w-[72px] select-none p-2 font-semibold transition-none",
         "element",
         element.group,
-        !enabled && "grayscale opacity-50",
+        !enabled && "opacity-50 grayscale",
       )}
       role="checkbox"
       aria-checked={enabled}
@@ -49,19 +49,19 @@ function PtElementSetting({ element, enabled, onClick }: PtElementSettingProp) {
         </dl>
       </span>
 
-      <div className="text-xs text-left" aria-hidden={true}>
+      <div className="text-left text-xs" aria-hidden={true}>
         {element.atomic}
       </div>
 
       <div
-        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-2xl"
+        className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-2xl"
         aria-hidden={true}
       >
         {element.symbol}
       </div>
 
       <div
-        className="absolute bottom-2 left-1/2 -translate-x-1/2 text-[9px] text-center"
+        className="absolute bottom-2 left-1/2 -translate-x-1/2 text-center text-[9px]"
         aria-hidden={true}
       >
         {elementLocales.name}

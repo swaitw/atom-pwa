@@ -23,8 +23,8 @@ function TestEntry({
   const { i18n } = useLocale();
 
   return (
-    <Card className="m-4 p-4 overflow-hidden" rounded={true}>
-      <div className="flex items-center h-10">
+    <Card className="m-4 overflow-hidden p-4" rounded={true}>
+      <div className="flex h-10 items-center">
         <div className="text-xl font-medium">{title}</div>
 
         <IconButton
@@ -35,9 +35,9 @@ function TestEntry({
         />
       </div>
 
-      <div className="text-base py-2 leading-[1.6]">{description}</div>
+      <div className="py-2 text-base leading-[1.6]">{description}</div>
 
-      <div className="flex justify-end -mx-4 -mb-4">
+      <div className="-mx-4 -mb-4 flex justify-end">
         <Button onClick={onPracticeClick} className="text-base text-accent-400">
           {i18n("practice")}
           <Icon name="arrow_forward" className="ml-2" />

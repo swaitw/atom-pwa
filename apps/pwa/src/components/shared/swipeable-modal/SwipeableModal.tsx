@@ -153,7 +153,7 @@ function SwipeableModalContent({
         aria-modal="true"
         aria-labelledby="modal-title"
         className={cn(
-          "z-[100] fixed max-w-[50%] max-h-[50%] top-1/2 left-1/2 w-full h-full -translate-x-1/2 -translate-y-1/2 p-4 rounded-lg bg-white text-accent-950 dark:bg-accent-900 dark:text-accent-50 will-change-transform",
+          "fixed left-1/2 top-1/2 z-[100] h-full max-h-[50%] w-full max-w-[50%] -translate-x-1/2 -translate-y-1/2 rounded-lg bg-white p-4 text-accent-950 will-change-transform dark:bg-accent-900 dark:text-accent-50",
           className,
         )}
         style={{
@@ -164,7 +164,7 @@ function SwipeableModalContent({
         {showHeader && (
           <div className="flex items-center">
             {title && (
-              <span id="modal-title" className="font-bold px-4 text-lg">
+              <span id="modal-title" className="px-4 text-lg font-bold">
                 {title}
               </span>
             )}

@@ -203,10 +203,10 @@ function PeriodicTableTest() {
   }
 
   return (
-    <div className="flex flex-col h-full">
+    <div className="flex h-full flex-col">
       <Navbar
         title="Periodic Table Test"
-        className="shadow-sm z-[1]"
+        className="z-[1] shadow-sm"
         onBackButtonClick={() =>
           confirmAction({
             title: i18n("are_you_sure"),
@@ -227,14 +227,14 @@ function PeriodicTableTest() {
       />
 
       {currentQuestion && (
-        <div className="flex-1 z-[1]">
+        <div className="z-[1] flex-1">
           <PeriodicTable elementRenderer={elementRenderer} />
         </div>
       )}
 
       {!currentQuestion && (
-        <div className="flex-1 flex items-center justify-center">
-          <Card className="m-4 max-w-[360px] w-full" rounded>
+        <div className="flex flex-1 items-center justify-center">
+          <Card className="m-4 w-full max-w-[360px]" rounded>
             <QuizResults
               gaTestName="Periodic Table Test"
               wrongAnswers={wrongAnswers.length}
@@ -247,7 +247,7 @@ function PeriodicTableTest() {
       )}
 
       <SwipeableModal
-        className="max-w-[288px] max-h-[80%] h-auto p-0 shadow-md"
+        className="h-auto max-h-[80%] max-w-[288px] p-0 shadow-md"
         open={questionModalOpen}
         onClose={closeQuestionModal}
         title={i18n("complete_the_table")}
@@ -269,10 +269,10 @@ function PeriodicTableTest() {
       </SwipeableModal>
 
       {currentQuestion && (
-        <div className=" rounded-full flex items-center justify-center h-20 w-20 z-10 shadow-lg bg-white dark:bg-accent-900 fixed left-[calc(24px_+_var(--safe-area-inset-left,0px))] bottom-[calc(32px_+_var(--safe-area-inset-bottom,0px))]">
+        <div className="fixed bottom-[calc(32px_+_var(--safe-area-inset-bottom,0px))] left-[calc(24px_+_var(--safe-area-inset-left,0px))] z-10 flex h-20 w-20 items-center justify-center rounded-full bg-white shadow-lg dark:bg-accent-900">
           <button
             className={cn(
-              "rounded-full font-semibold [text-transform:_none] w-full text-2xl h-full cursor-pointer border-0",
+              "h-full w-full cursor-pointer rounded-full border-0 text-2xl font-semibold [text-transform:_none]",
               "element",
               currentQuestion.element.group,
             )}
@@ -282,7 +282,7 @@ function PeriodicTableTest() {
             {currentQuestion.element.symbol}
 
             <div
-              className="shadow-lg absolute bottom-0 right-0 flex items-center justify-center rounded-full text-xs h-6 w-6 bg-white text-accent-950 dark:bg-accent-900 dark:text-accent-50"
+              className="absolute bottom-0 right-0 flex h-6 w-6 items-center justify-center rounded-full bg-white text-xs text-accent-950 shadow-lg dark:bg-accent-900 dark:text-accent-50"
               aria-label={i18n("help")}
             >
               ?

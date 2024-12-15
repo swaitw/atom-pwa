@@ -12,7 +12,7 @@ export const Spinner = ({ className }: SpinnerProps) => {
       role="progressbar"
       viewBox="0 0 24 24"
       className={cn(
-        "stroke-2 [stroke-dasharray:_48] stroke-current text-accent-400 fill-none animate-spin",
+        "animate-spin fill-none stroke-current stroke-2 text-accent-400 [stroke-dasharray:_48]",
         className,
       )}
     >

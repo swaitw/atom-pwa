@@ -38,7 +38,7 @@ function PeriodicTablePage() {
   };
 
   return (
-    <div className="flex flex-col h-full">
+    <div className="flex h-full flex-col">
       <Navbar
         title={i18n("periodic_table")}
         className="z-[1] shadow-sm"
@@ -53,7 +53,7 @@ function PeriodicTablePage() {
         }}
       />
 
-      <div className="flex-1 z-[1] bg-white dark:bg-accent-950">
+      <div className="z-[1] flex-1 bg-white dark:bg-accent-950">
         <PeriodicTable elementRenderer={elementRenderer} />
       </div>
 
@@ -72,7 +72,7 @@ export function ElementInfoView() {
 
   return (
     <SwipeableModal
-      className="max-w-[288px] max-h-[80%] h-[480px] p-0 overflow-auto shadow-md"
+      className="h-[480px] max-h-[80%] max-w-[288px] overflow-auto p-0 shadow-md"
       open={true}
       onClose={() => navigate(PERIODIC_TABLE, { replace: true })}
     >

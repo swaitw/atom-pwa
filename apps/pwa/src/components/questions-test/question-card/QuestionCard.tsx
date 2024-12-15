@@ -26,7 +26,7 @@ function QuestionCard({ question, title, onAnswerClick }: QuestionCardProps) {
   );
 
   return (
-    <Card className="flex flex-col m-4" rounded>
+    <Card className="m-4 flex flex-col" rounded>
       <div className="p-4">{title}</div>
 
       <div

@@ -67,13 +67,13 @@ function ElementPicker({ onElement }: ElementPickerProps) {
   const elementListRef = useRef<HTMLDivElement>(null);
 
   return (
-    <div className="flex flex-col h-full">
-      <div className="flex items-center h-12 px-4 z-[1] shadow-sm text-accent-400">
+    <div className="flex h-full flex-col">
+      <div className="z-[1] flex h-12 items-center px-4 text-accent-400 shadow-sm">
         <Icon name="search" />
 
         <input
           aria-label={i18n("search_elements")}
-          className="flex-1 bg-transparent border-0 ml-4 text-inherit h-full p-0 placeholder:text-inherit placeholder:opacity-65 outline-none"
+          className="ml-4 h-full flex-1 border-0 bg-transparent p-0 text-inherit outline-none placeholder:text-inherit placeholder:opacity-65"
           type="text"
           placeholder={i18n("search_elements")}
           onChange={(event) => {
@@ -104,11 +104,11 @@ function ElementPicker({ onElement }: ElementPickerProps) {
               <Button
                 key={element.atomic}
                 onClick={() => onElement(element)}
-                className="flex justify-start w-full py-2 px-4 [text-transform:_none] font-normal"
+                className="flex w-full justify-start px-4 py-2 font-normal [text-transform:_none]"
               >
                 <div
                   className={classNames(
-                    "flex items-center justify-center w-12 h-12 rounded-full",
+                    "flex h-12 w-12 items-center justify-center rounded-full",
                     "element",
                     element.group,
                   )}
@@ -118,7 +118,7 @@ function ElementPicker({ onElement }: ElementPickerProps) {
 
                 <div className="flex flex-col pl-4 text-start">
                   <span className="text-base">{elementLocales.name}</span>
-                  <span className="text-sm pt-1">{elementLocales.group}</span>
+                  <span className="pt-1 text-sm">{elementLocales.group}</span>
                 </div>
               </Button>
             );

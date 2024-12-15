@@ -28,11 +28,11 @@ function CalculatorElement({
   return (
     <Button
       onClick={() => selectElement(atomic)}
-      className="flex justify-start w-full py-2 px-4 [text-transform:_none] font-normal shadow-sm bg-white dark:bg-accent-900"
+      className="flex w-full justify-start bg-white px-4 py-2 font-normal shadow-sm [text-transform:_none] dark:bg-accent-900"
     >
       <div
         className={classNames(
-          "flex items-center justify-center w-12 h-12 rounded-full",
+          "flex h-12 w-12 items-center justify-center rounded-full",
           "element",
           element.group,
         )}
@@ -43,15 +43,15 @@ function CalculatorElement({
       <div className="flex flex-col pl-4 text-left">
         <span className="text-lg">{localizedElement.name}</span>
 
-        <span className="text-sm pt-1">
+        <span className="pt-1 text-sm">
           {element.atomicMass} {i18n("g_mol")}
         </span>
       </div>
 
-      <div className="flex flex-col ml-auto uppercase">
+      <div className="ml-auto flex flex-col uppercase">
         <span className="text-xs">{i18n("amount")}</span>
 
-        <span className="text-center pt-1">{quantity}</span>
+        <span className="pt-1 text-center">{quantity}</span>
       </div>
     </Button>
   );

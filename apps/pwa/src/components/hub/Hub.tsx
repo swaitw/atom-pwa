@@ -26,18 +26,18 @@ function Hub() {
   const navigate = useNavigate();
 
   return (
-    <div className="flex items-center flex-col bg-accent-50 text-accent-950 dark:bg-accent-950 dark:text-accent-50 pb-safe-bottom pt-safe-top">
-      <div className="flex flex-col items-center w-full">
-        <div className="flex items-center flex-col w-full px-6 [@media_(min-width:420px)]:max-w-[420px]">
-          <div className="w-full mt-6 flex items-center">
-            <div className="z-[1] rounded-full p-2 mr-auto bg-white shadow-sm">
+    <div className="flex flex-col items-center bg-accent-50 pb-safe-bottom pt-safe-top text-accent-950 dark:bg-accent-950 dark:text-accent-50">
+      <div className="flex w-full flex-col items-center">
+        <div className="flex w-full flex-col items-center px-6 [@media_(min-width:420px)]:max-w-[420px]">
+          <div className="mt-6 flex w-full items-center">
+            <div className="z-[1] mr-auto rounded-full bg-white p-2 shadow-sm">
               <Atom aria-label="Atom" weight={24} size={32} color="primary" />
             </div>
 
             <UpdateButton />
 
             <IconButton
-              className="rounded-full h-12 w-12 p-3"
+              className="h-12 w-12 rounded-full p-3"
               aria-label={
                 theme === "light"
                   ? "Switch to dark mode"
@@ -52,7 +52,7 @@ function Hub() {
             />
 
             <IconButton
-              className="rounded-full h-12 w-12 p-3"
+              className="h-12 w-12 rounded-full p-3"
               aria-label="Settings"
               iconName="settings"
               onClick={() => navigate(ABOUT)}
@@ -60,7 +60,7 @@ function Hub() {
           </div>
 
           <Button
-            className="shadow-sm mt-6 mb-4 w-full h-12 bg-white text-accent-950 dark:bg-accent-900 dark:text-accent-50 rounded-lg overflow-hidden text-lg pr-3 pl-4 font-normal text-left justify-start"
+            className="mb-4 mt-6 h-12 w-full justify-start overflow-hidden rounded-lg bg-white pl-4 pr-3 text-left text-lg font-normal text-accent-950 shadow-sm dark:bg-accent-900 dark:text-accent-50"
             onClick={() => navigate({ search: "openSearch=true" })}
           >
             <Icon
@@ -73,8 +73,8 @@ function Hub() {
           </Button>
         </div>
       </div>
-      <div className="flex items-center flex-col w-full px-6 [@media_(min-width:420px)]:max-w-[420px]">
-        <div className="w-full pt-8 pb-4">
+      <div className="flex w-full flex-col items-center px-6 [@media_(min-width:420px)]:max-w-[420px]">
+        <div className="w-full pb-4 pt-8">
           {recent.length > 0 && (
             <>
               <HubSection title={i18n("Recent")}>
@@ -204,7 +204,7 @@ function UpdateButton() {
 
   return (
     <Button
-      className={"rounded-full h-12 w-12 p-3"}
+      className={"h-12 w-12 rounded-full p-3"}
       onClick={launchUpdatePrompt}
       circle={true}
       aria-label={i18n("update_button_label")}

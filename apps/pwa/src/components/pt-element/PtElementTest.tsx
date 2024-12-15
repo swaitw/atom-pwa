@@ -57,7 +57,7 @@ function PtElementTest({
       }}
       onClick={onElementButtonClick}
       className={cn(
-        "relative font-semibold p-2 min-w-[72px] min-h-[72px] w-full h-full transition-none block select-none",
+        "relative block h-full min-h-[72px] w-full min-w-[72px] select-none p-2 font-semibold transition-none",
         "element",
         discovered ? element.group : "clear",
         showError && "flex",
@@ -65,18 +65,18 @@ function PtElementTest({
       aria-disabled={discovered}
       aria-label={label}
     >
-      <div className="text-xs text-left" aria-hidden={true}>
+      <div className="text-left text-xs" aria-hidden={true}>
         {element.atomic}
       </div>
 
       <div
-        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-2xl"
+        className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-2xl"
         aria-hidden={true}
       >
         {discovered ? element.symbol : "?"}
       </div>
       <div
-        className="absolute bottom-2 left-1/2 -translate-x-1/2 text-[9px] text-center"
+        className="absolute bottom-2 left-1/2 -translate-x-1/2 text-center text-[9px]"
         aria-hidden={true}
       >
         {discovered ? elementLocales.name : "???"}
@@ -84,7 +84,7 @@ function PtElementTest({
 
       {showError && (
         <div
-          className="absolute inset-0 flex flex-col justify-center items-center will-change-transform animate-in zoom-in duration-500 bg-white dark:bg-accent-900 text-danger-400"
+          className="absolute inset-0 flex flex-col items-center justify-center bg-white text-danger-400 duration-500 will-change-transform animate-in zoom-in dark:bg-accent-900"
           role="alert"
           aria-label="Oops!"
         >

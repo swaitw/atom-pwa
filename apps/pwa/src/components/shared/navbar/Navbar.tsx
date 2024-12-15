@@ -24,7 +24,7 @@ function Navbar({
   return (
     <nav
       className={cn(
-        "min-h-14 w-full flex-shrink-0 flex items-center pl-safe-left pr-safe-right pt-safe-top",
+        "flex min-h-14 w-full flex-shrink-0 items-center pl-safe-left pr-safe-right pt-safe-top",
         className,
       )}
     >
@@ -41,7 +41,7 @@ function Navbar({
 
       {rightButton && (
         <IconButton
-          className="h-full ml-auto"
+          className="ml-auto h-full"
           iconName={rightButton.iconName}
           aria-label={rightButton.label}
           onClick={rightButton.onClick}

@@ -9,7 +9,7 @@ interface OverlayProps {
 function Overlay({ opacity = 1, onClick }: OverlayProps) {
   return (
     <div
-      className="fixed z-[75] overflow-hidden inset-0 bg-black bg-opacity-45 cursor-pointer will-change-[opacity]"
+      className="fixed inset-0 z-[75] cursor-pointer overflow-hidden bg-black bg-opacity-45 will-change-[opacity]"
       onClick={onClick}
       style={{ opacity }}
       data-testid="overlay"

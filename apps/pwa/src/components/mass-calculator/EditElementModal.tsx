@@ -37,7 +37,7 @@ function EditElementModal({
     <Modal
       title={element.name}
       closeButton={true}
-      className="max-w-[288px] max-h-[80%] h-auto p-0 overflow-hidden bg-white text-accent-950 dark:bg-accent-900 dark:text-accent-50"
+      className="h-auto max-h-[80%] max-w-[288px] overflow-hidden bg-white p-0 text-accent-950 dark:bg-accent-900 dark:text-accent-50"
       open={isOpen}
       onClose={onClose}
     >
@@ -49,7 +49,7 @@ function EditElementModal({
         />
 
         <input
-          className="flex-1 border-0 p-0 m-0 text-center text-5xl bg-transparent w-full text-accent-400"
+          className="m-0 w-full flex-1 border-0 bg-transparent p-0 text-center text-5xl text-accent-400"
           type="tel"
           name="amount"
           value={selectedElement.quantity}

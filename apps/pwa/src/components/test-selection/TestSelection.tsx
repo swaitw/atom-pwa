@@ -29,7 +29,7 @@ function TestSelection() {
   const navigate = useNavigate();
 
   return (
-    <div className="flex flex-col h-full min-h-full">
+    <div className="flex h-full min-h-full flex-col">
       <Navbar
         title={i18n("nav_test")}
         // TODO: replace "push" with "replace" in the future

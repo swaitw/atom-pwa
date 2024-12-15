@@ -94,7 +94,7 @@ function PeriodicTableTestSettings() {
   };
 
   return (
-    <div className="flex flex-col h-full">
+    <div className="flex h-full flex-col">
       <Navbar
         title={i18n("nav_settings")}
         onBackButtonClick={onNavbarButtonClick}

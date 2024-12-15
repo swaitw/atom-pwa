@@ -125,14 +125,14 @@ function ListItemSwipeAction({
   return (
     <div
       className={cn(
-        "relative h-auto w-full flex items-center justify-start",
+        "relative flex h-auto w-full items-center justify-start",
         className,
       )}
       style={{ opacity, height }}
     >
       <div
         ref={frontDivRef}
-        className="relative top-0 left-0 min-w-full z-[1]"
+        className="relative left-0 top-0 z-[1] min-w-full"
         style={{
           transform: `translateX(${translateX})`,
         }}

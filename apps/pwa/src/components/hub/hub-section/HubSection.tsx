@@ -8,7 +8,7 @@ export interface HubSectionProps {
 function HubSection({ title = "Section", children }: HubSectionProps) {
   return (
     <div>
-      <h2 className="font-medium pb-4 uppercase text-xl tracking-[1px] m-0 text-accent-400 opacity-50 dark:opacity-100">
+      <h2 className="m-0 pb-4 text-xl font-medium uppercase tracking-[1px] text-accent-400 opacity-50 dark:opacity-100">
         {title}
       </h2>
 

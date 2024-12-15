@@ -93,9 +93,9 @@ function ConfirmProvider({ children }: ConfirmProviderProps) {
           title={action.title}
           open={true}
           onClose={onCancelClick}
-          className="p-0 max-w-[288px] max-h-[80%] h-auto overflow-hidden"
+          className="h-auto max-h-[80%] max-w-[288px] overflow-hidden p-0"
         >
-          <p className="pb-4 px-4 m-0">{action.message}</p>
+          <p className="m-0 px-4 pb-4">{action.message}</p>
 
           <div className="flex">
             {!action.hideCancel && (

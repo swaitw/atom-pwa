@@ -164,7 +164,7 @@ function ValencesTest() {
   }
 
   return (
-    <div className="flex flex-col h-full">
+    <div className="flex h-full flex-col">
       <Navbar
         title={i18n("valences_test")}
         onBackButtonClick={() =>
@@ -187,8 +187,8 @@ function ValencesTest() {
       />
 
       {hasQuestions && (
-        <div className="flex-1 flex items-center justify-center">
-          <div className="max-w-[360px] w-full">
+        <div className="flex flex-1 items-center justify-center">
+          <div className="w-full max-w-[360px]">
             <QuestionsTest
               title={i18n("select_valence")}
               questions={questions}
@@ -199,8 +199,8 @@ function ValencesTest() {
       )}
 
       {!hasQuestions && (
-        <div className="flex-1 flex items-center justify-center">
-          <Card className="m-4 max-w-[360px] w-full" rounded>
+        <div className="flex flex-1 items-center justify-center">
+          <Card className="m-4 w-full max-w-[360px]" rounded>
             <QuizResults
               gaTestName="Valences Test"
               wrongAnswers={wrongAnswers.length}

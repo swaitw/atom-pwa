@@ -43,8 +43,8 @@ function MassCalculator() {
         title={i18n("mass_calculator")}
         onBackButtonClick={onNavbarBackButtonClick}
       />
-      <div className="flex items-center p-4 z-[2] shadow-sm">
-        <span className="text-sm font-medium pl-safe-left">
+      <div className="z-[2] flex items-center p-4 shadow-sm">
+        <span className="pl-safe-left text-sm font-medium">
           {i18n("result")}
         </span>
 
@@ -52,7 +52,7 @@ function MassCalculator() {
           {calculateTotalValue()} {i18n("g_mol")}
         </span>
       </div>
-      <div className="flex pr-safe-right pl-safe-left">
+      <div className="flex pl-safe-left pr-safe-right">
         <IconButton
           className="flex-1 opacity-80"
           onClick={addModal.open}
@@ -67,11 +67,11 @@ function MassCalculator() {
           text={i18n("clear_elements")}
         />
       </div>
-      <div className="pr-safe-right pl-safe-left pb-safe-bottom">
+      <div className="pb-safe-bottom pl-safe-left pr-safe-right">
         {elements.map(({ atomic, quantity }) => (
           <ListItemSwipeAction
             key={atomic}
-            className="animate-in fade-in ease-linear fill-mode-forwards"
+            className="ease-linear animate-in fade-in fill-mode-forwards"
             frontContent={
               <CalculatorElement
                 atomic={atomic}

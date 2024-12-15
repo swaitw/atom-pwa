@@ -48,7 +48,7 @@ function ElementInfo({ element }: ElementInfoProps) {
     <div className="h-full bg-white dark:bg-accent-900">
       <div className={cn("p-4 font-semibold", "element", element.group)}>
         <div className="text-xl font-bold">{elementLocales.name}</div>
-        <div className="opacity-80 pt-1 text-base">{elementLocales.group}</div>
+        <div className="pt-1 text-base opacity-80">{elementLocales.group}</div>
       </div>
 
       <div>

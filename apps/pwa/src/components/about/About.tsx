@@ -18,16 +18,16 @@ function About() {
     [navigate],
   );
   return (
-    <div className="flex flex-col min-h-full bg-accent-50 text-accent-950 dark:bg-accent-950 dark:text-accent-50">
+    <div className="flex min-h-full flex-col bg-accent-50 text-accent-950 dark:bg-accent-950 dark:text-accent-50">
       <Navbar
         className="shadow-sm"
         title={i18n("nav_about")}
         onBackButtonClick={onNavbarBackButtonClick}
       />
 
-      <div className="pl-safe-left pr-safe-right pb-safe-bottom container">
+      <div className="container pb-safe-bottom pl-safe-left pr-safe-right">
         <Card rounded={true} className="m-4">
-          <div className="p-4 uppercase font-semibold text-sm">
+          <div className="p-4 text-sm font-semibold uppercase">
             {i18n("app_settings")}
           </div>
 
