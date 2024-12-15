@@ -1,9 +1,8 @@
 import * as React from "react";
-import classNames from "classnames";
 import { useElements } from "@/hooks/useElements";
 import Icon from "@/components/shared/icon/Icon";
-import "./PtElement.scss";
 import { PtElementInfoProps } from "./PtElementInfo";
+import { cn } from "@/utils/styles";
 
 export interface PtElementTestProps extends PtElementInfoProps {
   discovered: boolean;
@@ -33,7 +32,7 @@ function PtElementTest({
     if (showError) {
       hideError = window.setTimeout(() => {
         setShowError(false);
-      }, 1000);
+      }, 2000);
     }
     return () => {
       hideError && window.clearTimeout(hideError);
@@ -53,27 +52,38 @@ function PtElementTest({
         }
       }}
       onClick={onElementButtonClick}
-      className={classNames("pt-element", "element", {
-        [element.group]: discovered,
-        clear: !discovered,
-        "pt-element--error": showError,
-      })}
+      className={cn(
+        "relative font-semibold p-2 min-w-[72px] min-h-[72px] w-full h-full transition-none block select-none",
+        "element",
+        discovered ? element.group : "clear",
+        showError && "flex"
+      )}
       aria-disabled={discovered}
       aria-label={label}
     >
-      <div className="pt-element__atomic" aria-hidden={true}>
+      <div className="text-xs text-left" aria-hidden={true}>
         {element.atomic}
       </div>
 
-      <div className="pt-element__symbol" aria-hidden={true}>
+      <div
+        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-2xl"
+        aria-hidden={true}
+      >
         {discovered ? element.symbol : "?"}
       </div>
-      <div className="pt-element__name" aria-hidden={true}>
+      <div
+        className="absolute bottom-2 left-1/2 -translate-x-1/2 text-[9px] text-center"
+        aria-hidden={true}
+      >
         {discovered ? elementLocales.name : "???"}
       </div>
 
       {showError && (
-        <div className="pt-element__error" role="alert" aria-label="Oops!">
+        <div
+          className="absolute inset-0 flex flex-col justify-center items-center will-change-transform animate-in zoom-in duration-500 bg-white dark:bg-slate-900 text-danger-400"
+          role="alert"
+          aria-label="Oops!"
+        >
           <Icon name="close" aria-hidden={true} />
 
           <div>Oops!</div>

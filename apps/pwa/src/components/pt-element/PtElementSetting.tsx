@@ -1,11 +1,7 @@
-import * as React from "react";
-import classNames from "classnames";
-
 import { Element } from "@/Element";
 import { useElements } from "@/hooks/useElements";
-import "./PtElement.scss";
-import styles from "./PtElementSetting.module.scss";
 import { useLocale } from "@/hooks/useLocale";
+import { cn } from "@/utils/styles";
 
 export interface PtElementSettingProp {
   element: Element;
@@ -29,9 +25,12 @@ function PtElementSetting({ element, enabled, onClick }: PtElementSettingProp) {
   return (
     <div
       onClick={onElementButtonClick}
-      className={classNames("pt-element", "element", element.group, {
-        [styles.disabled]: !enabled,
-      })}
+      className={cn(
+        "relative font-semibold p-2 min-w-[72px] min-h-[72px] w-full h-full transition-none block select-none",
+        "element",
+        element.group,
+        !enabled && "grayscale opacity-50"
+      )}
       role="checkbox"
       aria-checked={enabled}
       onKeyDown={(event) => {
@@ -50,15 +49,21 @@ function PtElementSetting({ element, enabled, onClick }: PtElementSettingProp) {
         </dl>
       </span>
 
-      <div className="pt-element__atomic" aria-hidden={true}>
+      <div className="text-xs text-left" aria-hidden={true}>
         {element.atomic}
       </div>
 
-      <div className="pt-element__symbol" aria-hidden={true}>
+      <div
+        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-2xl"
+        aria-hidden={true}
+      >
         {element.symbol}
       </div>
 
-      <div className="pt-element__name" aria-hidden={true}>
+      <div
+        className="absolute bottom-2 left-1/2 -translate-x-1/2 text-[9px] text-center"
+        aria-hidden={true}
+      >
         {elementLocales.name}
       </div>
     </div>

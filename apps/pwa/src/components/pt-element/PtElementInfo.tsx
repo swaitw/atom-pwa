@@ -1,9 +1,6 @@
-import * as React from "react";
-import classNames from "classnames";
-
 import { Element } from "@/Element";
 import { useElements } from "@/hooks/useElements";
-import "./PtElement.scss";
+import { cn } from "@/utils/styles";
 
 export interface PtElementInfoProps {
   element: Element;
@@ -29,13 +26,21 @@ function PtElementInfo({ element, onClick }: PtElementInfoProps) {
         }
       }}
       onClick={onElementButtonClick}
-      className={classNames("pt-element", "element", element.group)}
+      className={cn(
+        "relative font-semibold p-2 min-w-[72px] min-h-[72px] w-full h-full transition-none block select-none",
+        "element",
+        element.group
+      )}
     >
-      <div className="pt-element__atomic">{element.atomic}</div>
+      <div className="text-xs text-left">{element.atomic}</div>
 
-      <div className="pt-element__symbol">{element.symbol}</div>
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-2xl">
+        {element.symbol}
+      </div>
 
-      <div className="pt-element__name">{elementLocales.name}</div>
+      <div className="absolute bottom-2 left-1/2 -translate-x-1/2 text-[9px] text-center">
+        {elementLocales.name}
+      </div>
     </div>
   );
 }
