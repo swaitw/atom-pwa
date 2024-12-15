@@ -3,10 +3,12 @@ import { Spinner } from "@/components/shared/spinner/Spinner";
 
 import periodicTableData from "@/data/pt.json";
 import { TransformComponent, TransformWrapper } from "react-zoom-pan-pinch";
+import { cn } from "@/utils/styles";
 
 type ElementRendered = (elementId: number) => React.ReactNode;
 interface PeriodicTableProps {
   elementRenderer: ElementRendered;
+  className?: string;
 }
 
 function EmptyCell() {
@@ -21,7 +23,7 @@ function EmptyElement() {
 
 function LabelCell({ children }: { children?: React.ReactNode }) {
   return (
-    <div className="table-cell h-6 min-w-6 bg-accent-50 text-center align-middle text-sm font-semibold text-accent-950 text-opacity-40 dark:bg-accent-950 dark:text-accent-50 dark:text-opacity-80">
+    <div className="table-cell h-6 min-w-6 bg-accent-50 text-center align-middle text-sm font-semibold text-accent-950 text-opacity-40 dark:bg-accent-950/80 dark:text-accent-50 dark:text-opacity-80">
       {children}
     </div>
   );
@@ -91,7 +93,7 @@ function buildTable(elementRenderer: ElementRendered) {
   return rows;
 }
 
-function PeriodicTable({ elementRenderer }: PeriodicTableProps) {
+function PeriodicTable({ elementRenderer, className }: PeriodicTableProps) {
   const [render, setRender] = React.useState(false);
 
   React.useEffect(() => {
@@ -127,7 +129,12 @@ function PeriodicTable({ elementRenderer }: PeriodicTableProps) {
         contentStyle={{ width: "100%", height: "100%" }}
         wrapperStyle={{ width: "100%", height: "100%" }}
       >
-        <div className="table h-full w-full overflow-auto bg-white pl-safe-left dark:bg-accent-900">
+        <div
+          className={cn(
+            "table h-full max-h-[696px] w-full max-w-[1320px] overflow-auto bg-white dark:bg-accent-900/80",
+            className,
+          )}
+        >
           {buildTable(elementRenderer)}
         </div>
       </TransformComponent>

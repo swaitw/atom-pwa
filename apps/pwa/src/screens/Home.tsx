@@ -17,7 +17,7 @@ import {
   ModalOverlay,
   SearchField,
 } from "react-aria-components";
-import { useNavigate } from "react-router-dom";
+import { useMatch, useNavigate } from "react-router-dom";
 
 export default function Home() {
   const { getElement } = useElements();
@@ -43,7 +43,15 @@ export default function Home() {
 
   return (
     <>
-      <PeriodicTable elementRenderer={elementRenderer} />
+      <div className="fixed left-0 right-0 top-0 h-1/2 -translate-y-1/2 bg-[radial-gradient(circle,_rgba(255,255,255,0.15)_0%,_transparent_40%)] blur-2xl" />
+      <div className="fixed bottom-0 left-0 right-0 h-1/2 translate-y-1/2 bg-[radial-gradient(circle,_rgba(255,255,255,0.15)_0%,_transparent_40%)] blur-2xl" />
+
+      <div className="h-full">
+        <PeriodicTable
+          elementRenderer={elementRenderer}
+          className="ml-[calc(16px_+_var(--safe-area-inset-left))] mt-[calc(90px_+_var(--safe-area-inset-top))] overflow-hidden rounded-xl border shadow-xl dark:border-accent-400/20"
+        />
+      </div>
 
       {!isSearching && (
         <SearchHeader
@@ -55,11 +63,7 @@ export default function Home() {
 
       <SearchView />
 
-      <nav className="fixed bottom-0 w-full border-t pb-safe-bottom pl-safe-left pr-safe-right shadow-xl backdrop-blur-sm dark:border-accent-400/20 dark:bg-accent-950/80">
-        <ul className="h-16">
-          <li></li>
-        </ul>
-      </nav>
+      <Navbar />
     </>
   );
 }
@@ -117,6 +121,7 @@ function SearchHeader({
 function SearchView() {
   const { value, inputProps, isSearching, closeSearch } =
     useSearchInput("replace");
+  const { i18n } = useLocale();
 
   return (
     <ModalOverlay
@@ -140,10 +145,71 @@ function SearchView() {
           )}
         />
 
-        <Dialog>
+        <Dialog aria-label={i18n("Search")}>
           <SearchHeader autoFocus={true} showBackButton />
         </Dialog>
       </Modal>
     </ModalOverlay>
+  );
+}
+
+function Navbar() {
+  const { i18n } = useLocale();
+
+  return (
+    <nav className="fixed bottom-0 w-full border-t pb-safe-bottom pl-safe-left pr-safe-right shadow-xl backdrop-blur-sm dark:border-accent-400/20 dark:bg-accent-950/80">
+      <ul className="grid h-16 grid-cols-4">
+        <li>
+          <NavbarButton
+            label={i18n("Periodic Table")}
+            icon="periodic-table"
+            to="/"
+          />
+        </li>
+        <li>
+          <NavbarButton label={i18n("Quizzes")} icon="test-tube" to="/tests" />
+        </li>
+        <li>
+          <NavbarButton
+            label={i18n("Tools")}
+            icon="scale-balance"
+            to="/mass-calculator"
+          />
+        </li>
+        <li>
+          <NavbarButton label={i18n("Settings")} icon="settings" to="/about" />
+        </li>
+      </ul>
+    </nav>
+  );
+}
+
+interface NavbarButtonProps {
+  label: string;
+  icon: string;
+  to: string;
+}
+
+function NavbarButton({ label, icon, to }: NavbarButtonProps) {
+  const navigate = useNavigate();
+  const match = useMatch(to);
+
+  return (
+    <Button
+      className={cn(
+        "relative flex h-full w-full flex-col items-center justify-center overflow-hidden",
+        "outline-none transition-all focus-visible:outline-current pressed:scale-90",
+        match ? "text-accent-300" : "text-accent-600",
+      )}
+      onPress={() => navigate(to)}
+    >
+      {match && (
+        <div className="absolute bottom-0 h-0.5 w-6 rounded-full bg-current transition-colors" />
+      )}
+
+      <Icon name={icon} />
+
+      <span className="mt-1 text-xs font-semibold tracking-tight">{label}</span>
+    </Button>
   );
 }
