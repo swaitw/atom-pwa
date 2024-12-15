@@ -1,9 +1,8 @@
 import * as React from "react";
 import anime from "animejs";
-import classNames from "classnames";
 import useLatestRef from "@/hooks/useLatestRef";
 
-import "./ListItemSwipeAction.scss";
+import { cn } from "@/utils/styles";
 
 interface ListItemSwipeActionProps {
   onAction?: () => void;
@@ -125,12 +124,15 @@ function ListItemSwipeAction({
 
   return (
     <div
-      className={classNames("swipe-delete", className)}
+      className={cn(
+        "relative h-auto w-full flex items-center justify-start",
+        className
+      )}
       style={{ opacity, height }}
     >
       <div
         ref={frontDivRef}
-        className={classNames("swipe-delete__front")}
+        className="relative top-0 left-0 min-w-full z-[1]"
         style={{
           transform: `translateX(${translateX})`,
         }}
@@ -138,7 +140,7 @@ function ListItemSwipeAction({
         {frontContent}
       </div>
 
-      <div className="swipe-delete__back">{backContent}</div>
+      <div className="absolute z-0">{backContent}</div>
     </div>
   );
 }

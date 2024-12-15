@@ -1,8 +1,7 @@
-import classNames from "classnames";
 import * as React from "react";
 import Button, { ButtonProps } from "@/components/shared/button/Button";
 
-import "./QuestionCardAnswer.scss";
+import { cn } from "@/utils/styles";
 
 export interface Answer {
   answer: string;
@@ -30,14 +29,14 @@ function QuestionCardAnswer({
     onClick?.();
   }, [onClick]);
 
-  const answerClass = classNames("question-card-answer", {
-    "question-card-answer--clicked": clicked,
-    "question-card-answer--wrong": clicked && !right,
-  });
+  const isWrong = clicked && !right;
 
   return (
     <Button
-      className={answerClass}
+      className={cn(
+        "min-w-[50%] flex-1 font-bold",
+        isWrong && "text-danger-400"
+      )}
       onClick={onButtonClick}
       id={`question-answer-${index}`}
     >

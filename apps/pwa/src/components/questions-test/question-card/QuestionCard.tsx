@@ -1,10 +1,9 @@
-import classNames from "classnames";
 import * as React from "react";
 import Card from "@/components/shared/card/Card";
 import QuestionCardAnswer, {
   Answer,
 } from "./question-card-answer/QuestionCardAnswer";
-import "./QuestionCard.scss";
+import { cn } from "@/utils/styles";
 
 export interface Question {
   question: string;
@@ -27,15 +26,13 @@ function QuestionCard({ question, title, onAnswerClick }: QuestionCardProps) {
   );
 
   return (
-    <Card className="question-card">
-      <div className="question-card__title">{title}</div>
+    <Card className="flex flex-col m-4" rounded>
+      <div className="p-4">{title}</div>
 
       <div
-        className={classNames(
-          "question-card__question",
-          {
-            "question-card__question--not-styled": !question.questionClass,
-          },
+        className={cn(
+          "flex items-center justify-center p-4",
+          !question.questionClass && "text-5xl font-bold",
           question.questionClass
         )}
         aria-live="polite"
@@ -44,10 +41,10 @@ function QuestionCard({ question, title, onAnswerClick }: QuestionCardProps) {
         {question.question}
       </div>
 
-      <div className="question-card__answers">
+      <div className="flex flex-wrap">
         {question.answers.map((answer, index) => (
           <QuestionCardAnswer
-            key={answer.answer}
+            key={`${question.question}-${answer.answer}`}
             answer={answer}
             onClick={onQuestionCardAnswerClickListener(answer)}
             index={index}

@@ -3,8 +3,6 @@ import * as React from "react";
 import { Answer } from "./question-card/question-card-answer/QuestionCardAnswer";
 import QuestionCard, { Question } from "./question-card/QuestionCard";
 
-import "./QuestionsTest.scss";
-
 interface QuestionTestProps<TQuestion extends Question> {
   title: string;
   questions: TQuestion[];
@@ -26,7 +24,7 @@ function QuestionsTest<TQuestion extends Question>({
   const hasQuestions = !!questions.length;
 
   return (
-    <div className="questions-test">
+    <div>
       {hasQuestions && (
         <QuestionCard
           title={title}
