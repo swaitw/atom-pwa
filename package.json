@@ -19,7 +19,10 @@
   "dependencies": {
     "turbo": "1.10.7"
   },
-  "packageManager": "pnpm@8.5.1",
+  "packageManager": "pnpm@9.15.0",
+  "engines": {
+    "node": ">=22"
+  },
   "pnpm": {
     "overrides": {
       "react": "^18",
