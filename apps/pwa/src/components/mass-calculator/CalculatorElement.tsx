@@ -1,8 +1,8 @@
 import * as React from "react";
-import classNames from "classnames";
 import Button from "@/components/shared/button/Button";
 import { useLocale } from "@/hooks/useLocale";
 import { useElements } from "@/hooks/useElements";
+import { cn } from "@/utils/styles";
 
 interface CalculatorElementProps {
   atomic: number;
@@ -31,7 +31,7 @@ function CalculatorElement({
       className="flex w-full justify-start bg-white px-4 py-2 font-normal shadow-sm [text-transform:_none] dark:bg-accent-900"
     >
       <div
-        className={classNames(
+        className={cn(
           "flex h-12 w-12 items-center justify-center rounded-full",
           "element",
           element.group,

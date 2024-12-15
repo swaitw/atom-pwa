@@ -1,4 +1,3 @@
-import classNames from "classnames";
 import { useState, useRef, useEffect, useCallback } from "react";
 import HyperScroller, { HyperScrollerCache } from "react-hyper-scroller";
 import { Element } from "@/Element";
@@ -6,6 +5,7 @@ import { useElements } from "@/hooks/useElements";
 import { useLocale } from "@/hooks/useLocale";
 import Button from "@/components/shared/button/Button";
 import Icon from "@/components/shared/icon/Icon";
+import { cn } from "@/utils/styles";
 
 interface ElementPickerProps {
   onElement: (element: Element) => void;
@@ -107,7 +107,7 @@ function ElementPicker({ onElement }: ElementPickerProps) {
                 className="flex w-full justify-start px-4 py-2 font-normal [text-transform:_none]"
               >
                 <div
-                  className={classNames(
+                  className={cn(
                     "flex h-12 w-12 items-center justify-center rounded-full",
                     "element",
                     element.group,
