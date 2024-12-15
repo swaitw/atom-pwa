@@ -26,7 +26,7 @@ Atom is a Progressive Web App to help students learn about periodic table elemen
 
 - [React](https://reactjs.org/)
 - [Typescript](https://www.typescriptlang.org/)
-- [SASS](https://sass-lang.com/)
+- [Tailwind CSS](https://tailwindcss.com/)
 - [Vite](https://vitejs.dev/)
 - [more in package.json](./package.json)
 
