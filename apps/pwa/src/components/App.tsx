@@ -30,6 +30,7 @@ import { createPack } from "react-component-pack";
 import ConfirmProvider from "./shared/confirm";
 import { ServiceWorkerProvider } from "@/contexts/ServiceWorkerContext";
 import Home from "@/screens/Home";
+import MainLayout from "@/layouts/MainLayout";
 
 const ProviderPack = createPack(
   HelmetProvider as unknown as React.FunctionComponent<{
@@ -69,9 +70,13 @@ function App() {
 
         <div className="h-full">
           <Routes>
-            <Route path={HUB} element={<Home />} />
-            <Route path={TEST_SELECTION} element={<TestSelection />} />
-            <Route path={TEST_VALENCES} element={<ValencesTest />} />
+            <Route path={HUB} element={<MainLayout />}>
+              <Route path="" element={<Home />} />
+              <Route path={TEST_SELECTION} element={<TestSelection />} />
+              <Route path={TEST_VALENCES} element={<ValencesTest />} />
+              <Route path={MASS_CALCULATOR} element={<MassCalculator />} />
+              <Route path={ABOUT} element={<About />} />
+            </Route>
             <Route
               path={TEST_VALENCES_SETTINGS}
               element={<ValencesTestSettings />}
@@ -81,7 +86,6 @@ function App() {
               path={TEST_PERIODIC_TABLE_SETTINGS}
               element={<PeriodicTableTestSettings />}
             />
-            <Route path={MASS_CALCULATOR} element={<MassCalculator />} />
             <Route
               path={`${PERIODIC_TABLE}/*`}
               element={
@@ -93,8 +97,6 @@ function App() {
             >
               <Route path={`:atomic`} element={<ElementInfoView />} />
             </Route>
-            <Route path={ABOUT} element={<About />} />
-
             <Route path="*" element={<Navigate to="/" replace={true} />} />
           </Routes>
         </div>
