@@ -26,7 +26,7 @@ describe("should render the periodic table", () => {
     render(<PeriodicTable elementRenderer={elementRenderer} />);
     await waitForElementToBeRemoved(
       () => screen.queryAllByLabelText(/loading/i),
-      { timeout: 4000 }
+      { timeout: 4000 },
     );
 
     elements.forEach((element) => {

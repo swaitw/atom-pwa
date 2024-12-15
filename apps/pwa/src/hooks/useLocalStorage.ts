@@ -59,7 +59,7 @@ export const useLocalStorageCacheStore = create<LocalStorageCacheStore>(
 
       return value as T;
     },
-  })
+  }),
 );
 
 window.addEventListener("storage", (event) => {
@@ -83,14 +83,14 @@ window.addEventListener("storage", (event) => {
 export function useLocalStorage<T>(key: string, initialValue: T) {
   const set = useLocalStorageCacheStore(({ set }) => set);
   const data = useLocalStorageCacheStore<T>(({ get }) =>
-    get(key, initialValue)
+    get(key, initialValue),
   );
 
   const setValue = useCallback(
     (value: T | ((current: T) => T)) => {
       set(key, value);
     },
-    [set, key]
+    [set, key],
   );
 
   return [data, setValue] as const;

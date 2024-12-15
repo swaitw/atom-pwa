@@ -54,9 +54,8 @@ test("should show an Oops message when you click the wrong element", async ({
   await periodicTableQuizPage.closeCompleteTheTableDialog();
 
   // Selecting Lithium because test is determined to start with Hydrogen
-  const wrongElementButton = periodicTableQuizPage.getElementButtonByAtomicNumber(
-    3
-  );
+  const wrongElementButton =
+    periodicTableQuizPage.getElementButtonByAtomicNumber(3);
 
   await wrongElementButton.click();
   await periodicTableQuizPage.oopsAlertIsVisible();
@@ -71,9 +70,8 @@ test("should mark the element as correct when you click the right element", asyn
   await periodicTableQuizPage.closeCompleteTheTableDialog();
 
   // Selecting Hydrogen because test is determined to start with Hydrogen
-  const rightElementButton = periodicTableQuizPage.getElementButtonByAtomicNumber(
-    1
-  );
+  const rightElementButton =
+    periodicTableQuizPage.getElementButtonByAtomicNumber(1);
 
   await rightElementButton.click();
 

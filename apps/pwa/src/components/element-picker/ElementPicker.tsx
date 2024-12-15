@@ -57,7 +57,7 @@ function ElementPicker({ onElement }: ElementPickerProps) {
 
       setSearch({ query: searchValue, elements: newElements });
     },
-    [allElements, getElementLocales]
+    [allElements, getElementLocales],
   );
 
   useEffect(() => {
@@ -94,7 +94,7 @@ function ElementPicker({ onElement }: ElementPickerProps) {
           targetView={elementListRef}
           measureItems={false}
           cache={HyperScrollerCache.getOrCreateCache(
-            `element-picker:${search.query}`
+            `element-picker:${search.query}`,
           )}
         >
           {search.elements.map((element) => {
@@ -110,7 +110,7 @@ function ElementPicker({ onElement }: ElementPickerProps) {
                   className={classNames(
                     "flex items-center justify-center w-12 h-12 rounded-full",
                     "element",
-                    element.group
+                    element.group,
                   )}
                 >
                   {element.symbol}

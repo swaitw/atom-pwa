@@ -12,7 +12,7 @@ const localesMap = import.meta.glob<true, string, Record<string, string>>(
   "../locales/*.json",
   {
     eager: true,
-  }
+  },
 );
 const getLocaleKey = (locale: string) => `../locales/${locale}.json`;
 
@@ -43,7 +43,7 @@ export function useLocale() {
         settings.locale = lang;
       });
     },
-    [updateSettings]
+    [updateSettings],
   );
 
   const i18n = useCallback(
@@ -61,12 +61,12 @@ export function useLocale() {
 
       invariant(
         result,
-        `[Locale] The string name "${localeName}" doesn't have a value.`
+        `[Locale] The string name "${localeName}" doesn't have a value.`,
       );
 
       return result;
     },
-    [locale]
+    [locale],
   );
 
   return {

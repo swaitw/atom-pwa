@@ -32,12 +32,12 @@ import ConfirmProvider from "./shared/confirm";
 import { ServiceWorkerProvider } from "@/contexts/ServiceWorkerContext";
 
 const ProviderPack = createPack(
-  (HelmetProvider as unknown) as React.FunctionComponent<{
+  HelmetProvider as unknown as React.FunctionComponent<{
     children: React.ReactNode;
   }>,
   ServiceWorkerProvider,
   ElementProvider,
-  ConfirmProvider
+  ConfirmProvider,
 );
 
 function App() {

@@ -18,7 +18,7 @@ test("search for Neon", async () => {
   expect(onElement).toHaveBeenCalledWith(
     expect.objectContaining({
       name: "Neon",
-    })
+    }),
   );
 });
 
@@ -34,7 +34,7 @@ test("search for atomic number 118", async () => {
   expect(onElement).toHaveBeenCalledWith(
     expect.objectContaining({
       name: "Oganesson",
-    })
+    }),
   );
 });
 
@@ -51,6 +51,6 @@ test("search for atomic number 25", async () => {
   expect(onElement).toHaveBeenCalledWith(
     expect.objectContaining({
       name: "Manganese",
-    })
+    }),
   );
 });

@@ -7,13 +7,12 @@ interface ServiceWorkerContextType {
   checkForUpdates: () => void;
 }
 
-export const ServiceWorkerContext = React.createContext<ServiceWorkerContextType>(
-  {
+export const ServiceWorkerContext =
+  React.createContext<ServiceWorkerContextType>({
     waitingState: null,
     update: () => null,
     checkForUpdates: () => null,
-  }
-);
+  });
 
 export function useServiceWorker() {
   return React.useContext(ServiceWorkerContext);
@@ -122,8 +121,8 @@ export function ServiceWorkerProvider({
         .catch((e) =>
           window.console.error(
             "Error while checking for service worker updates:",
-            e
-          )
+            e,
+          ),
         );
     }
   }, []);

@@ -29,7 +29,7 @@ function PtElementSetting({ element, enabled, onClick }: PtElementSettingProp) {
         "relative font-semibold p-2 min-w-[72px] min-h-[72px] w-full h-full transition-none block select-none",
         "element",
         element.group,
-        !enabled && "grayscale opacity-50"
+        !enabled && "grayscale opacity-50",
       )}
       role="checkbox"
       aria-checked={enabled}

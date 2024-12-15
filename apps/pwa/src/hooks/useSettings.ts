@@ -53,7 +53,7 @@ export function useSettings() {
         setSettings(newSettings);
       }
     },
-    [settings, setSettings]
+    [settings, setSettings],
   );
 
   return { settings, updateSettings };

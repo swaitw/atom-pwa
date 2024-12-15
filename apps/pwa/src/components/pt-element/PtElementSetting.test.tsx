@@ -7,7 +7,7 @@ import IRON_ELEMENT from "@/data/elements/26.json";
 
 import { Element } from "@/Element";
 
-const element = (IRON_ELEMENT as unknown) as Element;
+const element = IRON_ELEMENT as unknown as Element;
 
 describe("PtElementSetting", () => {
   it("shows the elements atomic number", () => {
@@ -38,7 +38,7 @@ describe("PtElementSetting", () => {
     expect(
       screen.getByRole("checkbox", {
         name: `${element.atomic}. ${element.name}`,
-      })
+      }),
     ).toHaveClass(element.group);
   });
 

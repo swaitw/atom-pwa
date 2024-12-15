@@ -7,10 +7,10 @@ type EventOptionsTuple<P extends Props> = P extends never
   ? Omit<EventOptions<P>, "props">
   : EventOptions<P>;
 
-// eslint-disable-next-line @typescript-eslint/no-empty-interface
+// eslint-disable-next-line @typescript-eslint/no-empty-object-type
 declare interface PlausibleEvents {}
 
 declare function plausible<Name extends keyof PlausibleEvents>(
   eventName: Name,
-  props?: EventOptionsTuple<PlausibleEvents[Name]>
+  props?: EventOptionsTuple<PlausibleEvents[Name]>,
 );

@@ -13,9 +13,10 @@ function About() {
   const navigate = useNavigate();
   const { i18n } = useLocale();
 
-  const onNavbarBackButtonClick = React.useCallback(() => navigate(HUB), [
-    navigate,
-  ]);
+  const onNavbarBackButtonClick = React.useCallback(
+    () => navigate(HUB),
+    [navigate],
+  );
   return (
     <div className="flex flex-col min-h-full bg-accent-50 text-accent-950 dark:bg-accent-950 dark:text-accent-50">
       <Navbar

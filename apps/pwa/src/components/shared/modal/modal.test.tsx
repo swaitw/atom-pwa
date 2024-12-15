@@ -52,7 +52,7 @@ test("should close after clicking the close button", async () => {
   render(
     <Modal open closeButton onClose={onClose}>
       <div>modal-content</div>
-    </Modal>
+    </Modal>,
   );
 
   expect(screen.getByText(/modal-content/i)).toBeDefined();
@@ -66,7 +66,7 @@ test("should render the modal with a title", () => {
   render(
     <Modal open onClose={vi.fn()} title="modal title">
       <div>modal content</div>
-    </Modal>
+    </Modal>,
   );
 
   expect(screen.getByText(/modal title/i)).toBeDefined();

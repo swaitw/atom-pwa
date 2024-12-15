@@ -18,7 +18,7 @@ function QuestionsTest<TQuestion extends Question>({
     (question: TQuestion) => {
       return (answer: Answer) => onQuestionAnswer?.(question, answer);
     },
-    [onQuestionAnswer]
+    [onQuestionAnswer],
   );
 
   const hasQuestions = !!questions.length;

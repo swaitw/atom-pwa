@@ -10,6 +10,6 @@ test("It can render without crashing", () => {
     </Routes>,
     {
       initialHistoryEntries: ["/"],
-    }
+    },
   );
 });

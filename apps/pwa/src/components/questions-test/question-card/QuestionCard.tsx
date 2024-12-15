@@ -22,7 +22,7 @@ function QuestionCard({ question, title, onAnswerClick }: QuestionCardProps) {
     (answer: Answer) => {
       return () => onAnswerClick?.(answer);
     },
-    [onAnswerClick]
+    [onAnswerClick],
   );
 
   return (
@@ -33,7 +33,7 @@ function QuestionCard({ question, title, onAnswerClick }: QuestionCardProps) {
         className={cn(
           "flex items-center justify-center p-4",
           !question.questionClass && "text-5xl font-bold",
-          question.questionClass
+          question.questionClass,
         )}
         aria-live="polite"
         data-testid="question-title"

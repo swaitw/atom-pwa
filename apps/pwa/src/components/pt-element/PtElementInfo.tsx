@@ -29,7 +29,7 @@ function PtElementInfo({ element, onClick }: PtElementInfoProps) {
       className={cn(
         "relative font-semibold p-2 min-w-[72px] min-h-[72px] w-full h-full transition-none block select-none",
         "element",
-        element.group
+        element.group,
       )}
     >
       <div className="text-xs text-left">{element.atomic}</div>

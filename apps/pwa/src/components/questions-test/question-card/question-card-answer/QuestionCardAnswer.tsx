@@ -35,7 +35,7 @@ function QuestionCardAnswer({
     <Button
       className={cn(
         "min-w-[50%] flex-1 font-bold",
-        isWrong && "text-danger-400"
+        isWrong && "text-danger-400",
       )}
       onClick={onButtonClick}
       id={`question-answer-${index}`}

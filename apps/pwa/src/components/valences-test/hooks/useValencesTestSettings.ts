@@ -7,7 +7,7 @@ export function useValencesTestSettings() {
     "valencesTest",
     useCallback(
       (element) => !!element.valency && element.wrongValences.length >= 3,
-      []
-    )
+      [],
+    ),
   );
 }

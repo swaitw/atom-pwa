@@ -26,7 +26,7 @@ export function useTheme() {
         settings.theme = theme;
       });
     },
-    [updateSettings]
+    [updateSettings],
   );
 
   const primaryColor = useMemo(() => PRIMARY_COLORS[theme], [theme]);

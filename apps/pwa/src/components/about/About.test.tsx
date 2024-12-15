@@ -46,9 +46,9 @@ test("should validate contact me link", () => {
     initialHistoryEntries: ["/about"],
   });
 
-  expect(screen.getByText(/contact me/i).closest("a")).toHaveAttribute(
+  expect(screen.getByRole("link", { name: /contact me/i })).toHaveAttribute(
     "href",
-    "https://twitter.com/HorusGoul"
+    "https://twitter.com/HorusGoul",
   );
 });
 
@@ -57,9 +57,9 @@ test("should validate source code link", () => {
     initialHistoryEntries: ["/about"],
   });
 
-  expect(screen.getByText(/source code/i).closest("a")).toHaveAttribute(
+  expect(screen.getByRole("link", { name: /source code/i })).toHaveAttribute(
     "href",
-    "https://github.com/HorusGoul/atom-pwa"
+    "https://github.com/HorusGoul/atom-pwa",
   );
 });
 
@@ -68,9 +68,9 @@ test("should validate Report bug link", () => {
     initialHistoryEntries: ["/about"],
   });
 
-  expect(screen.getByText(/report bug/i).closest("a")).toHaveAttribute(
+  expect(screen.getByRole("link", { name: /report bug/i })).toHaveAttribute(
     "href",
-    "mailto:atom@horus.dev"
+    "mailto:atom@horus.dev",
   );
 });
 
@@ -81,7 +81,7 @@ test("should invoke onNavbarBackButtonClick", async () => {
     </>,
     {
       initialHistoryEntries: ["/about"],
-    }
+    },
   );
 
   const navButton = screen.getByLabelText(/go back/i);

@@ -25,7 +25,7 @@ export function useSearchInput(type: "push" | "replace") {
         replace: type === "replace",
       });
     },
-    [type, setQuery]
+    [type, setQuery],
   );
 
   const isSearching = !!routerSearchQueryValue || !!query.get("openSearch");

@@ -50,7 +50,7 @@ test.each([
         "/tests/valences/settings",
         "/tests/periodic-table/settings",
       ],
-    }
+    },
   );
 
   await userEvent.click(screen.getAllByRole("button")[itemIdx]);

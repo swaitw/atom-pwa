@@ -21,7 +21,7 @@ test("Should call onAction when swipe", async () => {
     <ListItemSwipeAction
       frontContent={<button>front content</button>}
       onAction={onAction}
-    />
+    />,
   );
 
   const frontContent = screen.getByRole("button");

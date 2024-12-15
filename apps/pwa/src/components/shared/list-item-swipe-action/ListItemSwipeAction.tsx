@@ -126,7 +126,7 @@ function ListItemSwipeAction({
     <div
       className={cn(
         "relative h-auto w-full flex items-center justify-start",
-        className
+        className,
       )}
       style={{ opacity, height }}
     >

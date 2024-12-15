@@ -34,7 +34,7 @@ function CalculatorElement({
         className={classNames(
           "flex items-center justify-center w-12 h-12 rounded-full",
           "element",
-          element.group
+          element.group,
         )}
       >
         {element.symbol}

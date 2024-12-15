@@ -31,11 +31,8 @@ function PeriodicTableTest() {
   useAddRecent("periodic-table-quiz");
   usePreventDocumentOverscroll();
 
-  const {
-    settings,
-    updateSettings,
-    isElementAvailable,
-  } = usePeriodicTableTestSettings();
+  const { settings, updateSettings, isElementAvailable } =
+    usePeriodicTableTestSettings();
 
   const createTestQuestions = React.useCallback(
     (settings: ElementsSettings) => {
@@ -45,19 +42,19 @@ function PeriodicTableTest() {
 
       const questions = settings.elements
         .filter(
-          (element) => isElementAvailable(element.atomic) && element.enabled
+          (element) => isElementAvailable(element.atomic) && element.enabled,
         )
         .map((elementSetting) => getElement(elementSetting.atomic))
         .map((element) => ({ element: element as Element }));
 
       return shuffle(questions);
     },
-    [getElement, isElementAvailable]
+    [getElement, isElementAvailable],
   );
 
   const [questionModalOpen, setQuestionModalOpen] = React.useState(true);
   const [questions, setQuestions] = React.useState<PeriodicTableTestQuestion[]>(
-    () => createTestQuestions(settings)
+    () => createTestQuestions(settings),
   );
   const [wrongAnswers, setWrongAnswers] = React.useState<
     PeriodicTableTestQuestion[]
@@ -96,14 +93,14 @@ function PeriodicTableTest() {
 
     const currentQuestion = getCurrentQuestion();
     const alreadyAnswered = isAlreadyAnswered(
-      currentQuestion as PeriodicTableTestQuestion
+      currentQuestion as PeriodicTableTestQuestion,
     );
     const rightAnswer = isAnswerRight(element);
 
     if (!alreadyAnswered) {
       updateSettings((settings) => {
         const elementSetting = settings.elements?.find(
-          (setting) => setting.atomic === currentQuestion?.element.atomic
+          (setting) => setting.atomic === currentQuestion?.element.atomic,
         );
 
         if (!elementSetting) {
@@ -158,7 +155,7 @@ function PeriodicTableTest() {
 
   function isElementInQuestions(element: Element): boolean {
     return !!questions.find(
-      (question) => question.element.atomic === element.atomic
+      (question) => question.element.atomic === element.atomic,
     );
   }
 
@@ -261,7 +258,7 @@ function PeriodicTableTest() {
             className={cn(
               "flex items-center justify-center p-4 text-5xl font-bold",
               "element",
-              currentQuestion.element.group
+              currentQuestion.element.group,
             )}
           >
             {currentQuestion.element.symbol}
@@ -277,7 +274,7 @@ function PeriodicTableTest() {
             className={cn(
               "rounded-full font-semibold [text-transform:_none] w-full text-2xl h-full cursor-pointer border-0",
               "element",
-              currentQuestion.element.group
+              currentQuestion.element.group,
             )}
             onClick={openQuestionModal}
             aria-live="polite"

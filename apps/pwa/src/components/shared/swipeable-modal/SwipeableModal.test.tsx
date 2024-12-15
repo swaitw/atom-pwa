@@ -6,7 +6,7 @@ import SwipeableModal from "./SwipeableModal";
 
 test("Should render depends on open prop ", async () => {
   const { rerender } = render(
-    <SwipeableModal open={true}>Some content</SwipeableModal>
+    <SwipeableModal open={true}>Some content</SwipeableModal>,
   );
   expect(screen.getByRole("dialog")).toBeInTheDocument();
 
@@ -30,7 +30,7 @@ test("Should call onClose when swipe modal", async () => {
   render(
     <SwipeableModal open={true} onClose={onClose}>
       <button>Some content</button>
-    </SwipeableModal>
+    </SwipeableModal>,
   );
   const modal = screen.getByRole("dialog");
   vi.spyOn(modal, "clientWidth", "get").mockImplementation(() => 100);

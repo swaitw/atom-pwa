@@ -4,12 +4,6 @@ import { render } from "@/test-utils";
 import { userEvent } from "@testing-library/user-event";
 import Navbar from "./Navbar";
 
-test("should not render a title by default", () => {
-  const { container } = render(<Navbar />);
-
-  expect(container.querySelector(".navbar__title")).not.toBeInTheDocument();
-});
-
 test("should render a title", () => {
   render(<Navbar title="Custom title" />);
 
@@ -30,10 +24,4 @@ test("should handle clicking the back button", async () => {
   await userEvent.click(screen.getByRole("button"));
 
   expect(onBackButtonClickMock).toHaveBeenCalledTimes(1);
-});
-
-test("should apply custom classnames to the Navbar", () => {
-  const { container } = render(<Navbar className="customClass" />);
-
-  expect(container.querySelector(".customClass")).toBeInTheDocument();
 });

@@ -29,7 +29,7 @@ export function useRecent() {
         return newRecent;
       });
     },
-    [setRecent]
+    [setRecent],
   );
 
   return { recent, addRecent };

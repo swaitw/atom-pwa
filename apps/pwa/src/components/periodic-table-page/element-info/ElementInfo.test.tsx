@@ -5,7 +5,7 @@ import { render } from "@/test-utils";
 import THALLIUM_ELEMENT from "@/data/elements/81.json";
 import { Element } from "@/Element";
 
-const element = (THALLIUM_ELEMENT as unknown) as Element;
+const element = THALLIUM_ELEMENT as unknown as Element;
 
 function testElement(elementProperty: string | number) {
   expect(screen.getByText(`${elementProperty}`)).toBeInTheDocument();

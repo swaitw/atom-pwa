@@ -12,11 +12,14 @@ const categoriesMap = import.meta.glob("../data/hub/categories/*.json", {
 
 const categories = Object.values(categoriesMap);
 
-const categoryLookup = categories.reduce((prev, next) => {
-  prev[next.id] = next;
+const categoryLookup = categories.reduce(
+  (prev, next) => {
+    prev[next.id] = next;
 
-  return prev;
-}, {} as Record<string, HubCategoryData>);
+    return prev;
+  },
+  {} as Record<string, HubCategoryData>,
+);
 
 export function useHubCategories() {
   const { i18n } = useLocale();

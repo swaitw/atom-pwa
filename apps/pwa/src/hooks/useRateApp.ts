@@ -17,7 +17,7 @@ const initialValue: RateAppConfig = {
 export function useRateApp() {
   const [config, setConfig] = useLocalStorage<RateAppConfig>(
     RATE_APP_STORAGE_KEY,
-    initialValue
+    initialValue,
   );
 
   const isRated = config.rated;
@@ -42,7 +42,7 @@ export function useRateApp() {
         rated: true,
       }));
     },
-    [setConfig, isRated]
+    [setConfig, isRated],
   );
 
   return {

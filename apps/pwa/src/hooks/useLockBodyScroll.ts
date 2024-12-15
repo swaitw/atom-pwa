@@ -3,7 +3,7 @@ import { disableBodyScroll, enableBodyScroll } from "body-scroll-lock";
 
 export function useLockBodyScroll(
   ref: React.RefObject<HTMLElement>,
-  active = true
+  active = true,
 ) {
   React.useLayoutEffect(() => {
     const element = ref.current;

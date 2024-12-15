@@ -8,21 +8,24 @@ const elementsMap = import.meta.glob("../data/elements/*.json", {
 }) as Record<string, Element>;
 
 const elements = Object.values(elementsMap).sort(
-  (elementA, elementB) => elementA.atomic - elementB.atomic
+  (elementA, elementB) => elementA.atomic - elementB.atomic,
 );
 
-const elementLookup = elements.reduce((prev, next) => {
-  prev[next.atomic] = next;
+const elementLookup = elements.reduce(
+  (prev, next) => {
+    prev[next.atomic] = next;
 
-  return prev;
-}, {} as Record<number, Element>);
+    return prev;
+  },
+  {} as Record<number, Element>,
+);
 
 function useElementContextLogic() {
   const { i18n } = useLocale();
 
   const getElement: (atomic: number) => Element = React.useCallback(
     (atomic: number) => elementLookup[atomic],
-    []
+    [],
   );
 
   const localizedElementsMap = React.useMemo(() => {
@@ -42,18 +45,21 @@ function useElementContextLogic() {
           },
         ] as const;
       })
-      .reduce((prev, [atomic, element]) => {
-        prev[atomic] = element;
+      .reduce(
+        (prev, [atomic, element]) => {
+          prev[atomic] = element;
 
-        return prev;
-      }, {} as Record<number, Element>);
+          return prev;
+        },
+        {} as Record<number, Element>,
+      );
   }, [i18n]);
 
   const getElementLocales = React.useCallback(
     (element: Element): Element => {
       return localizedElementsMap[element.atomic];
     },
-    [localizedElementsMap]
+    [localizedElementsMap],
   );
 
   const getLocalizedElement = React.useCallback(
@@ -61,7 +67,7 @@ function useElementContextLogic() {
       const element = getElement(atomic);
       return getElementLocales(element);
     },
-    [getElement, getElementLocales]
+    [getElement, getElementLocales],
   );
 
   const localizedElements = React.useMemo(() => {
@@ -69,9 +75,8 @@ function useElementContextLogic() {
   }, [getElementLocales]);
 
   const searchIndex = React.useMemo(() => {
-    const defaultProcessTerm: NonNullable<
-      SearchOptions["processTerm"]
-    > = MiniSearch.getDefault("processTerm");
+    const defaultProcessTerm: NonNullable<SearchOptions["processTerm"]> =
+      MiniSearch.getDefault("processTerm");
 
     const miniSearch = new MiniSearch<Element>({
       idField: "atomic",
@@ -121,7 +126,7 @@ function useElementContextLogic() {
 export type ElementContextValue = ReturnType<typeof useElementContextLogic>;
 
 export const ElementContext = React.createContext<ElementContextValue>(
-  {} as ElementContextValue
+  {} as ElementContextValue,
 );
 
 export function ElementProvider({ children }: { children: React.ReactNode }) {

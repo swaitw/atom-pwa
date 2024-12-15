@@ -68,14 +68,14 @@ export class HubPage {
   async switchToDarkMode() {
     await this.switchToDarkModeButton.click();
     await expect(this.document.currentThemeClass).resolves.toEqual(
-      "theme-dark"
+      "theme-dark",
     );
   }
 
   async switchToLightMode() {
     await this.switchToLightModeButton.click();
     await expect(this.document.currentThemeClass).resolves.toEqual(
-      "theme-light"
+      "theme-light",
     );
   }
 
@@ -141,16 +141,16 @@ export class HubPage {
 
     await expect(
       this.page.getByText(
-        "If you think this app is useful, please rate it at the store so others will find it and learn too."
-      )
+        "If you think this app is useful, please rate it at the store so others will find it and learn too.",
+      ),
     ).toBeVisible();
 
     await this.page.getByRole("button", { name: "Cancel" }).click();
 
     await expect(
       this.page.getByText(
-        "If you think this app is useful, please rate it at the store so others will find it and learn too."
-      )
+        "If you think this app is useful, please rate it at the store so others will find it and learn too.",
+      ),
     ).toBeHidden();
 
     await expect(this.rateAppButton).toBeHidden();
@@ -169,16 +169,16 @@ export class HubPage {
 
     await expect(
       this.page.getByText(
-        "If you think this app is useful, please rate it at the store so others will find it and learn too."
-      )
+        "If you think this app is useful, please rate it at the store so others will find it and learn too.",
+      ),
     ).toBeVisible();
 
     await this.page.getByRole("button", { name: "Ok" }).click();
 
     await expect(
       this.page.getByText(
-        "If you think this app is useful, please rate it at the store so others will find it and learn too."
-      )
+        "If you think this app is useful, please rate it at the store so others will find it and learn too.",
+      ),
     ).toBeHidden();
 
     await expect(this.rateAppButton).toBeHidden();

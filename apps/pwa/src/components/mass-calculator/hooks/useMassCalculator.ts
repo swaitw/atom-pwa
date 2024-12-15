@@ -9,7 +9,7 @@ export interface MassCalculatorElement {
 function updateQuantity(
   elements: MassCalculatorElement[],
   atomic: number,
-  quantity: number
+  quantity: number,
 ) {
   const ensureQuantity = quantity ? quantity : 0;
 
@@ -47,7 +47,7 @@ export function useMassCalculator() {
       const newElements = updateQuantity(
         elements,
         currentElement.atomic,
-        currentElement.quantity + 1
+        currentElement.quantity + 1,
       );
       setElements(newElements);
     }
@@ -59,7 +59,7 @@ export function useMassCalculator() {
       const newElements = updateQuantity(
         elements,
         currentElement.atomic,
-        currentElement.quantity - 1
+        currentElement.quantity - 1,
       );
       setElements(newElements);
     }
@@ -71,7 +71,7 @@ export function useMassCalculator() {
       const newElements = updateQuantity(
         elements,
         currentElement.atomic,
-        amount
+        amount,
       );
       setElements(newElements);
     }
@@ -109,14 +109,14 @@ export function useMassCalculator() {
 
   const addElement = (atomic: number) => {
     const currentElement = elements.find(
-      (element) => element.atomic === atomic
+      (element) => element.atomic === atomic,
     );
 
     if (currentElement) {
       const newElements = updateQuantity(
         elements,
         atomic,
-        currentElement.quantity + 1
+        currentElement.quantity + 1,
       );
       setElements(newElements);
     } else {

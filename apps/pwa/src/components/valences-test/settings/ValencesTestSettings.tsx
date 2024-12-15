@@ -12,21 +12,20 @@ import PtElementSetting from "@/components/pt-element/PtElementSetting";
 function ValencesTestSettings() {
   const navigate = useNavigate();
   const { i18n } = useLocale();
-  const {
-    settings,
-    updateSettings,
-    resetSettings,
-    isElementAvailable,
-  } = useValencesTestSettings();
+  const { settings, updateSettings, resetSettings, isElementAvailable } =
+    useValencesTestSettings();
 
   const elementStates = React.useMemo(() => {
     const elements = settings.elements ?? [];
 
-    return elements.reduce((map, element) => {
-      map[element.atomic] = element.enabled;
+    return elements.reduce(
+      (map, element) => {
+        map[element.atomic] = element.enabled;
 
-      return map;
-    }, {} as Record<number, boolean>);
+        return map;
+      },
+      {} as Record<number, boolean>,
+    );
   }, [settings.elements]);
 
   const onSelectAllButtonClick = React.useCallback(() => {
@@ -61,7 +60,7 @@ function ValencesTestSettings() {
     (atomic: number) => {
       updateSettings((settings) => {
         const element = settings.elements?.find(
-          (elementSettings) => elementSettings.atomic === atomic
+          (elementSettings) => elementSettings.atomic === atomic,
         );
 
         if (element) {
@@ -69,7 +68,7 @@ function ValencesTestSettings() {
         }
       });
     },
-    [updateSettings]
+    [updateSettings],
   );
 
   const { getElement } = useElements();

@@ -52,7 +52,7 @@ function QuizResults({
         "bg-danger-800 text-white",
         goodResults
           ? "bg-white dark:bg-accent-900 text-accent-950 dark:text-accent-50"
-          : undefined
+          : undefined,
       )}
     >
       <div className="p-4 pb-2 font-semibold text-lg">

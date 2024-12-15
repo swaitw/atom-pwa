@@ -6,7 +6,7 @@ import { useElements } from "./useElements";
 export function useTestSettings(
   storageKey: keyof Settings["tests"],
   enabledKey: keyof Element["testState"],
-  isAvailable: (element: Element) => boolean
+  isAvailable: (element: Element) => boolean,
 ) {
   const { settings, updateSettings } = useSettings();
   const { elements } = useElements();
@@ -23,7 +23,7 @@ export function useTestSettings(
         },
       })),
     }),
-    [enabledKey, elements, isAvailable]
+    [enabledKey, elements, isAvailable],
   );
 
   const storedSettings = settings.tests[storageKey];
@@ -34,7 +34,7 @@ export function useTestSettings(
         updateFunction(settings.tests[storageKey]);
       });
     },
-    [storageKey, updateSettings]
+    [storageKey, updateSettings],
   );
 
   const resetSettings = React.useCallback(() => {
@@ -69,7 +69,7 @@ export function useTestSettings(
 
       return availableElements.includes(element.atomic);
     },
-    [availableElements]
+    [availableElements],
   );
 
   return {

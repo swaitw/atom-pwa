@@ -25,7 +25,7 @@ export function render(
   {
     initialHistoryEntries = [{ pathname: "/" }],
     ...renderOptions
-  }: RenderParams = {}
+  }: RenderParams = {},
 ) {
   const route: Partial<{ location: Location }> = {};
 

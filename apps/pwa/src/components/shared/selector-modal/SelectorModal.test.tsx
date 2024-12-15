@@ -26,19 +26,19 @@ test("should render Modal", () => {
       options={options}
       onOptionSelected={onOptionSelectedMock}
       open
-    />
+    />,
   );
 
   expect(screen.getByRole("dialog")).toBeInTheDocument();
   expect(
     screen.getByRole("button", {
       name: /hydrogen/i,
-    })
+    }),
   ).toBeInTheDocument();
   expect(
     screen.getByRole("button", {
       name: /helium/i,
-    })
+    }),
   ).toBeInTheDocument();
 });
 
@@ -48,13 +48,13 @@ test("should invoke onOptionSelected", async () => {
       options={options}
       onOptionSelected={onOptionSelectedMock}
       open
-    />
+    />,
   );
 
   await userEvent.click(
     screen.getByRole("button", {
       name: /hydrogen/i,
-    })
+    }),
   );
 
   expect(onOptionSelectedMock).toHaveBeenCalledTimes(1);
@@ -67,7 +67,7 @@ test("should not show dialog when not open", () => {
       options={options}
       onOptionSelected={onOptionSelectedMock}
       open={false}
-    />
+    />,
   );
 
   expect(screen.queryByRole("dialog")).not.toBeInTheDocument();

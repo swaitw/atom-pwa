@@ -2,7 +2,7 @@ import NativeBridge from "@/NativeBridge";
 import { create } from "zustand";
 
 const REMOTE_FLAGS_SERVICE_ENDPOINT = String(
-  import.meta.env.VITE_APP_REMOTE_FLAGS_SERVICE_ENDPOINT ?? ""
+  import.meta.env.VITE_APP_REMOTE_FLAGS_SERVICE_ENDPOINT ?? "",
 );
 
 type Flags = {

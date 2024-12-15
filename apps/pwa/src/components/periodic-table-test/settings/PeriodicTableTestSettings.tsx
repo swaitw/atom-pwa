@@ -12,21 +12,20 @@ import PeriodicTable from "@/components/periodic-table/PeriodicTable";
 function PeriodicTableTestSettings() {
   const navigate = useNavigate();
   const { i18n } = useLocale();
-  const {
-    settings,
-    updateSettings,
-    resetSettings,
-    isElementAvailable,
-  } = usePeriodicTableTestSettings();
+  const { settings, updateSettings, resetSettings, isElementAvailable } =
+    usePeriodicTableTestSettings();
 
   const elementStates = React.useMemo(() => {
     const elements = settings.elements ?? [];
 
-    return elements.reduce((map, element) => {
-      map[element.atomic] = element.enabled;
+    return elements.reduce(
+      (map, element) => {
+        map[element.atomic] = element.enabled;
 
-      return map;
-    }, {} as Record<number, boolean>);
+        return map;
+      },
+      {} as Record<number, boolean>,
+    );
   }, [settings.elements]);
 
   const onSelectAllButtonClick = React.useCallback(() => {
@@ -61,7 +60,7 @@ function PeriodicTableTestSettings() {
     (atomic: number) => {
       updateSettings((settings) => {
         const element = settings.elements?.find(
-          (elementSettings) => elementSettings.atomic === atomic
+          (elementSettings) => elementSettings.atomic === atomic,
         );
 
         if (element) {
@@ -69,7 +68,7 @@ function PeriodicTableTestSettings() {
         }
       });
     },
-    [updateSettings]
+    [updateSettings],
   );
 
   const { getElement } = useElements();

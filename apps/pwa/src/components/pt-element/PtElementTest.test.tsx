@@ -5,13 +5,13 @@ import PtElementTest from "./PtElementTest";
 import IRON_ELEMENT from "@/data/elements/26.json";
 import { Element } from "@/Element";
 
-const element = (IRON_ELEMENT as unknown) as Element;
+const element = IRON_ELEMENT as unknown as Element;
 
 describe("PtElementTest", () => {
   describe("when discovered", () => {
     it("shows the elements atomic number", () => {
       render(
-        <PtElementTest element={element} shouldShowError={false} discovered />
+        <PtElementTest element={element} shouldShowError={false} discovered />,
       );
 
       expect(screen.getByText(element.atomic)).toBeInTheDocument();
@@ -19,7 +19,7 @@ describe("PtElementTest", () => {
 
     it("shows the elements symbol", () => {
       render(
-        <PtElementTest element={element} shouldShowError={false} discovered />
+        <PtElementTest element={element} shouldShowError={false} discovered />,
       );
 
       expect(screen.getByText(element.symbol)).toBeInTheDocument();
@@ -27,7 +27,7 @@ describe("PtElementTest", () => {
 
     it("shows the elements name", () => {
       render(
-        <PtElementTest element={element} shouldShowError={false} discovered />
+        <PtElementTest element={element} shouldShowError={false} discovered />,
       );
 
       expect(screen.getByText(element.name)).toBeInTheDocument();
@@ -41,7 +41,7 @@ describe("PtElementTest", () => {
           element={element}
           shouldShowError={false}
           discovered={false}
-        />
+        />,
       );
 
       expect(screen.getByText(element.atomic)).toBeInTheDocument();
@@ -55,7 +55,7 @@ describe("PtElementTest", () => {
           element={element}
           shouldShowError={false}
           discovered={false}
-        />
+        />,
       );
 
       expect(screen.getByText("?")).toBeInTheDocument();

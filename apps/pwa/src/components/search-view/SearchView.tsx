@@ -117,7 +117,7 @@ function ElementSearchResult({ id, match }: SearchResult) {
   }
 
   const matchKey = Object.values(match)?.[0]?.find(
-    (key) => !["symbol", "name", "group"].includes(key)
+    (key) => !["symbol", "name", "group"].includes(key),
   ) as keyof Element;
 
   let secondLineValue: React.ReactNode = "";
@@ -153,7 +153,7 @@ function ElementSearchResult({ id, match }: SearchResult) {
         className={cn(
           "flex items-center justify-center flex-shrink-0 w-12 h-12 rounded-full",
           "element",
-          element.group
+          element.group,
         )}
       >
         {elementLocales.symbol}

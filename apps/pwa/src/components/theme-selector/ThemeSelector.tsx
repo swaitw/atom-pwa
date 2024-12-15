@@ -17,7 +17,7 @@ function ThemeSelector() {
         key: theme,
         text: i18n("theme_" + theme),
       })),
-    [i18n]
+    [i18n],
   );
 
   function closeSelector() {

@@ -8,7 +8,7 @@ import { userEvent } from "@testing-library/user-event";
 import ValencesTestSettings from "./ValencesTestSettings";
 import { render } from "@/test-utils";
 
-window.scrollTo = (vi.fn() as unknown) as typeof window.scrollTo;
+window.scrollTo = vi.fn() as unknown as typeof window.scrollTo;
 
 test("should render the valences test settings", async () => {
   render(<ValencesTestSettings />);
@@ -16,22 +16,22 @@ test("should render the valences test settings", async () => {
   expect(screen.getByText(/settings/i)).toBeInTheDocument();
 
   expect(
-    screen.getByRole("button", { name: /^select all/i })
+    screen.getByRole("button", { name: /^select all/i }),
   ).toBeInTheDocument();
   expect(
-    screen.getByRole("button", { name: /deselect all/i })
+    screen.getByRole("button", { name: /deselect all/i }),
   ).toBeInTheDocument();
   expect(
-    screen.getByRole("button", { name: /restore defaults/i })
+    screen.getByRole("button", { name: /restore defaults/i }),
   ).toBeInTheDocument();
 
   await waitForElementToBeRemoved(
     () => screen.queryAllByLabelText(/loading/i),
-    { timeout: 4000 }
+    { timeout: 4000 },
   );
 
   expect(
-    screen.getByRole("checkbox", { name: /1\. Hydrogen/i })
+    screen.getByRole("checkbox", { name: /1\. Hydrogen/i }),
   ).toBeInTheDocument();
 });
 
@@ -40,7 +40,7 @@ test("selection buttons should work", async () => {
 
   await waitForElementToBeRemoved(
     () => screen.queryAllByLabelText(/loading/i),
-    { timeout: 4000 }
+    { timeout: 4000 },
   );
 
   const hydrogen = screen.getByRole("checkbox", {
@@ -50,28 +50,30 @@ test("selection buttons should work", async () => {
     name: "11. Sodium",
   });
 
-  userEvent.click(screen.getByRole("button", { name: /deselect all/i }));
+  await userEvent.click(screen.getByRole("button", { name: /deselect all/i }));
 
   await waitFor(() => new Promise((resolve) => setTimeout(resolve, 1)));
 
   expect(hydrogen).not.toBeChecked();
   expect(sodium).not.toBeChecked();
 
-  userEvent.click(screen.getByRole("button", { name: /^select all/i }));
+  await userEvent.click(screen.getByRole("button", { name: /^select all/i }));
 
   await waitFor(() => new Promise((resolve) => setTimeout(resolve, 1)));
 
   expect(hydrogen).toBeChecked();
   expect(sodium).toBeChecked();
 
-  userEvent.click(hydrogen);
+  await userEvent.click(hydrogen);
 
   await waitFor(() => new Promise((resolve) => setTimeout(resolve, 1)));
 
   expect(hydrogen).not.toBeChecked();
   expect(sodium).toBeChecked();
 
-  userEvent.click(screen.getByRole("button", { name: /restore defaults/i }));
+  await userEvent.click(
+    screen.getByRole("button", { name: /restore defaults/i }),
+  );
 
   await waitFor(() => new Promise((resolve) => setTimeout(resolve, 1)));
 

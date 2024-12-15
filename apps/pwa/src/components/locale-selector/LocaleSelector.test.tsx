@@ -19,13 +19,13 @@ test("should be able to change locale", async () => {
   await userEvent.click(
     screen.getByRole("button", {
       name: /español/i,
-    })
+    }),
   );
 
   await waitMs(1);
 
   const settings = JSON.parse(
-    window.localStorage.getItem(STORAGE_KEY) as string
+    window.localStorage.getItem(STORAGE_KEY) as string,
   );
 
   expect(settings.locale).toBe("es");

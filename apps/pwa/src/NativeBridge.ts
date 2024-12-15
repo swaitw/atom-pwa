@@ -15,7 +15,7 @@ const platformMethods: PlatformMethods = {
   },
 };
 
-const AtomNative = window.AtomNative || platformMethods;
+type AtomNative = NonNullable<typeof window.AtomNative>;
 
 class NativeBridge {
   private cache = new Map<string, unknown>();
@@ -40,15 +40,15 @@ class NativeBridge {
     return this.exec("rateApp", [], [openMarket]);
   }
 
-  public supportsNativeMethod(_methodName: keyof typeof AtomNative) {
+  public supportsNativeMethod(_methodName: keyof AtomNative) {
     return !!window.AtomNative?.[_methodName];
   }
 
-  private exec<T extends keyof typeof AtomNative>(
+  private exec<T extends keyof AtomNative>(
     methodName: T,
-    nativeArgs: Parameters<NonNullable<typeof AtomNative[T]>>,
-    fallbackArgs: Parameters<NonNullable<PlatformMethods[T]>>
-  ): ReturnType<NonNullable<typeof AtomNative[T]>> {
+    nativeArgs: Parameters<NonNullable<AtomNative[T]>>,
+    fallbackArgs: Parameters<NonNullable<PlatformMethods[T]>>,
+  ): ReturnType<NonNullable<AtomNative[T]>> {
     const nativeMethod = window.AtomNative?.[methodName];
 
     if (nativeMethod) {
@@ -56,30 +56,28 @@ class NativeBridge {
     } else {
       this.debug(
         `Calling fallback method ${methodName} with args:`,
-        fallbackArgs
+        fallbackArgs,
       );
     }
 
-    return (nativeMethod
-      ? nativeMethod.bind(window.AtomNative)(...nativeArgs)
-      : platformMethods[methodName](...fallbackArgs)) as ReturnType<
-      NonNullable<typeof AtomNative[T]>
-    >;
+    return (
+      nativeMethod
+        ? nativeMethod.bind(window.AtomNative)(...nativeArgs)
+        : platformMethods[methodName](...fallbackArgs)
+    ) as ReturnType<NonNullable<AtomNative[T]>>;
   }
 
-  private execCached<T extends keyof typeof AtomNative>(
+  private execCached<T extends keyof AtomNative>(
     methodName: T,
-    nativeArgs: Parameters<NonNullable<typeof AtomNative[T]>>,
-    fallbackArgs: Parameters<NonNullable<PlatformMethods[T]>>
-  ): ReturnType<NonNullable<typeof AtomNative[T]>> {
+    nativeArgs: Parameters<NonNullable<AtomNative[T]>>,
+    fallbackArgs: Parameters<NonNullable<PlatformMethods[T]>>,
+  ): ReturnType<NonNullable<AtomNative[T]>> {
     const cacheKey = `${methodName}(${nativeArgs.join(",")},${fallbackArgs.join(
-      ","
+      ",",
     )})`;
 
     if (this.cache.has(cacheKey)) {
-      return this.cache.get(cacheKey) as ReturnType<
-        NonNullable<typeof AtomNative[T]>
-      >;
+      return this.cache.get(cacheKey) as ReturnType<NonNullable<AtomNative[T]>>;
     }
 
     const result = this.exec(methodName, nativeArgs, fallbackArgs);

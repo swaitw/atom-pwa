@@ -49,11 +49,8 @@ function createQuestion(element: Element): ValencesTestQuestion {
 function ValencesTest() {
   const { i18n } = useLocale();
   const { getElement } = useElements();
-  const {
-    settings,
-    updateSettings,
-    isElementAvailable,
-  } = useValencesTestSettings();
+  const { settings, updateSettings, isElementAvailable } =
+    useValencesTestSettings();
   const { confirmAction } = useConfirm();
 
   useAddRecent("valency-quiz");
@@ -66,7 +63,7 @@ function ValencesTest() {
 
     const questions = settings.elements
       .filter(
-        (element) => isElementAvailable(element.atomic) && element.enabled
+        (element) => isElementAvailable(element.atomic) && element.enabled,
       )
       .map((element) => getElement(element.atomic))
       .map((element) => createQuestion(element as Element));
@@ -75,7 +72,7 @@ function ValencesTest() {
   }
 
   const [questions, setQuestions] = React.useState<ValencesTestQuestion[]>(() =>
-    createTestQuestions(settings)
+    createTestQuestions(settings),
   );
   const [wrongAnswers, setWrongAnswers] = React.useState<
     ValencesTestQuestion[]
@@ -93,7 +90,7 @@ function ValencesTest() {
     if (!alreadyAnswered) {
       updateSettings((settings) => {
         const elementSetting = settings.elements?.find(
-          (element) => element.atomic === question.data.atomic
+          (element) => element.atomic === question.data.atomic,
         );
 
         if (!elementSetting) {

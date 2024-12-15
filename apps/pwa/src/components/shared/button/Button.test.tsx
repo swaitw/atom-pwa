@@ -14,12 +14,12 @@ test("should render button component with link", () => {
   render(
     <Button link="https://twitter.com/HorusGoul">
       <div>mock text</div>
-    </Button>
+    </Button>,
   );
-  expect(screen.getByText(/mock text/i)).toBeInTheDocument();
-  expect(screen.getByText(/mock text/i).closest("a")).toHaveAttribute(
+  expect(screen.getByRole("link", { name: /mock text/i })).toBeInTheDocument();
+  expect(screen.getByRole("link", { name: /mock text/i })).toHaveAttribute(
     "href",
-    "https://twitter.com/HorusGoul"
+    "https://twitter.com/HorusGoul",
   );
 });
 
@@ -27,12 +27,12 @@ test("should invoke onClick", async () => {
   render(
     <Button link="https://twitter.com/HorusGoul" onClick={onClickMock}>
       <div>mock text</div>
-    </Button>
+    </Button>,
   );
 
-  const linkButton = screen
-    .getByText(/mock text/i)
-    .closest("a") as HTMLAnchorElement;
+  const linkButton = screen.getByRole("link", {
+    name: /mock text/i,
+  }) as HTMLAnchorElement;
 
   await userEvent.click(linkButton);
 
@@ -43,12 +43,12 @@ test("should invoke onClick", async () => {
   render(
     <Button link="https://twitter.com/HorusGoul">
       <div>mock text</div>
-    </Button>
+    </Button>,
   );
 
-  const linkButton = screen
-    .getByText(/mock text/i)
-    .closest("a") as HTMLAnchorElement;
+  const linkButton = screen.getByRole("link", {
+    name: /mock text/i,
+  }) as HTMLAnchorElement;
 
   await userEvent.click(linkButton);
 

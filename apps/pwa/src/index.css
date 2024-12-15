@@ -51,7 +51,9 @@ textarea {
 
 .element {
   color: #fff;
-  transition: background-color 250ms linear, color 250ms linear;
+  transition:
+    background-color 250ms linear,
+    color 250ms linear;
 
   &.noble_gases {
     background-color: #7e57c2;

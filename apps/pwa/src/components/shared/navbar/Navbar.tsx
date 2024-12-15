@@ -25,7 +25,7 @@ function Navbar({
     <nav
       className={cn(
         "min-h-14 w-full flex-shrink-0 flex items-center pl-safe-left pr-safe-right pt-safe-top",
-        className
+        className,
       )}
     >
       {onBackButtonClick && (

@@ -23,7 +23,9 @@ function PtElementTest({
   const onElementButtonClick = () => {
     if (onClick && !discovered) {
       onClick(element);
-      shouldShowError && setShowError(true);
+      if (shouldShowError) {
+        setShowError(true);
+      }
     }
   };
 
@@ -35,7 +37,9 @@ function PtElementTest({
       }, 2000);
     }
     return () => {
-      hideError && window.clearTimeout(hideError);
+      if (hideError) {
+        window.clearTimeout(hideError);
+      }
     };
   }, [showError]);
 
@@ -56,7 +60,7 @@ function PtElementTest({
         "relative font-semibold p-2 min-w-[72px] min-h-[72px] w-full h-full transition-none block select-none",
         "element",
         discovered ? element.group : "clear",
-        showError && "flex"
+        showError && "flex",
       )}
       aria-disabled={discovered}
       aria-label={label}

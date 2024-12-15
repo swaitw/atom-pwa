@@ -13,7 +13,7 @@ function Card({ className, children, rounded }: CardProps) {
       className={cn(
         "overflow-hidden bg-white text-accent-950 dark:bg-accent-900 dark:text-accent-50 shadow-sm",
         rounded && "rounded-lg",
-        className
+        className,
       )}
     >
       {children}

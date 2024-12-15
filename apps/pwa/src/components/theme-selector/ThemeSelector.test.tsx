@@ -13,7 +13,7 @@ test("should display a button for opening modal", () => {
   render(<ThemeSelector />);
 
   expect(
-    screen.getByRole("button", { name: /change theme/i })
+    screen.getByRole("button", { name: /change theme/i }),
   ).toBeInTheDocument();
 });
 
@@ -22,7 +22,7 @@ test("should open selector modal", async () => {
 
   await userEvent.click(screen.getByRole("button", { name: /change theme/i }));
   expect(
-    screen.getByRole("dialog", { name: /change theme/i })
+    screen.getByRole("dialog", { name: /change theme/i }),
   ).toBeInTheDocument();
 });
 
@@ -42,7 +42,7 @@ test("should change theme", async () => {
   await userEvent.click(screen.getByRole("button", { name: /light/i }));
 
   const settings = JSON.parse(
-    window.localStorage.getItem(STORAGE_KEY) as string
+    window.localStorage.getItem(STORAGE_KEY) as string,
   );
 
   expect(settings.theme).toBe("light");

@@ -17,11 +17,14 @@ const itemsMap = import.meta.glob("../data/hub/items/*.json", {
 
 const items = Object.values(itemsMap);
 
-const itemLookup = items.reduce((prev, next) => {
-  prev[next.id] = next;
+const itemLookup = items.reduce(
+  (prev, next) => {
+    prev[next.id] = next;
 
-  return prev;
-}, {} as Record<string, HubItemData>);
+    return prev;
+  },
+  {} as Record<string, HubItemData>,
+);
 
 export function useHubItems() {
   const { i18n } = useLocale();

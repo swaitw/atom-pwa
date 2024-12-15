@@ -5,6 +5,6 @@ export function usePeriodicTableTestSettings() {
   return useTestSettings(
     "periodicTable",
     "ptTest",
-    useCallback(() => true, [])
+    useCallback(() => true, []),
   );
 }

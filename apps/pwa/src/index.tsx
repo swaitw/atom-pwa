@@ -24,7 +24,7 @@ invariant(rootElement, "Root element not found");
 ReactDOM.createRoot(rootElement).render(
   <BrowserRouter basename="/" future={{ v7_startTransition: true }}>
     <App />
-  </BrowserRouter>
+  </BrowserRouter>,
 );
 
 let preview = false;

@@ -1,4 +1,4 @@
-import clsx, { type ClassValue } from "clsx";
+import { clsx, type ClassValue } from "clsx";
 import { twMerge } from "tailwind-merge";
 
 export type ClassName = ClassValue;
@@ -42,7 +42,7 @@ type Schema<SchemaVariants extends Variants> = {
 };
 
 export type VariantsFromProps<
-  // eslint-disable-next-line @typescript-eslint/ban-types
+  // eslint-disable-next-line @typescript-eslint/no-empty-object-type
   Props extends {},
   RequiredProps = Required<Props>,
 > = {

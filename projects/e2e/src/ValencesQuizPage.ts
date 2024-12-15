@@ -30,8 +30,8 @@ export class ValencesQuizPage extends QuizPage {
 
     const allButtons = await Promise.all(
       buttons.map(
-        async (button) => [button, await button.textContent()] as const
-      )
+        async (button) => [button, await button.textContent()] as const,
+      ),
     );
 
     return allButtons
@@ -53,7 +53,7 @@ export class ValencesQuizPage extends QuizPage {
 
     await correctAnswerButton.click();
     await expect(this.questionTitle).not.toHaveText(
-      currentQuestionTitleText ?? "UNKNOWN_SYMBOL"
+      currentQuestionTitleText ?? "UNKNOWN_SYMBOL",
     );
   }
 

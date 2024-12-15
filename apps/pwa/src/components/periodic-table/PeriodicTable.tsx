@@ -84,7 +84,7 @@ function buildTable(elementRenderer: ElementRendered) {
             </div>
           );
         })}
-      </div>
+      </div>,
     );
   }
 
@@ -98,8 +98,8 @@ function PeriodicTable({ elementRenderer }: PeriodicTableProps) {
     let requestAnimationFrame: number = window.requestAnimationFrame(
       () =>
         (requestAnimationFrame = window.requestAnimationFrame(() =>
-          setRender(true)
-        ))
+          setRender(true),
+        )),
     );
     return () => window.cancelAnimationFrame(requestAnimationFrame);
   }, []);
