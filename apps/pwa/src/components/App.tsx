@@ -24,12 +24,12 @@ import PeriodicTableTestSettings from "./periodic-table-test/settings/PeriodicTa
 import TestSelection from "./test-selection/TestSelection";
 import ValencesTestSettings from "./valences-test/settings/ValencesTestSettings";
 import ValencesTest from "./valences-test/ValencesTest";
-import Hub from "./hub/Hub";
 import SearchView from "./search-view";
 import { ElementProvider } from "@/contexts/ElementContext";
 import { createPack } from "react-component-pack";
 import ConfirmProvider from "./shared/confirm";
 import { ServiceWorkerProvider } from "@/contexts/ServiceWorkerContext";
+import Home from "@/screens/Home";
 
 const ProviderPack = createPack(
   HelmetProvider as unknown as React.FunctionComponent<{
@@ -73,15 +73,7 @@ function App() {
 
         <div className="h-full">
           <Routes>
-            <Route
-              path={HUB}
-              element={
-                <>
-                  <SearchView />
-                  <Hub />
-                </>
-              }
-            />
+            <Route path={HUB} element={<Home />} />
             <Route path={TEST_SELECTION} element={<TestSelection />} />
             <Route path={TEST_VALENCES} element={<ValencesTest />} />
             <Route

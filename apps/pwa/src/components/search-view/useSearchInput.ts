@@ -1,5 +1,5 @@
 import * as React from "react";
-import { useSearchParams } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import { useLocale } from "@/hooks/useLocale";
 
 export function useSearchInput(type: "push" | "replace") {
@@ -7,6 +7,7 @@ export function useSearchInput(type: "push" | "replace") {
   const [query, setQuery] = useSearchParams();
   const routerSearchQueryValue = query.get("search") ?? "";
   const [value, setValue] = React.useState(routerSearchQueryValue);
+  const navigate = useNavigate();
 
   const onChange = React.useCallback(
     (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -30,9 +31,21 @@ export function useSearchInput(type: "push" | "replace") {
 
   const isSearching = !!routerSearchQueryValue || !!query.get("openSearch");
 
+  function openSearch() {
+    const newParams = new URLSearchParams();
+    newParams.set("openSearch", "true");
+    setQuery(newParams);
+  }
+
+  function closeSearch() {
+    navigate(-1);
+  }
+
   return {
     value,
     isSearching,
+    openSearch,
+    closeSearch,
     inputProps: {
       defaultValue: routerSearchQueryValue,
       onChange,

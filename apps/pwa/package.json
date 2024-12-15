@@ -26,6 +26,7 @@
     "invariant": "^2.2.4",
     "minisearch": "^3.0.2",
     "react": "^18.2.0",
+    "react-aria-components": "1.5.0",
     "react-compiler-runtime": "19.0.0-beta-37ed2a7-20241206",
     "react-component-pack": "^1.0.1",
     "react-dom": "^18.2.0",
