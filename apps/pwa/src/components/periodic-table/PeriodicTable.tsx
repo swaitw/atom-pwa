@@ -167,8 +167,8 @@ function PeriodicTable({ elementRenderer, className }: PeriodicTableProps) {
     const y = relY / scale - lightSize / 2;
 
     if (lightRef.current && lightContainerRef.current) {
-      lightContainerRef.current.style.width = tableRect.width + "px";
-      lightContainerRef.current.style.height = tableRect.height + "px";
+      lightContainerRef.current.style.width = tableRect.width / scale + "px";
+      lightContainerRef.current.style.height = tableRect.height / scale + "px";
       lightRef.current.style.left = x + "px";
       lightRef.current.style.top = y + "px";
     }
