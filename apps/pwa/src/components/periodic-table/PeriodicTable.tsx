@@ -15,7 +15,9 @@ function EmptyCell() {
     <div
       className="table-cell border-l border-t dark:border-accent-400/20"
       aria-hidden={true}
-    />
+    >
+      <div className="relative block h-full min-h-[72px] w-full min-w-[72px] dark:bg-accent-950" />
+    </div>
   );
 }
 
@@ -38,12 +40,14 @@ function LabelCell({
   return (
     <div
       className={cn(
-        "table-cell h-6 min-w-6 bg-accent-50 text-center align-middle text-sm font-semibold text-accent-950 text-opacity-40 dark:border-accent-400/20 dark:bg-accent-950/80 dark:text-accent-50 dark:text-opacity-80",
+        "table-cell bg-accent-50 text-center align-middle text-sm font-semibold text-accent-950 text-opacity-40 dark:border-accent-400/20 dark:bg-accent-950/80 dark:text-accent-50 dark:text-opacity-80",
         border === "top" && "border-t",
         border === "left" && "border-l",
       )}
     >
-      {children}
+      <div className="relative flex h-full min-w-6 items-center justify-center dark:bg-accent-950">
+        <div>{children}</div>
+      </div>
     </div>
   );
 }
@@ -127,9 +131,20 @@ function PeriodicTable({ elementRenderer, className }: PeriodicTableProps) {
     );
     return () => window.cancelAnimationFrame(requestAnimationFrame);
   }, []);
+  const lightRef = React.useRef<HTMLDivElement>(null);
 
   if (!render) {
     return <div className="flex h-full w-full items-center justify-center" />;
+  }
+
+  function onMouseOver(e: React.MouseEvent<HTMLDivElement>) {
+    const absX = e.clientX;
+    const absY = e.clientY;
+
+    if (lightRef.current) {
+      lightRef.current.style.left = `${absX - 100}px`;
+      lightRef.current.style.top = `${absY - 100}px`;
+    }
   }
 
   return (
@@ -145,8 +160,9 @@ function PeriodicTable({ elementRenderer, className }: PeriodicTableProps) {
         wrapperStyle={{ width: "100%", height: "100%" }}
       >
         <div
+          ref={lightRef}
           className={cn(
-            "pointer-events-none absolute h-[100px] w-[100px] bg-[radial-gradient(circle,_rgba(255,255,255,1)_0%,_transparent_100%)] blur-2xl",
+            "pointer-events-none absolute h-[200px] w-[200px] bg-[radial-gradient(circle,_rgba(255,255,255,1)_0%,_transparent_100%)] blur-2xl",
           )}
         />
 
@@ -155,6 +171,7 @@ function PeriodicTable({ elementRenderer, className }: PeriodicTableProps) {
             "table h-full max-h-[696px] w-full max-w-[1320px] overflow-auto",
             className,
           )}
+          onMouseOver={onMouseOver}
         >
           {buildTable(elementRenderer)}
         </div>
