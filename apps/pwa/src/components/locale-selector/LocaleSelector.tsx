@@ -1,9 +1,9 @@
 import * as React from "react";
-import { useLocale, SUPPORTED_LOCALES } from "@/hooks/useLocale";
-import IconButton from "@/components/shared/icon-button/IconButton";
+import { useLocale, SUPPORTED_LOCALES } from "#src/hooks/useLocale";
+import IconButton from "#src/components/shared/icon-button/IconButton";
 import SelectorModal, {
   SelectorModalOption,
-} from "@/components/shared/selector-modal/SelectorModal";
+} from "#src/components/shared/selector-modal/SelectorModal";
 
 function LocaleSelector() {
   const [selectorOpen, setSelectorOpen] = React.useState(false);

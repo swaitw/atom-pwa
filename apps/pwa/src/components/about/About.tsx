@@ -1,13 +1,13 @@
 import * as React from "react";
 import { useNavigate } from "react-router-dom";
-import { useLocale } from "@/hooks/useLocale";
-import { HUB } from "@/routes";
-import LocaleSelector from "@/components/locale-selector/LocaleSelector";
-import Card from "@/components/shared/card/Card";
-import IconButton from "@/components/shared/icon-button/IconButton";
-import Navbar from "@/components/shared/navbar/Navbar";
-import ThemeSelector from "@/components/theme-selector/ThemeSelector";
-import { FULL_VERSION } from "@/constants";
+import { useLocale } from "#src/hooks/useLocale";
+import { HUB } from "#src/routes";
+import LocaleSelector from "#src/components/locale-selector/LocaleSelector";
+import Card from "#src/components/shared/card/Card";
+import IconButton from "#src/components/shared/icon-button/IconButton";
+import Navbar from "#src/components/shared/navbar/Navbar";
+import ThemeSelector from "#src/components/theme-selector/ThemeSelector";
+import { FULL_VERSION } from "#src/constants";
 
 function About() {
   const navigate = useNavigate();

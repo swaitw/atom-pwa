@@ -1,22 +1,22 @@
 import * as React from "react";
 import { useNavigate } from "react-router-dom";
-import { Element } from "@/Element";
-import { ElementsSettings } from "@/hooks/useSettings";
-import { useElements } from "@/hooks/useElements";
-import { useLocale } from "@/hooks/useLocale";
-import { TEST_PERIODIC_TABLE_SETTINGS, TEST_SELECTION } from "@/routes";
-import { shuffle } from "@/utils/shuffle";
-import PeriodicTable from "@/components/periodic-table/PeriodicTable";
-import PtElementTest from "@/components/pt-element/PtElementTest";
-import Card from "@/components/shared/card/Card";
-import Navbar from "@/components/shared/navbar/Navbar";
-import SwipeableModal from "@/components/shared/swipeable-modal/SwipeableModal";
-import QuizResults from "@/components/quiz-results/QuizResults";
+import { Element } from "#src/Element";
+import { ElementsSettings } from "#src/hooks/useSettings";
+import { useElements } from "#src/hooks/useElements";
+import { useLocale } from "#src/hooks/useLocale";
+import { TEST_PERIODIC_TABLE_SETTINGS, TEST_SELECTION } from "#src/routes";
+import { shuffle } from "#src/utils/shuffle";
+import PeriodicTable from "#src/components/periodic-table/PeriodicTable";
+import PtElementTest from "#src/components/pt-element/PtElementTest";
+import Card from "#src/components/shared/card/Card";
+import Navbar from "#src/components/shared/navbar/Navbar";
+import SwipeableModal from "#src/components/shared/swipeable-modal/SwipeableModal";
+import QuizResults from "#src/components/quiz-results/QuizResults";
 import { usePeriodicTableTestSettings } from "./hooks/usePeriodicTableTestSettings";
-import { useAddRecent } from "@/hooks/useRecent";
-import { useConfirm } from "@/components/shared/confirm";
-import { usePreventDocumentOverscroll } from "@/hooks/usePreventDocumentOverscroll";
-import { cn } from "@/utils/styles";
+import { useAddRecent } from "#src/hooks/useRecent";
+import { useConfirm } from "#src/components/shared/confirm";
+import { usePreventDocumentOverscroll } from "#src/hooks/usePreventDocumentOverscroll";
+import { cn } from "#src/utils/styles";
 
 interface PeriodicTableTestQuestion {
   element: Element;

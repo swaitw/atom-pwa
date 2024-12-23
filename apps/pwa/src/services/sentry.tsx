@@ -1,4 +1,4 @@
-import { BRANCH, COMMIT_HASH } from "@/constants";
+import { BRANCH, COMMIT_HASH } from "#src/constants";
 import * as SentrySDK from "@sentry/react";
 import { useEffect } from "react";
 import {

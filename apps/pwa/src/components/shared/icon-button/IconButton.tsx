@@ -1,6 +1,6 @@
-import Button, { ButtonProps } from "@/components/shared/button/Button";
-import Icon from "@/components/shared/icon/Icon";
-import { cn } from "@/utils/styles";
+import Button, { ButtonProps } from "#src/components/shared/button/Button";
+import Icon from "#src/components/shared/icon/Icon";
+import { cn } from "#src/utils/styles";
 
 interface IconButtonProps extends Omit<ButtonProps, "children"> {
   iconName: string;

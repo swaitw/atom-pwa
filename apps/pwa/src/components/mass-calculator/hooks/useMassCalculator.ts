@@ -1,5 +1,5 @@
 import * as React from "react";
-import { useElements } from "@/hooks/useElements";
+import { useElements } from "#src/hooks/useElements";
 
 export interface MassCalculatorElement {
   atomic: number;

@@ -1,11 +1,11 @@
 import * as React from "react";
 import PtElementInfo from "./PtElementInfo";
 import { screen } from "@testing-library/react";
-import { render } from "@/test-utils";
+import { render } from "#src/test-utils";
 import { userEvent } from "@testing-library/user-event";
-import IRON_ELEMENT from "@/data/elements/26.json";
+import IRON_ELEMENT from "#src/data/elements/26.json";
 
-import { Element } from "@/Element";
+import { Element } from "#src/Element";
 
 const element = IRON_ELEMENT as unknown as Element;
 

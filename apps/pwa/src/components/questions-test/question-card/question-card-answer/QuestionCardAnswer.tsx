@@ -1,7 +1,7 @@
 import * as React from "react";
-import Button, { ButtonProps } from "@/components/shared/button/Button";
+import Button, { ButtonProps } from "#src/components/shared/button/Button";
 
-import { cn } from "@/utils/styles";
+import { cn } from "#src/utils/styles";
 
 export interface Answer {
   answer: string;

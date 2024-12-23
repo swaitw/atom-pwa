@@ -1,15 +1,15 @@
 import * as React from "react";
-import { useLocale } from "@/hooks/useLocale";
-import { HUB } from "@/routes";
-import IconButton from "@/components/shared/icon-button/IconButton";
-import ListItemSwipeAction from "@/components/shared/list-item-swipe-action/ListItemSwipeAction";
-import Navbar from "@/components/shared/navbar/Navbar";
+import { useLocale } from "#src/hooks/useLocale";
+import { HUB } from "#src/routes";
+import IconButton from "#src/components/shared/icon-button/IconButton";
+import ListItemSwipeAction from "#src/components/shared/list-item-swipe-action/ListItemSwipeAction";
+import Navbar from "#src/components/shared/navbar/Navbar";
 import AddElementModal from "./AddElementModal";
 import EditElementModal from "./EditElementModal";
 import CalculatorElement from "./CalculatorElement";
 import { useMassCalculator } from "./hooks/useMassCalculator";
 import { useModal } from "./hooks/useModal";
-import { useAddRecent } from "@/hooks/useRecent";
+import { useAddRecent } from "#src/hooks/useRecent";
 import { useNavigate } from "react-router-dom";
 
 function MassCalculator() {

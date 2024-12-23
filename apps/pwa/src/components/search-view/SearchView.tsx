@@ -1,19 +1,19 @@
 import { useSearchInput } from "./useSearchInput";
 import * as React from "react";
 import FocusTrap from "focus-trap-react";
-import Button from "@/components/shared/button/Button";
-import Portal from "@/components/shared/portal/Portal";
-import { useLocale } from "@/hooks/useLocale";
-import { useLockBodyScroll } from "@/hooks/useLockBodyScroll";
-import Icon from "@/components/shared/icon/Icon";
-import { useContentSearch, SearchResult } from "@/hooks/useContentSearch";
-import { useElements } from "@/hooks/useElements";
-import { Element } from "@/Element";
-import Atom from "@/components/atom";
-import { PERIODIC_TABLE } from "@/routes";
+import Button from "#src/components/shared/button/Button";
+import Portal from "#src/components/shared/portal/Portal";
+import { useLocale } from "#src/hooks/useLocale";
+import { useLockBodyScroll } from "#src/hooks/useLockBodyScroll";
+import Icon from "#src/components/shared/icon/Icon";
+import { useContentSearch, SearchResult } from "#src/hooks/useContentSearch";
+import { useElements } from "#src/hooks/useElements";
+import { Element } from "#src/Element";
+import Atom from "#src/components/atom";
+import { PERIODIC_TABLE } from "#src/routes";
 import NoResults from "./no-results.svg?react";
 import { useNavigate } from "react-router-dom";
-import { cn } from "@/utils/styles";
+import { cn } from "#src/utils/styles";
 
 function SearchView() {
   const { i18n } = useLocale();

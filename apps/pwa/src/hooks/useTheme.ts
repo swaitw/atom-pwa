@@ -1,4 +1,4 @@
-import { logEvent } from "@/services/spycat";
+import { logEvent } from "#src/services/spycat";
 import { useCallback, useMemo } from "react";
 import { useSettings } from "./useSettings";
 

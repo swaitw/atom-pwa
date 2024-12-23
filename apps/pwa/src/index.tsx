@@ -6,8 +6,8 @@ import { BrowserRouter } from "react-router-dom";
 
 import "hammerjs";
 
-import { initSentry } from "@/services/sentry";
-import { loadFlags } from "@/services/flags";
+import { initSentry } from "#src/services/sentry";
+import { loadFlags } from "#src/services/flags";
 import App from "./components/App";
 import invariant from "invariant";
 import { I18nProvider } from "@lingui/react";

@@ -11,9 +11,9 @@ import {
   TEST_SELECTION,
   TEST_VALENCES,
   TEST_VALENCES_SETTINGS,
-} from "@/routes";
-import { useLocale } from "@/hooks/useLocale";
-import { useTheme } from "@/hooks/useTheme";
+} from "#src/routes";
+import { useLocale } from "#src/hooks/useLocale";
+import { useTheme } from "#src/hooks/useTheme";
 import About from "./about/About";
 import MassCalculator from "./mass-calculator/MassCalculator";
 import PeriodicTablePage, {
@@ -25,12 +25,12 @@ import TestSelection from "./test-selection/TestSelection";
 import ValencesTestSettings from "./valences-test/settings/ValencesTestSettings";
 import ValencesTest from "./valences-test/ValencesTest";
 import SearchView from "./search-view";
-import { ElementProvider } from "@/contexts/ElementContext";
+import { ElementProvider } from "#src/contexts/ElementContext";
 import { createPack } from "react-component-pack";
 import ConfirmProvider from "./shared/confirm";
-import { ServiceWorkerProvider } from "@/contexts/ServiceWorkerContext";
-import Home from "@/screens/Home";
-import MainLayout from "@/layouts/MainLayout";
+import { ServiceWorkerProvider } from "#src/contexts/ServiceWorkerContext";
+import Home from "#src/screens/Home";
+import MainLayout from "#src/layouts/MainLayout";
 
 const ProviderPack = createPack(
   HelmetProvider as unknown as React.FunctionComponent<{

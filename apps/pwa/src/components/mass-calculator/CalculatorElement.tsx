@@ -1,8 +1,8 @@
 import * as React from "react";
-import Button from "@/components/shared/button/Button";
-import { useLocale } from "@/hooks/useLocale";
-import { useElements } from "@/hooks/useElements";
-import { cn } from "@/utils/styles";
+import Button from "#src/components/shared/button/Button";
+import { useLocale } from "#src/hooks/useLocale";
+import { useElements } from "#src/hooks/useElements";
+import { cn } from "#src/utils/styles";
 
 interface CalculatorElementProps {
   atomic: number;

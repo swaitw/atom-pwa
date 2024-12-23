@@ -1,8 +1,8 @@
 import * as React from "react";
 import anime from "animejs";
-import useLatestRef from "@/hooks/useLatestRef";
+import useLatestRef from "#src/hooks/useLatestRef";
 
-import { cn } from "@/utils/styles";
+import { cn } from "#src/utils/styles";
 
 interface ListItemSwipeActionProps {
   onAction?: () => void;

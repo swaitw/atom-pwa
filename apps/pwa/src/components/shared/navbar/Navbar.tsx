@@ -1,6 +1,6 @@
-import { useLocale } from "@/hooks/useLocale";
-import IconButton from "@/components/shared/icon-button/IconButton";
-import { cn } from "@/utils/styles";
+import { useLocale } from "#src/hooks/useLocale";
+import IconButton from "#src/components/shared/icon-button/IconButton";
+import { cn } from "#src/utils/styles";
 
 interface NavbarProps {
   title?: string;

@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Element } from "@/Element";
+import { Element } from "#src/Element";
 import { useSettings, Settings, ElementsSettings } from "./useSettings";
 import { useElements } from "./useElements";
 

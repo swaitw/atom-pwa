@@ -1,6 +1,6 @@
 import MiniSearch, { SearchOptions } from "minisearch";
-import { Element } from "@/Element";
-import { useLocale } from "@/hooks/useLocale";
+import { Element } from "#src/Element";
+import { useLocale } from "#src/hooks/useLocale";
 import * as React from "react";
 
 const elementsMap = import.meta.glob("../data/elements/*.json", {

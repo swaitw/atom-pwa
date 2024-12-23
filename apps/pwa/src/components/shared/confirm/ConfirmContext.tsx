@@ -1,9 +1,9 @@
 import * as React from "react";
-import Button from "@/components/shared/button/Button";
-import { useUnmounted } from "@/hooks/useUnmounted";
-import SwipeableModal from "@/components/shared/swipeable-modal/SwipeableModal";
-import Icon from "@/components/shared/icon/Icon";
-import { useLocale } from "@/hooks/useLocale";
+import Button from "#src/components/shared/button/Button";
+import { useUnmounted } from "#src/hooks/useUnmounted";
+import SwipeableModal from "#src/components/shared/swipeable-modal/SwipeableModal";
+import Icon from "#src/components/shared/icon/Icon";
+import { useLocale } from "#src/hooks/useLocale";
 
 export interface ConfirmAction<T = unknown, C = unknown> {
   title: string;

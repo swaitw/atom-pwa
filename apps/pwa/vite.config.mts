@@ -56,9 +56,6 @@ export default defineConfig({
       }),
   ],
   resolve: {
-    alias: {
-      "@": path.resolve("./src"),
-    },
     dedupe: ["react", "react-dom"],
   },
   server: {

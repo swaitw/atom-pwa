@@ -1,5 +1,5 @@
-import hub from "@/data/hub/hub.json";
-import { useLocale } from "@/hooks/useLocale";
+import hub from "#src/data/hub/hub.json";
+import { useLocale } from "#src/hooks/useLocale";
 import { useMemo } from "react";
 
 export interface HubSectionData {

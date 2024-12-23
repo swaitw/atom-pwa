@@ -1,14 +1,14 @@
-import Atom from "@/components/atom";
-import PeriodicTable from "@/components/periodic-table/PeriodicTable";
-import PtElementInfo from "@/components/pt-element/PtElementInfo";
-import { useSearchInput } from "@/components/search-view/useSearchInput";
-import Icon from "@/components/shared/icon/Icon";
-import { useElements } from "@/hooks/useElements";
-import { useLocale } from "@/hooks/useLocale";
-import { usePreventDocumentOverscroll } from "@/hooks/usePreventDocumentOverscroll";
-import { useAddRecent } from "@/hooks/useRecent";
-import { useShouldAnimate } from "@/hooks/useShouldAnimate";
-import { cn } from "@/utils/styles";
+import Atom from "#src/components/atom";
+import PeriodicTable from "#src/components/periodic-table/PeriodicTable";
+import PtElementInfo from "#src/components/pt-element/PtElementInfo";
+import { useSearchInput } from "#src/components/search-view/useSearchInput";
+import Icon from "#src/components/shared/icon/Icon";
+import { useElements } from "#src/hooks/useElements";
+import { useLocale } from "#src/hooks/useLocale";
+import { usePreventDocumentOverscroll } from "#src/hooks/usePreventDocumentOverscroll";
+import { useAddRecent } from "#src/hooks/useRecent";
+import { useShouldAnimate } from "#src/hooks/useShouldAnimate";
+import { cn } from "#src/utils/styles";
 import {
   Button,
   Dialog,

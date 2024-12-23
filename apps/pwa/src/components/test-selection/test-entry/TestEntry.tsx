@@ -1,9 +1,9 @@
 import * as React from "react";
-import { useLocale } from "@/hooks/useLocale";
-import Button from "@/components/shared/button/Button";
-import Card from "@/components/shared/card/Card";
-import IconButton from "@/components/shared/icon-button/IconButton";
-import Icon from "@/components/shared/icon/Icon";
+import { useLocale } from "#src/hooks/useLocale";
+import Button from "#src/components/shared/button/Button";
+import Card from "#src/components/shared/card/Card";
+import IconButton from "#src/components/shared/icon-button/IconButton";
+import Icon from "#src/components/shared/icon/Icon";
 
 interface TestEntryProps {
   title: string;

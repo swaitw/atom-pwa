@@ -1,8 +1,8 @@
 import * as React from "react";
-import { useElements } from "@/hooks/useElements";
-import Icon from "@/components/shared/icon/Icon";
+import { useElements } from "#src/hooks/useElements";
+import Icon from "#src/components/shared/icon/Icon";
 import { PtElementInfoProps } from "./PtElementInfo";
-import { cn } from "@/utils/styles";
+import { cn } from "#src/utils/styles";
 
 export interface PtElementTestProps extends PtElementInfoProps {
   discovered: boolean;

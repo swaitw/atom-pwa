@@ -1,21 +1,21 @@
 import * as React from "react";
 import { useNavigate } from "react-router-dom";
-import { Element } from "@/Element";
-import { ElementsSettings } from "@/hooks/useSettings";
-import { useElements } from "@/hooks/useElements";
-import { useLocale } from "@/hooks/useLocale";
-import { TEST_SELECTION, TEST_VALENCES_SETTINGS } from "@/routes";
-import { shuffle } from "@/utils/shuffle";
-import { Answer } from "@/components/questions-test/question-card/question-card-answer/QuestionCardAnswer";
-import { Question } from "@/components/questions-test/question-card/QuestionCard";
-import QuestionsTest from "@/components/questions-test/QuestionsTest";
-import Card from "@/components/shared/card/Card";
-import Navbar from "@/components/shared/navbar/Navbar";
-import QuizResults from "@/components/quiz-results/QuizResults";
+import { Element } from "#src/Element";
+import { ElementsSettings } from "#src/hooks/useSettings";
+import { useElements } from "#src/hooks/useElements";
+import { useLocale } from "#src/hooks/useLocale";
+import { TEST_SELECTION, TEST_VALENCES_SETTINGS } from "#src/routes";
+import { shuffle } from "#src/utils/shuffle";
+import { Answer } from "#src/components/questions-test/question-card/question-card-answer/QuestionCardAnswer";
+import { Question } from "#src/components/questions-test/question-card/QuestionCard";
+import QuestionsTest from "#src/components/questions-test/QuestionsTest";
+import Card from "#src/components/shared/card/Card";
+import Navbar from "#src/components/shared/navbar/Navbar";
+import QuizResults from "#src/components/quiz-results/QuizResults";
 import { useValencesTestSettings } from "./hooks/useValencesTestSettings";
-import { useAddRecent } from "@/hooks/useRecent";
-import { useConfirm } from "@/components/shared/confirm";
-import { usePreventDocumentOverscroll } from "@/hooks/usePreventDocumentOverscroll";
+import { useAddRecent } from "#src/hooks/useRecent";
+import { useConfirm } from "#src/components/shared/confirm";
+import { usePreventDocumentOverscroll } from "#src/hooks/usePreventDocumentOverscroll";
 
 interface ValencesTestQuestion extends Question {
   data: Element;

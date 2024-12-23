@@ -1,5 +1,5 @@
-import Modal from "@/components/shared/modal/Modal";
-import ElementPicker from "@/components/element-picker/ElementPicker";
+import Modal from "#src/components/shared/modal/Modal";
+import ElementPicker from "#src/components/element-picker/ElementPicker";
 
 interface AddElementModalProps {
   isOpen: boolean;

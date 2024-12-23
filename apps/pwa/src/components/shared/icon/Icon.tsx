@@ -1,6 +1,6 @@
 import * as React from "react";
 import invariant from "invariant";
-import { cn } from "@/utils/styles";
+import { cn } from "#src/utils/styles";
 
 const iconMap = import.meta.glob<
   true,

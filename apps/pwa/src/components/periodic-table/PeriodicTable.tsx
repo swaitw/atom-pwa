@@ -1,8 +1,8 @@
 import * as React from "react";
 
-import periodicTableData from "@/data/pt.json";
+import periodicTableData from "#src/data/pt.json";
 import { TransformComponent, TransformWrapper } from "react-zoom-pan-pinch";
-import { cn } from "@/utils/styles";
+import { cn } from "#src/utils/styles";
 
 type ElementRendered = (elementId: number) => React.ReactNode;
 interface PeriodicTableProps {

@@ -1,11 +1,11 @@
 import anime from "animejs";
 import * as React from "react";
-import Portal from "@/components/shared/portal/Portal";
-import IconButton from "@/components/shared/icon-button/IconButton";
-import { ModalProps } from "@/components/shared/modal/Modal";
-import Overlay from "@/components/shared/overlay/Overlay";
-import { useLocale } from "@/hooks/useLocale";
-import { cn } from "@/utils/styles";
+import Portal from "#src/components/shared/portal/Portal";
+import IconButton from "#src/components/shared/icon-button/IconButton";
+import { ModalProps } from "#src/components/shared/modal/Modal";
+import Overlay from "#src/components/shared/overlay/Overlay";
+import { useLocale } from "#src/hooks/useLocale";
+import { cn } from "#src/utils/styles";
 
 type ModalContentProps = Omit<ModalProps, "open">;
 

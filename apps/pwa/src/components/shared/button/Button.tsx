@@ -1,5 +1,5 @@
 import * as React from "react";
-import { cn } from "@/utils/styles";
+import { cn } from "#src/utils/styles";
 
 export interface ButtonProps {
   className?: string;

@@ -1,5 +1,5 @@
-import NativeBridge from "@/NativeBridge";
-import { useLocalStorage } from "@/hooks/useLocalStorage";
+import NativeBridge from "#src/NativeBridge";
+import { useLocalStorage } from "#src/hooks/useLocalStorage";
 import { useCallback } from "react";
 
 export interface RateAppConfig {

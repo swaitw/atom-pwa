@@ -1,4 +1,4 @@
-import { cn } from "@/utils/styles";
+import { cn } from "#src/utils/styles";
 
 export type AtomColorVariant = "primary" | "white" | "black" | "inherit";
 

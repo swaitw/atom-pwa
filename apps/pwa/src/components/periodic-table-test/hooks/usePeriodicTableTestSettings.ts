@@ -1,4 +1,4 @@
-import { useTestSettings } from "@/hooks/useTestSettings";
+import { useTestSettings } from "#src/hooks/useTestSettings";
 import { useCallback } from "react";
 
 export function usePeriodicTableTestSettings() {

@@ -1,9 +1,9 @@
 import * as React from "react";
 import { screen } from "@testing-library/react";
-import { render } from "@/test-utils";
+import { render } from "#src/test-utils";
 import PtElementTest from "./PtElementTest";
-import IRON_ELEMENT from "@/data/elements/26.json";
-import { Element } from "@/Element";
+import IRON_ELEMENT from "#src/data/elements/26.json";
+import { Element } from "#src/Element";
 
 const element = IRON_ELEMENT as unknown as Element;
 

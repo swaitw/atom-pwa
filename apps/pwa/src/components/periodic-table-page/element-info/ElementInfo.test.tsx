@@ -1,9 +1,9 @@
 import * as React from "react";
 import ElementInfo from "./ElementInfo";
 import { screen } from "@testing-library/react";
-import { render } from "@/test-utils";
-import THALLIUM_ELEMENT from "@/data/elements/81.json";
-import { Element } from "@/Element";
+import { render } from "#src/test-utils";
+import THALLIUM_ELEMENT from "#src/data/elements/81.json";
+import { Element } from "#src/Element";
 
 const element = THALLIUM_ELEMENT as unknown as Element;
 

@@ -3,7 +3,7 @@ import { screen } from "@testing-library/react";
 import { userEvent } from "@testing-library/user-event";
 import PeriodicTablePage from "./PeriodicTablePage";
 import "hammerjs";
-import { render } from "@/test-utils";
+import { render } from "#src/test-utils";
 
 test("should be able to navigate back to main menu", async () => {
   const { route } = render(<PeriodicTablePage />, {

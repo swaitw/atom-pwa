@@ -1,4 +1,4 @@
-import { logEvent } from "@/services/spycat";
+import { logEvent } from "#src/services/spycat";
 import { SearchResult as MiniSearchResult } from "minisearch";
 import { useEffect, useMemo } from "react";
 import { useElements } from "./useElements";

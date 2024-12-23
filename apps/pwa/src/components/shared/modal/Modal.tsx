@@ -1,8 +1,8 @@
 import { useEffect, ReactNode } from "react";
-import Portal from "@/components/shared/portal/Portal";
-import IconButton from "@/components/shared/icon-button/IconButton";
-import Overlay from "@/components/shared/overlay/Overlay";
-import { cn } from "@/utils/styles";
+import Portal from "#src/components/shared/portal/Portal";
+import IconButton from "#src/components/shared/icon-button/IconButton";
+import Overlay from "#src/components/shared/overlay/Overlay";
+import { cn } from "#src/utils/styles";
 
 export interface ModalProps {
   open: boolean;

@@ -1,5 +1,5 @@
-import Button from "@/components/shared/button/Button";
-import Modal, { ModalProps } from "@/components/shared/modal/Modal";
+import Button from "#src/components/shared/button/Button";
+import Modal, { ModalProps } from "#src/components/shared/modal/Modal";
 
 export interface SelectorModalOption {
   key: string;

@@ -1,4 +1,4 @@
-import NativeBridge from "@/NativeBridge";
+import NativeBridge from "#src/NativeBridge";
 import { DEFAULT_LOCALE } from "./defaultLocale";
 
 export function getBrowserLocale() {

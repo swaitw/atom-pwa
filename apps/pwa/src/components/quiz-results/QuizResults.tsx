@@ -1,10 +1,10 @@
-import { logEvent } from "@/services/spycat";
+import { logEvent } from "#src/services/spycat";
 import * as React from "react";
-import { useLocale } from "@/hooks/useLocale";
-import { useRateApp } from "@/hooks/useRateApp";
-import { cn } from "@/utils/styles";
-import Button from "@/components/shared/button/Button";
-import Icon from "@/components/shared/icon/Icon";
+import { useLocale } from "#src/hooks/useLocale";
+import { useRateApp } from "#src/hooks/useRateApp";
+import { cn } from "#src/utils/styles";
+import Button from "#src/components/shared/button/Button";
+import Icon from "#src/components/shared/icon/Icon";
 
 export interface TestResultsProps {
   gaTestName: string;

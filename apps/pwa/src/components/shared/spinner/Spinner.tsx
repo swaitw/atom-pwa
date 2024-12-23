@@ -1,4 +1,4 @@
-import { cn } from "@/utils/styles";
+import { cn } from "#src/utils/styles";
 
 interface SpinnerProps {
   className?: string;

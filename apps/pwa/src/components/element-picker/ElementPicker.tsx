@@ -1,11 +1,11 @@
 import { useState, useRef, useEffect, useCallback } from "react";
 import HyperScroller, { HyperScrollerCache } from "react-hyper-scroller";
-import { Element } from "@/Element";
-import { useElements } from "@/hooks/useElements";
-import { useLocale } from "@/hooks/useLocale";
-import Button from "@/components/shared/button/Button";
-import Icon from "@/components/shared/icon/Icon";
-import { cn } from "@/utils/styles";
+import { Element } from "#src/Element";
+import { useElements } from "#src/hooks/useElements";
+import { useLocale } from "#src/hooks/useLocale";
+import Button from "#src/components/shared/button/Button";
+import Icon from "#src/components/shared/icon/Icon";
+import { cn } from "#src/utils/styles";
 
 interface ElementPickerProps {
   onElement: (element: Element) => void;

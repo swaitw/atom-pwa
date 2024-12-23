@@ -1,4 +1,4 @@
-import NativeBridge from "@/NativeBridge";
+import NativeBridge from "#src/NativeBridge";
 import { create } from "zustand";
 
 const REMOTE_FLAGS_SERVICE_ENDPOINT = String(

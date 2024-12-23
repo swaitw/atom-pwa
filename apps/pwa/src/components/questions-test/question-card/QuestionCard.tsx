@@ -1,9 +1,9 @@
 import * as React from "react";
-import Card from "@/components/shared/card/Card";
+import Card from "#src/components/shared/card/Card";
 import QuestionCardAnswer, {
   Answer,
 } from "./question-card-answer/QuestionCardAnswer";
-import { cn } from "@/utils/styles";
+import { cn } from "#src/utils/styles";
 
 export interface Question {
   question: string;

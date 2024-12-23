@@ -1,13 +1,13 @@
 import * as React from "react";
 import { useNavigate } from "react-router-dom";
-import { useLocale } from "@/hooks/useLocale";
-import { TEST_SELECTION } from "@/routes";
-import IconButton from "@/components/shared/icon-button/IconButton";
-import Navbar from "@/components/shared/navbar/Navbar";
-import { usePeriodicTableTestSettings } from "@/components/periodic-table-test/hooks/usePeriodicTableTestSettings";
-import { useElements } from "@/hooks/useElements";
-import PtElementSetting from "@/components/pt-element/PtElementSetting";
-import PeriodicTable from "@/components/periodic-table/PeriodicTable";
+import { useLocale } from "#src/hooks/useLocale";
+import { TEST_SELECTION } from "#src/routes";
+import IconButton from "#src/components/shared/icon-button/IconButton";
+import Navbar from "#src/components/shared/navbar/Navbar";
+import { usePeriodicTableTestSettings } from "#src/components/periodic-table-test/hooks/usePeriodicTableTestSettings";
+import { useElements } from "#src/hooks/useElements";
+import PtElementSetting from "#src/components/pt-element/PtElementSetting";
+import PeriodicTable from "#src/components/periodic-table/PeriodicTable";
 
 function PeriodicTableTestSettings() {
   const navigate = useNavigate();

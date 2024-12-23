@@ -1,6 +1,6 @@
 import * as React from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
-import { useLocale } from "@/hooks/useLocale";
+import { useLocale } from "#src/hooks/useLocale";
 
 export function useSearchInput(type: "push" | "replace") {
   const { i18n } = useLocale();

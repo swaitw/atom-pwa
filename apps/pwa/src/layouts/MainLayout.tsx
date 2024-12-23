@@ -1,7 +1,7 @@
-import Icon from "@/components/shared/icon/Icon";
-import { useLocale } from "@/hooks/useLocale";
-import { useShouldAnimate } from "@/hooks/useShouldAnimate";
-import { cn } from "@/utils/styles";
+import Icon from "#src/components/shared/icon/Icon";
+import { useLocale } from "#src/hooks/useLocale";
+import { useShouldAnimate } from "#src/hooks/useShouldAnimate";
+import { cn } from "#src/utils/styles";
 import { Button } from "react-aria-components";
 import { useNavigate, useMatch, Outlet } from "react-router-dom";
 

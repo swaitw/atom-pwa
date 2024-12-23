@@ -6,7 +6,7 @@ import {
 } from "@testing-library/react";
 import { userEvent } from "@testing-library/user-event";
 import PeriodicTableTestSettings from "./PeriodicTableTestSettings";
-import { render } from "@/test-utils";
+import { render } from "#src/test-utils";
 
 window.scrollTo = vi.fn() as unknown as typeof window.scrollTo;
 

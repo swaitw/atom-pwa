@@ -1,8 +1,8 @@
 import { useCallback, useMemo } from "react";
 import invariant from "invariant";
-import localePercentages from "@/locales/percentages.json";
+import localePercentages from "#src/locales/percentages.json";
 import { useSettings } from "./useSettings";
-import { DEFAULT_LOCALE } from "@/services/locale/defaultLocale";
+import { DEFAULT_LOCALE } from "#src/services/locale/defaultLocale";
 
 export const SUPPORTED_LOCALES = Object.entries(localePercentages)
   .filter(([, percentage]) => percentage >= 85)

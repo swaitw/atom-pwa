@@ -1,6 +1,6 @@
 import * as React from "react";
 import { screen } from "@testing-library/react";
-import { render, waitMs } from "@/test-utils";
+import { render, waitMs } from "#src/test-utils";
 import { userEvent } from "@testing-library/user-event";
 import LocaleSelector from "./LocaleSelector";
 

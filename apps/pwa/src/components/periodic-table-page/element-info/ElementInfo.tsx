@@ -1,7 +1,7 @@
-import { Element } from "@/Element";
-import { useElements } from "@/hooks/useElements";
-import { useLocale } from "@/hooks/useLocale";
-import { cn } from "@/utils/styles";
+import { Element } from "#src/Element";
+import { useElements } from "#src/hooks/useElements";
+import { useLocale } from "#src/hooks/useLocale";
+import { cn } from "#src/utils/styles";
 
 interface ElementInfoDataEntryProps {
   name: string;

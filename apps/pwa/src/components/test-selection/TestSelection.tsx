@@ -1,10 +1,10 @@
 import * as React from "react";
 import { useNavigate } from "react-router-dom";
-import { useLocale } from "@/hooks/useLocale";
-import { HUB } from "@/routes";
-import Navbar from "@/components/shared/navbar/Navbar";
+import { useLocale } from "#src/hooks/useLocale";
+import { HUB } from "#src/routes";
+import Navbar from "#src/components/shared/navbar/Navbar";
 import TestEntry from "./test-entry/TestEntry";
-import { useAddRecent } from "@/hooks/useRecent";
+import { useAddRecent } from "#src/hooks/useRecent";
 
 function TestSelection() {
   const { i18n } = useLocale();

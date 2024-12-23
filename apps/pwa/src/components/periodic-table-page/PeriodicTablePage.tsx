@@ -1,16 +1,16 @@
 import * as React from "react";
 import { Outlet, useNavigate, useParams } from "react-router-dom";
-import { Element } from "@/Element";
-import { useElements } from "@/hooks/useElements";
-import { useLocale } from "@/hooks/useLocale";
-import { HUB, PERIODIC_TABLE } from "@/routes";
-import PeriodicTable from "@/components/periodic-table/PeriodicTable";
-import PtElementInfo from "@/components/pt-element/PtElementInfo";
-import Navbar from "@/components/shared/navbar/Navbar";
-import SwipeableModal from "@/components/shared/swipeable-modal/SwipeableModal";
+import { Element } from "#src/Element";
+import { useElements } from "#src/hooks/useElements";
+import { useLocale } from "#src/hooks/useLocale";
+import { HUB, PERIODIC_TABLE } from "#src/routes";
+import PeriodicTable from "#src/components/periodic-table/PeriodicTable";
+import PtElementInfo from "#src/components/pt-element/PtElementInfo";
+import Navbar from "#src/components/shared/navbar/Navbar";
+import SwipeableModal from "#src/components/shared/swipeable-modal/SwipeableModal";
 import ElementInfo from "./element-info/ElementInfo";
-import { useAddRecent } from "@/hooks/useRecent";
-import { usePreventDocumentOverscroll } from "@/hooks/usePreventDocumentOverscroll";
+import { useAddRecent } from "#src/hooks/useRecent";
+import { usePreventDocumentOverscroll } from "#src/hooks/usePreventDocumentOverscroll";
 
 function PeriodicTablePage() {
   const navigate = useNavigate();
