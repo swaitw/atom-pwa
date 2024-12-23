@@ -87,8 +87,8 @@ importers:
         specifier: 6.28.0
         version: 6.28.0(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       react-zoom-pan-pinch:
-        specifier: ^3.0.7
-        version: 3.0.7(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+        specifier: ^3.5.1
+        version: 3.5.1(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       tailwind-merge:
         specifier: 2.5.5
         version: 2.5.5
@@ -7053,8 +7053,8 @@ packages:
     peerDependencies:
       react: ^18
 
-  react-zoom-pan-pinch@3.0.7:
-    resolution: {integrity: sha512-UJkk1Z7BMPIgfY+Qu4jGTlj+UyZQhrpJeCuK1gg31x57i3p8h4ZXfYWu3dFIiR+uRgfoe/koziwgCjA//T1rKA==}
+  react-zoom-pan-pinch@3.5.1:
+    resolution: {integrity: sha512-Ehak8lZUwM4SH+19sQzVa7S95QdRTXjIdJRiVzlpYlCFjXCw1k+Eh/RdeytaiarqDEZdEfSoV7FSOqtsRTC9cg==}
     engines: {node: '>=8', npm: '>=5'}
     peerDependencies:
       react: ^18
@@ -16966,7 +16966,7 @@ snapshots:
       '@react-types/shared': 3.26.0(react@18.2.0)
       react: 18.2.0
 
-  react-zoom-pan-pinch@3.0.7(react-dom@18.2.0(react@18.2.0))(react@18.2.0):
+  react-zoom-pan-pinch@3.5.1(react-dom@18.2.0(react@18.2.0))(react@18.2.0):
     dependencies:
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)

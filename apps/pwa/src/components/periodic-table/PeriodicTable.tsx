@@ -183,6 +183,15 @@ function PeriodicTable({ elementRenderer, className }: PeriodicTableProps) {
           disabled: true,
         }}
         ref={reactZoomRef}
+        wheel={{
+          step: 0.2,
+          smoothStep: 0.001,
+        }}
+        panning={{
+          allowRightClickPan: false,
+          allowMiddleClickPan: false,
+          velocityDisabled: true,
+        }}
       >
         <TransformComponent
           contentStyle={{ width: "100%", height: "100%" }}
