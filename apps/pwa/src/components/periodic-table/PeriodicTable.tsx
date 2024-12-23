@@ -11,18 +11,38 @@ interface PeriodicTableProps {
 }
 
 function EmptyCell() {
-  return <div className="table-cell" aria-hidden={true} />;
+  return (
+    <div
+      className="table-cell border-l border-t dark:border-accent-400/20"
+      aria-hidden={true}
+    />
+  );
 }
 
 function EmptyElement() {
   return (
-    <div className="table-cell min-h-[72px] min-w-[72px]" aria-hidden={true} />
+    <div
+      className="table-cell min-h-[72px] min-w-[72px] border-l border-t dark:border-accent-400/20"
+      aria-hidden={true}
+    />
   );
 }
 
-function LabelCell({ children }: { children?: React.ReactNode }) {
+function LabelCell({
+  children,
+  border,
+}: {
+  children?: React.ReactNode;
+  border: "left" | "top" | "none";
+}) {
   return (
-    <div className="table-cell h-6 min-w-6 bg-accent-50 text-center align-middle text-sm font-semibold text-accent-950 text-opacity-40 dark:bg-accent-950/80 dark:text-accent-50 dark:text-opacity-80">
+    <div
+      className={cn(
+        "table-cell h-6 min-w-6 bg-accent-50 text-center align-middle text-sm font-semibold text-accent-950 text-opacity-40 dark:border-accent-400/20 dark:bg-accent-950/80 dark:text-accent-50 dark:text-opacity-80",
+        border === "top" && "border-t",
+        border === "left" && "border-l",
+      )}
+    >
       {children}
     </div>
   );
@@ -31,25 +51,25 @@ function LabelCell({ children }: { children?: React.ReactNode }) {
 function buildTable(elementRenderer: ElementRendered) {
   const rows: JSX.Element[] = [
     <div key="row-head" className="table-row">
-      <LabelCell />
-      <LabelCell>1</LabelCell>
-      <LabelCell>2</LabelCell>
-      <LabelCell>3</LabelCell>
-      <LabelCell>4</LabelCell>
-      <LabelCell>5</LabelCell>
-      <LabelCell>6</LabelCell>
-      <LabelCell>7</LabelCell>
-      <LabelCell>8</LabelCell>
-      <LabelCell>9</LabelCell>
-      <LabelCell>10</LabelCell>
-      <LabelCell>11</LabelCell>
-      <LabelCell>12</LabelCell>
-      <LabelCell>13</LabelCell>
-      <LabelCell>14</LabelCell>
-      <LabelCell>15</LabelCell>
-      <LabelCell>16</LabelCell>
-      <LabelCell>17</LabelCell>
-      <LabelCell>18</LabelCell>
+      <LabelCell border="none" />
+      <LabelCell border="left">1</LabelCell>
+      <LabelCell border="left">2</LabelCell>
+      <LabelCell border="left">3</LabelCell>
+      <LabelCell border="left">4</LabelCell>
+      <LabelCell border="left">5</LabelCell>
+      <LabelCell border="left">6</LabelCell>
+      <LabelCell border="left">7</LabelCell>
+      <LabelCell border="left">8</LabelCell>
+      <LabelCell border="left">9</LabelCell>
+      <LabelCell border="left">10</LabelCell>
+      <LabelCell border="left">11</LabelCell>
+      <LabelCell border="left">12</LabelCell>
+      <LabelCell border="left">13</LabelCell>
+      <LabelCell border="left">14</LabelCell>
+      <LabelCell border="left">15</LabelCell>
+      <LabelCell border="left">16</LabelCell>
+      <LabelCell border="left">17</LabelCell>
+      <LabelCell border="left">18</LabelCell>
     </div>,
   ];
 
@@ -60,10 +80,10 @@ function buildTable(elementRenderer: ElementRendered) {
       <div className="table-row" key={`row-${i}`}>
         {i <= 6 ? (
           // TODO: localize "Period N"
-          <LabelCell>{i + 1}</LabelCell>
+          <LabelCell border="top">{i + 1}</LabelCell>
         ) : (
           // TODO: localize and label "Lanthanides" and "Actinides"
-          <LabelCell />
+          <LabelCell border="top" />
         )}
 
         {row.map((element, index) => {
@@ -80,7 +100,10 @@ function buildTable(elementRenderer: ElementRendered) {
           }
 
           return (
-            <div className="table-cell" key={`row-${i}-cell-${index}`}>
+            <div
+              className="table-cell border-l border-t dark:border-accent-400/20"
+              key={`row-${i}-cell-${index}`}
+            >
               {elementRenderer(element)}
             </div>
           );
@@ -123,7 +146,13 @@ function PeriodicTable({ elementRenderer, className }: PeriodicTableProps) {
       >
         <div
           className={cn(
-            "table h-full max-h-[696px] w-full max-w-[1320px] overflow-auto bg-white dark:bg-accent-900/80",
+            "pointer-events-none absolute h-[100px] w-[100px] bg-[radial-gradient(circle,_rgba(255,255,255,1)_0%,_transparent_100%)] blur-2xl",
+          )}
+        />
+
+        <div
+          className={cn(
+            "table h-full max-h-[696px] w-full max-w-[1320px] overflow-auto",
             className,
           )}
         >

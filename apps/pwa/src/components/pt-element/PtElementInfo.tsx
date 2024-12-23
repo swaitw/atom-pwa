@@ -27,7 +27,7 @@ function PtElementInfo({ element, onClick }: PtElementInfoProps) {
       }}
       onClick={onElementButtonClick}
       className={cn(
-        "relative block h-full min-h-[72px] w-full min-w-[72px] select-none p-2 font-semibold transition-none",
+        "relative block h-full min-h-[72px] w-full min-w-[72px] select-none p-2 font-semibold transition-none dark:!bg-accent-900",
         "element",
         element.group,
       )}
