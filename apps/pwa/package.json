@@ -4,6 +4,10 @@
   "author": "Horus Lugo <horusgoul@gmail.com>",
   "license": "MIT",
   "private": true,
+  "type": "module",
+  "imports": {
+    "#*": "./*"
+  },
   "scripts": {
     "dev": "netlify dev",
     "prebuild": "rimraf dist",

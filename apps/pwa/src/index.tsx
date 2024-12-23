@@ -10,6 +10,9 @@ import { initSentry } from "@/services/sentry";
 import { loadFlags } from "@/services/flags";
 import App from "./components/App";
 import invariant from "invariant";
+import { I18nProvider } from "@lingui/react";
+import { i18n } from "@lingui/core";
+import { messages as enMessages } from "#locale/en/messages.po";
 
 if (import.meta.env.DEV) {
   import("./index.css");
@@ -22,10 +25,15 @@ const rootElement = document.getElementById("root");
 
 invariant(rootElement, "Root element not found");
 
+i18n.load("en", enMessages);
+i18n.activate("en");
+
 ReactDOM.createRoot(rootElement).render(
-  <BrowserRouter basename="/" future={{ v7_startTransition: true }}>
-    <App />
-  </BrowserRouter>,
+  <I18nProvider i18n={i18n}>
+    <BrowserRouter basename="/" future={{ v7_startTransition: true }}>
+      <App />
+    </BrowserRouter>
+  </I18nProvider>,
 );
 
 let preview = false;
