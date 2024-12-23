@@ -1,7 +1,11 @@
 import * as React from "react";
 
 import periodicTableData from "#src/data/pt.json";
-import { TransformComponent, TransformWrapper } from "react-zoom-pan-pinch";
+import {
+  ReactZoomPanPinchContentRef,
+  TransformComponent,
+  TransformWrapper,
+} from "react-zoom-pan-pinch";
 import { cn } from "#src/utils/styles";
 
 type ElementRendered = (elementId: number) => React.ReactNode;
@@ -132,51 +136,91 @@ function PeriodicTable({ elementRenderer, className }: PeriodicTableProps) {
     return () => window.cancelAnimationFrame(requestAnimationFrame);
   }, []);
   const lightRef = React.useRef<HTMLDivElement>(null);
+  const lightContainerRef = React.useRef<HTMLDivElement>(null);
+  const reactZoomRef = React.useRef<ReactZoomPanPinchContentRef>(null);
+  const tableRef = React.useRef<HTMLDivElement>(null);
 
   if (!render) {
     return <div className="flex h-full w-full items-center justify-center" />;
   }
 
-  function onMouseOver(e: React.MouseEvent<HTMLDivElement>) {
+  function onPointerMove(e: React.PointerEvent<HTMLDivElement>) {
+    const table = tableRef.current;
+
+    if (!table) {
+      return;
+    }
+
+    if (e.pointerType !== "mouse") {
+      return;
+    }
+
+    const tableRect = table.getBoundingClientRect();
     const absX = e.clientX;
     const absY = e.clientY;
+    const relX = absX - tableRect.x;
+    const relY = absY - tableRect.y;
+    const scale = reactZoomRef.current?.instance?.transformState.scale ?? 1;
 
-    if (lightRef.current) {
-      lightRef.current.style.left = `${absX - 100}px`;
-      lightRef.current.style.top = `${absY - 100}px`;
+    const lightSize = 200;
+    const x = relX / scale - lightSize / 2;
+    const y = relY / scale - lightSize / 2;
+
+    if (lightRef.current && lightContainerRef.current) {
+      lightContainerRef.current.style.width = tableRect.width + "px";
+      lightContainerRef.current.style.height = tableRect.height + "px";
+      lightRef.current.style.left = x + "px";
+      lightRef.current.style.top = y + "px";
     }
   }
 
   return (
-    <TransformWrapper
-      minScale={0.2}
-      limitToBounds={false}
-      doubleClick={{
-        disabled: true,
-      }}
-    >
-      <TransformComponent
-        contentStyle={{ width: "100%", height: "100%" }}
-        wrapperStyle={{ width: "100%", height: "100%" }}
+    <>
+      <TransformWrapper
+        minScale={0.2}
+        limitToBounds={false}
+        doubleClick={{
+          disabled: true,
+        }}
+        ref={reactZoomRef}
       >
-        <div
-          ref={lightRef}
-          className={cn(
-            "pointer-events-none absolute h-[200px] w-[200px] bg-[radial-gradient(circle,_rgba(255,255,255,1)_0%,_transparent_100%)] blur-2xl",
-          )}
-        />
-
-        <div
-          className={cn(
-            "table h-full max-h-[696px] w-full max-w-[1320px] overflow-auto",
-            className,
-          )}
-          onMouseOver={onMouseOver}
+        <TransformComponent
+          contentStyle={{ width: "100%", height: "100%" }}
+          wrapperStyle={{ width: "100%", height: "100%" }}
+          wrapperProps={{
+            onPointerMove,
+          }}
         >
-          {buildTable(elementRenderer)}
-        </div>
-      </TransformComponent>
-    </TransformWrapper>
+          <div
+            className={cn(
+              "absolute overflow-hidden",
+              className,
+              "shadow-none",
+              "border-0",
+              "bg-transparent",
+            )}
+            ref={lightContainerRef}
+          >
+            <div
+              ref={lightRef}
+              className={cn(
+                "pointer-events-none absolute -left-full -top-full h-[200px] w-[200px] bg-[radial-gradient(circle,_oklch(var(--accent-400,_0.682_0.155_190.000)_/_1)_0%,_transparent_100%)] blur-2xl",
+              )}
+            />
+          </div>
+
+          <div
+            className={cn(
+              "table h-full max-h-[752px] w-full max-w-[1340px] overflow-auto",
+              className,
+            )}
+            ref={tableRef}
+          >
+            {buildTable(elementRenderer)}
+          </div>
+        </TransformComponent>
+      </TransformWrapper>
+    </>
   );
 }
 
