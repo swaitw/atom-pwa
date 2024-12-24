@@ -11,7 +11,7 @@
   "scripts": {
     "dev": "netlify dev",
     "prebuild": "rimraf dist",
-    "build": "pnpm typecheck; vite build && workbox generateSW workbox-config.js",
+    "build": "pnpm typecheck; vite build && workbox generateSW workbox-config.cjs",
     "lint": "eslint src --ext .ts,.tsx",
     "lint:fix": "pnpm lint --fix && prettier 'src/**/*' 'index.html' --write --ignore-unknown",
     "typecheck": "tsc --noEmit",
