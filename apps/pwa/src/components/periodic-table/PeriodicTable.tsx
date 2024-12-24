@@ -66,7 +66,9 @@ function GroupCell({ number, name }: { number: number; name: string }) {
 function buildTable(elementRenderer: ElementRendered) {
   const rows: JSX.Element[] = [
     <div key="row-head" className="table-row">
-      <div className="table-cell bg-accent-50 dark:bg-accent-950/80" />
+      <div className="table-cell bg-accent-50">
+        <div className="relative h-full w-full dark:bg-accent-950" />
+      </div>
       <GroupCell name="I A" number={1} />
       <GroupCell name="II A" number={2} />
       <GroupCell name="III B" number={3} />
