@@ -34,7 +34,7 @@ function EmptyElement() {
   );
 }
 
-function LabelCell({
+function PeriodCell({
   children,
   border,
 }: {
@@ -42,15 +42,22 @@ function LabelCell({
   border: "left" | "top" | "none";
 }) {
   return (
-    <div
-      className={cn(
-        "table-cell bg-accent-50 text-center align-middle text-sm font-semibold text-accent-950 text-opacity-40 dark:border-accent-400/20 dark:bg-accent-950/80 dark:text-accent-50 dark:text-opacity-80",
-        border === "top" && "border-t",
-        border === "left" && "border-l",
-      )}
-    >
-      <div className="relative flex h-full min-w-6 items-center justify-center dark:bg-accent-950">
-        <div>{children}</div>
+    <div className="table-cell border-t bg-accent-50 text-center align-middle font-semibold text-accent-950 text-opacity-40 dark:border-accent-400/20 dark:bg-accent-950/80 dark:text-accent-50 dark:text-opacity-80">
+      <div className="relative flex h-full w-9 items-center justify-center dark:bg-accent-950">
+        <div className="text-sm leading-none">{children}</div>
+      </div>
+    </div>
+  );
+}
+
+function GroupCell({ number, name }: { number: number; name: string }) {
+  return (
+    <div className="table-cell border-l bg-accent-50 text-center align-middle font-semibold text-accent-950 text-opacity-40 dark:border-accent-400/20 dark:bg-accent-950/80 dark:text-accent-50 dark:text-opacity-80">
+      <div className="relative flex h-9 flex-col items-center justify-center dark:bg-accent-950">
+        <span className="text-sm leading-none">{number}</span>
+        <span className="mt-0.5 font-serif text-xs leading-none opacity-50">
+          {name}
+        </span>
       </div>
     </div>
   );
@@ -59,25 +66,25 @@ function LabelCell({
 function buildTable(elementRenderer: ElementRendered) {
   const rows: JSX.Element[] = [
     <div key="row-head" className="table-row">
-      <LabelCell border="none" />
-      <LabelCell border="left">1</LabelCell>
-      <LabelCell border="left">2</LabelCell>
-      <LabelCell border="left">3</LabelCell>
-      <LabelCell border="left">4</LabelCell>
-      <LabelCell border="left">5</LabelCell>
-      <LabelCell border="left">6</LabelCell>
-      <LabelCell border="left">7</LabelCell>
-      <LabelCell border="left">8</LabelCell>
-      <LabelCell border="left">9</LabelCell>
-      <LabelCell border="left">10</LabelCell>
-      <LabelCell border="left">11</LabelCell>
-      <LabelCell border="left">12</LabelCell>
-      <LabelCell border="left">13</LabelCell>
-      <LabelCell border="left">14</LabelCell>
-      <LabelCell border="left">15</LabelCell>
-      <LabelCell border="left">16</LabelCell>
-      <LabelCell border="left">17</LabelCell>
-      <LabelCell border="left">18</LabelCell>
+      <div className="table-cell bg-accent-50 dark:bg-accent-950/80" />
+      <GroupCell name="I A" number={1} />
+      <GroupCell name="II A" number={2} />
+      <GroupCell name="III B" number={3} />
+      <GroupCell name="IV B" number={4} />
+      <GroupCell name="V B" number={5} />
+      <GroupCell name="VI B" number={6} />
+      <GroupCell name="VII B" number={7} />
+      <GroupCell name="VIII B" number={8} />
+      <GroupCell name="VIII B" number={9} />
+      <GroupCell name="VIII B" number={10} />
+      <GroupCell name="I B" number={11} />
+      <GroupCell name="II B" number={12} />
+      <GroupCell name="III A" number={13} />
+      <GroupCell name="IV A" number={14} />
+      <GroupCell name="V A" number={15} />
+      <GroupCell name="VI A" number={16} />
+      <GroupCell name="VII A" number={17} />
+      <GroupCell name="VIII A" number={18} />
     </div>,
   ];
 
@@ -88,10 +95,10 @@ function buildTable(elementRenderer: ElementRendered) {
       <div className="table-row" key={`row-${i}`}>
         {i <= 6 ? (
           // TODO: localize "Period N"
-          <LabelCell border="top">{i + 1}</LabelCell>
+          <PeriodCell border="top">{i + 1}</PeriodCell>
         ) : (
           // TODO: localize and label "Lanthanides" and "Actinides"
-          <LabelCell border="top" />
+          <PeriodCell border="top" />
         )}
 
         {row.map((element, index) => {
