@@ -191,6 +191,7 @@ function PeriodicTable({ elementRenderer, className }: PeriodicTableProps) {
           allowRightClickPan: false,
           allowMiddleClickPan: false,
           velocityDisabled: true,
+          excluded: ["element"],
         }}
       >
         <TransformComponent
