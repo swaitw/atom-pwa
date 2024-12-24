@@ -13,31 +13,32 @@ function PtElementInfo({ element, onClick }: PtElementInfoProps) {
   const elementLocales = getElementLocales(element);
 
   return (
-    <Button
-      onPress={() => {
-        onClick?.(element);
-      }}
+    <div
       className={cn(
-        "relative block h-full min-h-[72px] w-full min-w-[72px] select-none p-2 font-semibold transition-colors dark:!bg-accent-900/90",
+        "relative block h-full min-h-[72px] w-full min-w-[72px] select-none overflow-hidden p-2 font-semibold transition-colors dark:!bg-accent-900/90",
         "element",
         element.group,
-        "group outline-none focus-visible:z-10 focus-visible:outline-current pressed:dark:!bg-accent-900/90",
       )}
     >
-      <div className="absolute inset-0 h-full w-full transition-transform [.group[data-pressed]_&]:scale-90">
-        <div className="absolute left-1 top-1 text-left text-xs">
+      <Button
+        onPress={() => {
+          onClick?.(element);
+        }}
+        className="focus-visible:outline-curren absolute inset-0 h-full w-full outline-none transition-transform focus-visible:z-10 pressed:scale-90"
+      >
+        <div className="absolute left-1 top-1 text-left text-xs font-extrabold tracking-tighter opacity-80 dark:text-accent-50">
           {element.atomic}
         </div>
 
-        <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-2xl">
+        <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 font-serif text-2xl font-semibold dark:text-[var(--element-color)]">
           {element.symbol}
         </div>
 
-        <div className="absolute bottom-1 left-1/2 -translate-x-1/2 text-center text-[9px] tracking-tight">
+        <div className="absolute bottom-1 left-1/2 -translate-x-1/2 text-center text-[9px] tracking-tight dark:text-accent-50">
           {elementLocales.name}
         </div>
-      </div>
-    </Button>
+      </Button>
+    </div>
   );
 }
 

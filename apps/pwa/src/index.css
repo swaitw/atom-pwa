@@ -45,8 +45,16 @@ button,
 input,
 select,
 textarea {
-  font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto,
-    "Helvetica Neue", Arial, sans-serif;
+  font-family:
+    Nunito,
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    Roboto,
+    "Helvetica Neue",
+    Arial,
+    sans-serif;
 }
 
 .element {
@@ -56,47 +64,58 @@ textarea {
     color 250ms linear;
 
   &.noble_gases {
+    --element-color: #7e57c2;
     background-color: #7e57c2;
   }
 
   &.alkali_metals {
+    --element-color: #ef5350;
     background-color: #ef5350;
   }
 
   &.alkali_earth_metals {
+    --element-color: #ff7043;
     background-color: #ff7043;
   }
 
   &.transition_metals {
+    --element-color: #ff9800;
     background-color: #ff9800;
   }
 
   &.basic_metals {
+    --element-color: #66bb6a;
     background-color: #66bb6a;
   }
 
   &.metalloids {
+    --element-color: #26c6da;
     background-color: #26c6da;
   }
 
   &.amphigens,
   &.hydrogen {
+    --element-color: #42a5f5;
     background-color: #42a5f5;
   }
 
   &.halogens {
+    --element-color: #5c6bc0;
     background-color: #5c6bc0;
   }
 
   &.lanthanoids {
+    --element-color: #7e57c2;
     background-color: #7e57c2;
   }
 
   &.actinoids {
+    --element-color: #ab47bc;
     background-color: #ab47bc;
   }
 
   &.clear {
+    --element-color: #78909c;
     background-color: #78909c;
   }
 }
@@ -149,4 +168,25 @@ textarea {
   &.clear {
     color: #78909c;
   }
+}
+
+@font-face {
+  font-family: "Lora";
+  font-style: normal;
+  font-display: block;
+  src: url(/fonts/Lora.woff2) format("woff2");
+}
+
+@font-face {
+  font-family: "Nunito";
+  font-style: normal;
+  font-display: block;
+  src: url(/fonts/Nunito.woff2) format("woff2");
+}
+
+@font-face {
+  font-family: "Nunito";
+  font-style: italic;
+  font-display: block;
+  src: url(/fonts/NunitoItalic.woff2) format("woff2");
 }
