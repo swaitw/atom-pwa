@@ -10,23 +10,24 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
+          node-version-file: '.nvmrc'
+          cache: "pnpm"
 
-      - name: Setup Node.js 14.x
-        uses: actions/setup-node@v1
-        with:
-          node-version: 14.x
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
 
       - name: Create report file
         run: |
           npm run locales-coverage
-          FILE_CHANGED=$(git diff src/locales/percentages.json)
+          FILE_CHANGED=$(git diff apps/pwa/src/locales/percentages.json)
           if [ ! -z "${FILE_CHANGED}" ]; then
             git config --global user.name 'Atom Bot'
             git config --global user.email 'atom@horus.dev'
-            git add src/locales/percentages.json
+            git add apps/pwa/src/locales/percentages.json
             git commit -am "Auto commit: Calculate translation coverage"
             git push
           fi

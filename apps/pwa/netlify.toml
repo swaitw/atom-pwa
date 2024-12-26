@@ -1,0 +1,42 @@
+[dev]
+  command = "vite"
+  targetPort = 3000
+  framework = "#custom"
+
+[build]
+  base = "apps/pwa"
+  publish = "apps/pwa/dist"
+  command = "pnpm build"
+  environment = { NODE_VERSION = "18.12.0", NODE_OPTIONS = "--max_old_space_size=4096" }
+
+# Any redirect added here needs to be added to the public/_redirects
+# file as well. This is because [[redirects]] in this file don't
+# work in monorepos because of a bug.
+[[redirects]]
+  from = "/js/script.js"
+  to = "https://plausible.io/js/plausible.js"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/api/event"
+  to = "https://plausible.io/api/event"
+  status = 202
+  force = true
+
+[[redirects]]
+  from = "/api/flags"
+  to = "https://atom-flags.horusdev.workers.dev"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/api/sentry"
+  to = "https://8c979cf560094d8aac2aa531d72a8a62@o524893.ingest.sentry.io/api/5638124/envelope/"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200

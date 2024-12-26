@@ -1,0 +1,201 @@
+import anime from "animejs";
+import * as React from "react";
+import Portal from "#src/components/shared/portal/Portal";
+import IconButton from "#src/components/shared/icon-button/IconButton";
+import { ModalProps } from "#src/components/shared/modal/Modal";
+import Overlay from "#src/components/shared/overlay/Overlay";
+import { useLocale } from "#src/hooks/useLocale";
+import { cn } from "#src/utils/styles";
+
+type ModalContentProps = Omit<ModalProps, "open">;
+
+function useSwipeToClose(onClose?: () => void) {
+  const [lastPosition, setLastPosition] = React.useState<number | null>(null);
+  const [opacity, setOpacity] = React.useState(1);
+  const [translateX, setTranslateX] = React.useState("-50%");
+
+  const frontDivRef = React.useRef<HTMLDivElement | null>(null);
+  const mcFrontDivRef = React.useRef<HammerManager | null>(null);
+  const frontDivAnimationRef = React.useRef<anime.AnimeInstance | null>(null);
+  const initialDivPositionRef = React.useRef(-1);
+
+  const onFinal = React.useCallback(
+    (currentPosition: number, calculatedSwipeRatio: number) => {
+      if (!frontDivRef.current) {
+        return;
+      }
+
+      const swipeableWidth = frontDivRef.current.clientWidth;
+      const triggerDelete = calculatedSwipeRatio >= 0.5;
+      const positionTarget = triggerDelete
+        ? swipeableWidth
+        : initialDivPositionRef.current;
+
+      const animateObject = { position: currentPosition };
+      frontDivAnimationRef.current = anime({
+        complete: () => {
+          if (triggerDelete) {
+            onClose?.();
+          }
+        },
+        duration: 250,
+        easing: "linear",
+        opacity: 0,
+        position: positionTarget,
+        targets: animateObject,
+        update: () => {
+          setLastPosition(animateObject.position);
+          setOpacity(1 - swipeRatio(animateObject.position, swipeableWidth));
+          setTranslateX(`${animateObject.position}px`);
+        },
+      });
+    },
+    [onClose],
+  );
+
+  const onPan = React.useCallback(
+    ({ deltaX, isFinal }: HammerInput) => {
+      if (frontDivAnimationRef.current) {
+        frontDivAnimationRef.current.pause();
+        frontDivAnimationRef.current = null;
+      }
+
+      let frontPosition =
+        lastPosition === null
+          ? 0 + deltaX + initialDivPositionRef.current
+          : lastPosition + deltaX;
+
+      if (frontPosition < initialDivPositionRef.current) {
+        frontPosition = initialDivPositionRef.current;
+      }
+
+      if (!frontDivRef.current) {
+        return;
+      }
+
+      const swipeableWidth = frontDivRef.current.clientWidth;
+      const ratio = swipeRatio(frontPosition, swipeableWidth);
+
+      if (isFinal) {
+        onFinal(frontPosition, ratio);
+      } else {
+        setOpacity(1 - ratio);
+        setTranslateX(`${frontPosition}px`);
+      }
+    },
+    [lastPosition, onFinal],
+  );
+
+  React.useEffect(() => {
+    if (!mcFrontDivRef.current && frontDivRef.current) {
+      mcFrontDivRef.current = new Hammer(frontDivRef.current);
+      mcFrontDivRef.current
+        .get("pan")
+        .set({ direction: Hammer.DIRECTION_HORIZONTAL });
+      mcFrontDivRef.current.on("pan", onPan);
+
+      const divWidth = frontDivRef.current.getBoundingClientRect().width;
+      initialDivPositionRef.current = -(divWidth / 2);
+    }
+    return () => {
+      if (!mcFrontDivRef.current) {
+        return;
+      }
+
+      mcFrontDivRef.current.destroy();
+      mcFrontDivRef.current = null;
+    };
+  }, [onPan]);
+
+  const swipeRatio = (position: number, width: number) => {
+    const diff = position - initialDivPositionRef.current;
+
+    return diff / width;
+  };
+
+  return {
+    frontDivRef,
+    opacity,
+    translateX,
+  };
+}
+
+function useLockedBackgroundContent() {
+  React.useEffect(() => {
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, []);
+}
+
+function SwipeableModalContent({
+  title,
+  closeButton,
+  onClose,
+  className,
+  children,
+}: ModalContentProps) {
+  // TODO: Don't use App's i18n here, use the one from the Design System instead
+  const { i18n } = useLocale();
+  const showHeader = !!title || closeButton;
+  const { frontDivRef, opacity, translateX } = useSwipeToClose(onClose);
+
+  useLockedBackgroundContent();
+
+  return (
+    <>
+      <Overlay opacity={opacity} onClick={onClose} />
+
+      <div
+        ref={frontDivRef}
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="modal-title"
+        className={cn(
+          "fixed left-1/2 top-1/2 z-[100] h-full max-h-[50%] w-full max-w-[50%] -translate-x-1/2 -translate-y-1/2 rounded-lg bg-white p-4 text-accent-950 will-change-transform dark:bg-accent-900 dark:text-accent-50",
+          className,
+        )}
+        style={{
+          opacity,
+          transform: `translate(${translateX}, -50%)`,
+        }}
+      >
+        {showHeader && (
+          <div className="flex items-center">
+            {title && (
+              <span id="modal-title" className="px-4 text-lg font-bold">
+                {title}
+              </span>
+            )}
+
+            {closeButton && (
+              <IconButton
+                className="ml-auto"
+                iconName="close"
+                onClick={onClose}
+                aria-label={i18n("Close")}
+              />
+            )}
+          </div>
+        )}
+
+        {children}
+      </div>
+    </>
+  );
+}
+
+function SwipeableModal({ open, ...contentProps }: ModalProps) {
+  if (!open) {
+    return null;
+  }
+
+  return (
+    <Portal>
+      <SwipeableModalContent {...contentProps} />
+    </Portal>
+  );
+}
+
+export default SwipeableModal;

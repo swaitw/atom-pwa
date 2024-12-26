@@ -1,0 +1,21 @@
+{
+  "name": "screenshots",
+  "version": "1.0.0",
+  "private": true,
+  "license": "MIT",
+  "scripts": {
+    "start": "tsx src/main.ts"
+  },
+  "dependencies": {
+    "playwright": "^1.36.1",
+    "tsx": "^3.12.7"
+  },
+  "devDependencies": {
+    "@internal/eslint-config": "workspace:*",
+    "@internal/tsconfig": "workspace:*",
+    "@types/node": "22.10.2",
+    "eslint": "8.57.1",
+    "prettier": "3.4.2",
+    "typescript": "5.7.2"
+  }
+}

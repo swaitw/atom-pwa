@@ -1,9 +1,0 @@
-{
-  "disabled": false,
-  "id": "periodic-table",
-  "title": "Periodic Table",
-  "category": "tools",
-  "colSpan": 2,
-  "imageUrl": "/media/periodic-table.svg",
-  "href": "/periodic-table"
-}

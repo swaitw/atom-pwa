@@ -13,178 +13,117 @@ on:
 jobs:
   test:
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        node: [12, 14]
 
     env:
       NODE_OPTIONS: "--max_old_space_size=4096"
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v1
-        with:
-          node-version: ${{ matrix.node }}
+          node-version-file: ".nvmrc"
+          cache: "pnpm"
 
       - name: Set output
         id: vars
         run: echo ::set-output name=short_ref::${GITHUB_REF#refs/*/}
 
-      - name: Get yarn cache directory path
-        id: yarn-cache-dir-path
-        run: echo "::set-output name=dir::$(yarn cache dir)"
-
-      - uses: actions/cache@v2
-        id: yarn-cache # use this to check for `cache-hit` (`steps.yarn-cache.outputs.cache-hit != 'true'`)
-        with:
-          path: |
-            ${{ steps.yarn-cache-dir-path.outputs.dir }}
-            node_modules
-            */*/node_modules
-          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-yarn-
-
       - name: Install dependencies
-        run: yarn
+        run: pnpm install --frozen-lockfile
+
+      - name: Install Playwright Browsers
+        run: pnpm playwright install --with-deps
+        working-directory: projects/e2e
 
       - name: Run tests
-        run: yarn test:ci
+        run: pnpm test:coverage
 
-      - name: Upload coverage data
-        uses: actions/upload-artifact@v2
+      - name: Upload integration/unit coverage data
+        uses: actions/upload-artifact@v3
         with:
-          name: jest-coverage
-          path: coverage
+          name: vitest-coverage
+          path: apps/pwa/coverage
+          retention-days: 30
 
-      - name: Upload coverage to Codecov
-        uses: codecov/codecov-action@v1
-  cypress-run:
-    runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        node: [12, 14]
-    steps:
-      - uses: actions/checkout@v2
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v1
+      - name: Upload e2e coverage data
+        uses: actions/upload-artifact@v3
         with:
-          node-version: ${{ matrix.node }}
+          name: e2e-coverage
+          path: projects/e2e/coverage
+          retention-days: 30
 
-      - name: Run Tests
-        uses: cypress-io/github-action@v2
-        with:
-          start: npm run dev
-          browser: chrome
-          wait-on: "http://localhost:8888"
-
-      # after the test run completes
-      # store videos and any screenshots
-      # NOTE: screenshots will be generated only if E2E test failed
-      # thus we store screenshots only on failures
-      # Alternative: create and commit an empty cypress/screenshots folder
-      # to always have something to upload
-      - name: Upload screenshots
-        uses: actions/upload-artifact@v1
-        if: failure()
-        with:
-          name: cypress-screenshots
-          path: cypress/screenshots
-
-      # Test run video was always captured, so this action uses "always()" condition
-      - name: Upload videos
-        uses: actions/upload-artifact@v1
+      - name: Upload playwright report
+        uses: actions/upload-artifact@v3
         if: always()
         with:
-          name: cypress-videos
-          path: cypress/videos
-
-      - name: Upload coverage data
-        uses: actions/upload-artifact@v2
-        with:
-          name: cypress-coverage
-          path: coverage
+          name: playwright-report
+          path: projects/e2e/playwright-report/
+          retention-days: 30
 
       - name: Upload coverage to Codecov
-        uses: codecov/codecov-action@v1
+        uses: codecov/codecov-action@v3
   typechecking:
     runs-on: ubuntu-latest
     env:
       NODE_OPTIONS: "--max_old_space_size=4096"
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v1
-        with:
-          node-version: 14
+          node-version-file: ".nvmrc"
+          cache: "pnpm"
 
       - name: Set output
         id: vars
         run: echo ::set-output name=short_ref::${GITHUB_REF#refs/*/}
 
-      - name: Get yarn cache directory path
-        id: yarn-cache-dir-path
-        run: echo "::set-output name=dir::$(yarn cache dir)"
-
-      - uses: actions/cache@v2
-        id: yarn-cache # use this to check for `cache-hit` (`steps.yarn-cache.outputs.cache-hit != 'true'`)
-        with:
-          path: |
-            ${{ steps.yarn-cache-dir-path.outputs.dir }}
-            node_modules
-            */*/node_modules
-          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-yarn-
-
       - name: Install dependencies
-        run: yarn
+        run: pnpm install --frozen-lockfile
 
       - name: Run typechecking
-        run: yarn typecheck
+        run: pnpm typecheck
   linter:
     runs-on: ubuntu-latest
     env:
       NODE_OPTIONS: "--max_old_space_size=4096"
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v1
-        with:
-          node-version: 14
+          node-version-file: ".nvmrc"
+          cache: "pnpm"
 
       - name: Set output
         id: vars
         run: echo ::set-output name=short_ref::${GITHUB_REF#refs/*/}
 
-      - name: Get yarn cache directory path
-        id: yarn-cache-dir-path
-        run: echo "::set-output name=dir::$(yarn cache dir)"
-
-      - uses: actions/cache@v2
-        id: yarn-cache # use this to check for `cache-hit` (`steps.yarn-cache.outputs.cache-hit != 'true'`)
-        with:
-          path: |
-            ${{ steps.yarn-cache-dir-path.outputs.dir }}
-            node_modules
-            */*/node_modules
-          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-yarn-
-
       - name: Install dependencies
-        run: yarn
+        run: pnpm install --frozen-lockfile
 
       - name: Run typechecking
-        run: yarn lint
+        run: pnpm lint
+  extract-messages:
+    name: Extract Locales
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: ".nvmrc"
+          cache: "pnpm"
+
+      - name: Extract Messages
+        run: pnpm lingui:extract
+        working-directory: apps/pwa
+
+      - uses: EndBug/add-and-commit@v9
+        with:
+          commit: --signoff
+          add: "--all"
+          message: "i18n: update locales"
+          committer_name: GitHub Actions
+          committer_email: actions@github.com
