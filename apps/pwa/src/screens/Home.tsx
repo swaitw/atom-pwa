@@ -50,7 +50,7 @@ export default function Home() {
         <PeriodicTable
           elementRenderer={elementRenderer}
           className={cn(
-            "ml-[calc(16px_+_var(--safe-area-inset-left))] mt-[calc(90px_+_var(--safe-area-inset-top))] overflow-hidden rounded-xl border shadow-xl dark:border-accent-400/20",
+            "mb-[calc(72px_+_var(--safe-area-inset-bottom))] ml-[calc(16px_+_var(--safe-area-inset-left))] mt-[calc(90px_+_var(--safe-area-inset-top))] overflow-hidden rounded-xl border shadow-xl dark:border-accent-400/20",
             shouldAnimate &&
               "animate-in fade-in slide-in-from-bottom-[64px] slide-in-from-right-[64px] [animation-duration:1s]",
           )}

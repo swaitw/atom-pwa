@@ -203,11 +203,10 @@ function PeriodicTable({ elementRenderer, className }: PeriodicTableProps) {
         }}
       >
         <TransformComponent
-          contentStyle={{ width: "100%", height: "100%" }}
-          wrapperStyle={{ width: "100%", height: "100%" }}
           wrapperProps={{
             onPointerMove,
           }}
+          wrapperClass="h-full w-full [@media_(min-width:1400px)_and_(min-height:900px)]:flex items-center justify-center"
         >
           <div
             className={cn(
