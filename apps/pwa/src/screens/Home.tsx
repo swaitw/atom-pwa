@@ -91,7 +91,7 @@ function SearchHeader({
   return (
     <header
       className={cn(
-        "fixed left-safe-left right-safe-right top-safe-top z-10 p-4",
+        "fixed left-1/2 top-safe-top z-10 ml-safe-left mr-safe-right w-full max-w-md -translate-x-1/2 p-4",
         animate && "duration-1000 animate-in fade-in slide-in-from-top",
       )}
     >
